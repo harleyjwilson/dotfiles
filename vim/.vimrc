@@ -17,3 +17,15 @@ syntax on
 
 " Add numbers to each line on the left-hand side.
 set number
+
+" PLUGINS ---------------------------------------------------------------- {{{
+
+
+" }}}
+
+" MAPPINGS --------------------------------------------------------------- {{{
+
+" Type jj to exit insert mode quickly.
+inoremap jj <Esc>
+
+" }}}
