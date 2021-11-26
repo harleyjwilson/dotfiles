@@ -1,4 +1,5 @@
-" BASIC SETUP:
+" BASIC SETUP {{{
+" BASIC SETUP
 
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
@@ -18,16 +19,30 @@ syntax on
 " Add numbers to each line on the left-hand side.
 set number
 
+" }}}
+
+" FINDING FILES
+
+" Search down into subfolders
+" Provides tab-completion for all file-related tasks
+set path+=**
+
+" Display all matching files when we tab complete
+set wildmenu
+
+
+
 " PLUGINS ---------------------------------------------------------------- {{{
 
-" NerdTREE filesystem plug in
-call plug#begin()
+call plug#begin('~/.vim/plugged')
+
+" NERDTree plugin
 Plug 'preservim/nerdtree'
+
 call plug#end()
 
-
-
 " }}}
+
 
 " PLUGINS SETTINGS ---------------------------------------------------------------- {{{
 
@@ -48,5 +63,24 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 
 " Type jj to exit insert mode quickly.
 inoremap jj <Esc>
+
+" Press the space bar to type the : character in command mode.
+nnoremap <space> :
+
+" You can split the window in Vim by typing :split or :vsplit.
+" Navigate the split view easier by pressing CTRL+j, CTRL+k, CTRL+h, or CTRL+l.
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+
+" Resize split windows using arrow keys by pressing:
+" CTRL+UP, CTRL+DOWN, CTRL+LEFT, or CTRL+RIGHT.
+noremap <c-up> <c-w>+
+noremap <c-down> <c-w>-
+noremap <c-left> <c-w>>
+noremap <c-right> <c-w><
+
+
 
 " }}}
