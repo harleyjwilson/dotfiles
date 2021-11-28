@@ -1,6 +1,7 @@
 " vim:fileencoding=utf-8:foldmethod=marker
 
 " Plugin Loader {{{
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'preservim/nerdtree' " NERDTree plugin
