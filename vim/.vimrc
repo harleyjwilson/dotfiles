@@ -1,7 +1,6 @@
 " vim:fileencoding=utf-8:foldmethod=marker
 
 " Plugin Loader {{{
-
 call plug#begin('~/.vim/plugged')
 
 Plug 'preservim/nerdtree' " NERDTree plugin
@@ -38,6 +37,13 @@ set path+=**
 " Display all matching files when we tab complete
 set wildmenu
 
+" Create the `tags` file (may need to install ctags first)
+command! MakeTags !ctags -R .
+
+" }}}
+
+" Mappings {{{
+
 " Type jj to exit insert mode quickly.
 inoremap jj <Esc>
 
@@ -57,6 +63,12 @@ noremap <c-up> <c-w>+
 noremap <c-down> <c-w>-
 noremap <c-left> <c-w>>
 noremap <c-right> <c-w><
+
+" }}}
+
+" Snippets {{{
+
+nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>6jwf>a
 
 " }}}
 
