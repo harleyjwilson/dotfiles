@@ -69,7 +69,8 @@ noremap <c-right> <c-w><
 
 " Snippets {{{
 
-nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>6jwf>a
+nnoremap ,html :-1read $HOME/.vim/snippets/.skeleton.html<CR>6jwf>a
+nnoremap ,resetcss :-1read $HOME/.vim/snippets/.reset.css
 
 " }}}
 
