@@ -1,0 +1,14 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = Harley Wilson
+	email = 54230223+harleyjwilson@users.noreply.github.com
+[core]
+	editor = vim
+[init]
+	defaultBranch = main
+[color]
+	ui = auto
