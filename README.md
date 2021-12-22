@@ -19,10 +19,10 @@
 
 ### 3. Update Dotfiles
 
+- Load [`.config/`](.config/) contents into `~/.config/` folder. This includes the kitty and nvim config files.
+- Load [`.vim/`](/.vim/) contents into `~/.vim/` folder
 - Load [`.zshrc`](/.zshrc) contents into `~/.zshrc`
-- Load [`.vim`](/.vim/) contents into `~/.vim/` folder
 - Load [`.vimrc`](/.vimrc) contents into `~/.vimrc`
-- Load [`init.vim`](init.vim) contents into `~/.config/nvim` folder
 - Load [`.gitconfig`](/.gitconfig) contents into the global `~/.gitconfig`
 
 ### 4. Secure Git(hub) Access
