@@ -44,6 +44,10 @@
 
 Please feel free to fork this repo, or just copy-paste things you need, and make it your own. **Please be sure to change your `.gitconfig` name and email address though!**
 
+## Your Mileage May Vary (YMMV)
+
+This is my personal setup checklist and may not work for your computer 😅
+
 ## Acknowledgements
 
 This README checklist to set up my new Mac was based on [mdo/config](https://github.com/mdo/config) repo, customised for my own needs.
