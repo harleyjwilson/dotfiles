@@ -1,3 +1,5 @@
+ls /Applications/ output to apps-list.md
+
 1Password 7.app
 Accelerate.app
 AdBlock.app

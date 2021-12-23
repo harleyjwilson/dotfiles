@@ -1,3 +1,5 @@
+brew list output to brew-list.md
+
 bdw-gc
 berkeley-db
 brotli
