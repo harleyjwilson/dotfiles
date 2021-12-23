@@ -13,6 +13,7 @@ github
 google-chrome
 harmony
 hazel
+hyper
 iina
 kindle
 moom
