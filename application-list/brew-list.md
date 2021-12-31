@@ -1,5 +1,3 @@
-brew list output to brew-list.md
-
 bdw-gc
 berkeley-db
 brotli
@@ -12,20 +10,26 @@ gettext
 gh
 git
 gmp
+gnupg
 gnutls
 guile
 icu4c
 jansson
 jemalloc
+libassuan
 libev
 libevent
 libffi
+libgcrypt
+libgpg-error
 libidn2
+libksba
 libnghttp2
 libtasn1
 libtermkey
 libtool
 libunistring
+libusb
 libuv
 libyaml
 lua
@@ -39,10 +43,12 @@ neovim
 nettle
 nghttp2
 node
+npth
 openssl@1.1
 p11-kit
 pcre2
 perl
+pinentry
 pkg-config
 python@3.10
 python@3.9

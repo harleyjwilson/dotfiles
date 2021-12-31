@@ -1,5 +1,3 @@
-ls /Applications/ output to apps-list.md
-
 1Password 7.app
 Accelerate.app
 AdBlock.app
@@ -28,6 +26,7 @@ IINA.app
 Instapaper Save.app
 Keynote.app
 Kindle.app
+Logi Bolt.app
 Logi Options.app
 Messenger.app
 Moom.app

@@ -1,5 +1,6 @@
 gh
 git
+gpg
 neovim
 node
 python@3.10
