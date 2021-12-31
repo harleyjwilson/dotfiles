@@ -8,6 +8,7 @@
 
 - Update OS X.
 - Download and install the latest version of Xcode from the Mac App Store.
+- Download dotfiles repo to home directory https://github.com/harleyjwilson/dotfiles
 
 ### 2. Install Initial CLI
 
@@ -17,10 +18,9 @@
 - Install OhMyZSH `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
 - Run `brew upgrade`
 
-### 3. Secure Git(hub) Access
+### 3. Set Up SSH Key for GitHub
 
-- [Generate an access token](https://help.github.com/articles/creating-an-access-token-for-command-line-use/) for Terminal to auth your GitHub account when 2FA is enabled.
-- While your at it clone the repo `git clone git@github.com:harleyjwilson/dotfiles.git`
+- Follow the [connect to GitHub with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/) instructions.
 
 ### 4. Install CLI & GUI Applications
 
