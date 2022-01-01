@@ -13,9 +13,9 @@ github
 google-chrome
 harmony
 hazel
-hyper
 iina
 kindle
+kitty
 moom
 notion
 obsidian
@@ -25,5 +25,4 @@ steam
 todoist
 visual-studio-code
 zotero
-kitty
 zoom
