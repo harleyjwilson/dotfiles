@@ -1,7 +1,9 @@
 Package     Version
------------ -------
+----------- ----------
 autopep8    1.5.4
 pip         21.3.1
+psutil      5.9.0
 pycodestyle 2.6.0
 setuptools  49.2.1
 toml        0.10.2
+trash-cli   0.21.10.24
