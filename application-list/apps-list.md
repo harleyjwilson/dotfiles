@@ -24,6 +24,7 @@ Horo.app
 Hyper.app
 IINA.app
 Instapaper Save.app
+KeePassXC.app
 Keynote.app
 Kindle.app
 Logi Bolt.app
@@ -32,6 +33,7 @@ Messenger.app
 Moom.app
 Notion.app
 Numbers.app
+Numi.app
 Obsidian.app
 Pages.app
 Python 3.9

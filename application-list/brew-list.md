@@ -3,8 +3,6 @@ berkeley-db
 brotli
 c-ares
 ca-certificates
-emacs
-fzf
 gdbm
 gettext
 gh
@@ -13,6 +11,7 @@ gmp
 gnupg
 gnutls
 guile
+htop
 icu4c
 jansson
 jemalloc
@@ -46,6 +45,7 @@ node
 npth
 openssl@1.1
 p11-kit
+paperkey
 pcre2
 perl
 pinentry
@@ -57,9 +57,13 @@ restic
 ruby
 sqlite
 tmux
+trash-cli
 tree-sitter
 unbound
 unibilium
 utf8proc
 vim
 xz
+iina
+keepassxc
+numi
