@@ -77,3 +77,4 @@ export LANG=en_US.UTF-8
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vim='nvim'
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
