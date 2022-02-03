@@ -7,16 +7,13 @@
 ### 1. Prepare OS
 
 - Update OS X.
-- Download and install the latest version of Xcode from the Mac App Store.
-- Download dotfiles repo to home directory https://github.com/harleyjwilson/dotfiles
+- Download and install the latest version of Xcode from the Mac App Store. **Open Xcode and agree to to the terms of use.**
+- Download [dotfiles repo](https://github.com/harleyjwilson/dotfiles) to home directory.
 
 ### 2. Install Initial CLI
 
-- Open Terminal and trigger Xcode Command Line Tools installation: `xcode-select --install`
-    **Be sure to open Xcode and agree to the terms of use.**
-- Install Homebrew `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 - Install OhMyZSH `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
-- Run `brew upgrade`
+- Install Homebrew `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`. This will install Xcode Command Line Tools, normally done by `xcode-select --install`, as a part of its normal setup process.
 
 ### 3. Set Up SSH Key for GitHub
 
@@ -24,9 +21,8 @@
 
 ### 4. Install CLI & GUI Applications
 
-- Download [`.brew-apps.md`](/brew/brew-apps.md) and install Homebrew packages `brew install $(<brew-apps.md)`
-- Download [`.brew-apps-cask.md`](/brew/brew-apps-cask.md) and install Homebrew packages `brew install --cask $(<brew-apps-cask.md)`
-- Install 11ty for personal website `npm install -g @11ty/eleventy`
+- Copy the Brewfile in from the dotfiles repo to the home directory.
+- Run `brew bundle`
 
 ### 5. Update Dotfiles
 
@@ -38,7 +34,6 @@
 
 ### 6. Customize Things
 
-- Change Caps Lock key to Escape key.
 - Update trackpad speed to its fastest setting.
 - Set Dock icons to small and make automatically hide
 
