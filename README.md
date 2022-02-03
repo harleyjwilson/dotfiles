@@ -1,6 +1,6 @@
 # Dotfiles
 
-**Dotfiles** is an ongoing collection of my Mac development setup and configurations files. It is sparse at the moment but no doubt it will update as I go. I'm writing this as prepare to update my Mac. Hopefully it will come in handy as I go.
+**Dotfiles** is an ongoing collection of my Mac development setup and configurations files. I have just updated it after moving to my new laptop, and included the use of Homebrew's Brewfile to install everything. I plan on developing a script to move the dotfiles to their relevant place.
 
 ## Checklist
 
