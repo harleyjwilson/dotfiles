@@ -70,7 +70,6 @@ cask "zoom"
 cask "zotero"
 mas "Accelerate", id: 1459809092
 mas "Amphetamine", id: 937984704
-mas "Dark Noise", id: 1465439395
 mas "Developer", id: 640199958
 mas "Drafts", id: 1435957248
 mas "Honey", id: 1472777122
