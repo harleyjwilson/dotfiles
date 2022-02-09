@@ -12,3 +12,4 @@ cp -v ~/.gitconfig ~/dotfiles
 cp -v ~/.vimrc ~/dotfiles
 cp -v ~/.zshrc ~/dotfiles
 cp -v ~/Brewfile ~/dotfiles
+find ~/dotfiles \( -name '.DS_Store' \) -delete
