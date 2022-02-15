@@ -5,8 +5,6 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'preservim/nerdtree' 
-Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
@@ -31,15 +29,6 @@ syntax on
 
 " Add numbers to each line on the left-hand side.
 set number
-
-" Search down into subfolders and provides tab-completion for all file-related tasks
-set path+=**
-
-" Display all matching files when we tab complete
-set wildmenu
-
-" Create the `tags` file (may need to install ctags first)
-command! MakeTags !ctags -R .
 
 " }}}
 
@@ -69,19 +58,10 @@ noremap <c-right> <c-w><
 
 " Snippets {{{
 
-nnoremap ,html :-1read $HOME/.vim/snippets/.skeleton.html<CR>6jwf>a
-nnoremap ,resetcss :-1read $HOME/.vim/snippets/.reset.css
-
 " }}}
 
 " Plugin Settings {{{
 
 " NerdTREE settings
-" Start NERDTree. If a file is specified, move the cursor to its window.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
-
-" Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " }}}
