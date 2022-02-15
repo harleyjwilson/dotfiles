@@ -1,6 +1,8 @@
 # If you come from bash you might have to change your $PATH.
+# The rest of the $PATH declarations can go here
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
+export PATH="/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/harleywilson/.oh-my-zsh"
@@ -77,4 +79,3 @@ export LANG=en_US.UTF-8
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vim='nvim'
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
