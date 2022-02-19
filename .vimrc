@@ -5,6 +5,7 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'preservim/nerdtree' 
+Plug 'junegunn/fzf',
 
 call plug#end()
 
