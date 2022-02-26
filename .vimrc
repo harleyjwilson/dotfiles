@@ -36,10 +36,10 @@ set number
 " Mappings {{{
 
 " Type jj to exit insert mode quickly.
-inoremap jj <Esc>
+" noremap jj <Esc>
 
 " Press the space bar to type the : character in command mode.
-nnoremap <space> :
+" nnoremap <space> :
 
 " You can split the window in Vim by typing :split or :vsplit.
 " Navigate the split view easier by pressing CTRL+j, CTRL+k, CTRL+h, or CTRL+l.
