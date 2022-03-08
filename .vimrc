@@ -31,6 +31,15 @@ syntax on
 " Add numbers to each line on the left-hand side.
 set number
 
+" Set search result highlighting 
+set hls
+set is
+    
+" Set tabs to spaces, and tab expansion to spaces
+set tabstop=4
+set softtabstop=4
+set expandtab
+
 " }}}
 
 " Mappings {{{
