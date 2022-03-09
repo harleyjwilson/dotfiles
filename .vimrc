@@ -5,7 +5,8 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'preservim/nerdtree' 
-Plug 'junegunn/fzf',
+Plug 'junegunn/fzf'
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
