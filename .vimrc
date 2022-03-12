@@ -14,32 +14,38 @@ call plug#end()
 
 " General Settings {{{
 
+" Turn syntax highlighting on
+syntax on
+
+" Set \t to 4 spaces
+set tabstop=4
+
+" Set tab key to 4 spaces
+set softtabstop=4
+
+" Set tabs to expand to 4 spaces
+set expandtab
+
+" Add numbers to each line on the left-hand side
+set number
+
+" Enable type file detection. Vim will be able to try to detect the type of file in use
+filetype on
+
+" Set search result highlighting 
+set hls
+
+" Set partial search result highlighting
+set is
+
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
-
-" Enable type file detection. Vim will be able to try to detect the type of file in use.
-filetype on
 
 " Enable plugins and load plugin for the detected file type.
 filetype plugin on
 
 " Load an indent file for the detected file type.
 filetype indent on
-
-" Turn syntax highlighting on.
-syntax on
-
-" Add numbers to each line on the left-hand side.
-set number
-
-" Set search result highlighting 
-set hls
-set is
-    
-" Set tabs to spaces, and tab expansion to spaces
-set tabstop=4
-set softtabstop=4
-set expandtab
 
 " }}}
 
