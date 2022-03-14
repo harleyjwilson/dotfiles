@@ -3,6 +3,7 @@ tap "homebrew/cask"
 tap "homebrew/cask-drivers"
 tap "homebrew/cask-fonts"
 tap "homebrew/core"
+brew "curl"
 brew "node"
 brew "eleventy"
 brew "fzf"
@@ -50,6 +51,9 @@ cask "font-lato"
 cask "font-sacramento"
 cask "github"
 cask "google-chrome"
+cask "google-drive"
+cask "google-earth-pro"
+cask "grammarly"
 cask "iina"
 cask "imageoptim"
 cask "iterm2"
@@ -66,6 +70,7 @@ cask "moom"
 cask "notion"
 cask "numi"
 cask "obsidian"
+cask "pdfpen"
 cask "signal"
 cask "spotify"
 cask "steam"
@@ -80,13 +85,16 @@ mas "Accelerate", id: 1459809092
 mas "Amphetamine", id: 937984704
 mas "Developer", id: 640199958
 mas "Drafts", id: 1435957248
+mas "Grammarly for Safari", id: 1462114288
 mas "Honey", id: 1472777122
 mas "Horo", id: 1437226581
 mas "iA Writer", id: 775737590
 mas "Instapaper Save", id: 1481302432
 mas "Keynote", id: 409183694
 mas "Numbers", id: 409203825
+mas "One Thing", id: 1604176982
 mas "Pages", id: 409201541
 mas "Reeder", id: 1529448980
 mas "Spark", id: 1176895641
+mas "Timery", id: 1425368544
 mas "Xcode", id: 497799835
