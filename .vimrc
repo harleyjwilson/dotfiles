@@ -4,8 +4,8 @@
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'preservim/nerdtree' 
 Plug 'junegunn/fzf'
+Plug 'preservim/nerdtree' 
 Plug 'tpope/vim-fugitive'
 
 call plug#end()
@@ -51,12 +51,6 @@ filetype indent on
 
 " Mappings {{{
 
-" Type jj to exit insert mode quickly.
-" noremap jj <Esc>
-
-" Press the space bar to type the : character in command mode.
-" nnoremap <space> :
-
 " You can split the window in Vim by typing :split or :vsplit.
 " Navigate the split view easier by pressing CTRL+j, CTRL+k, CTRL+h, or CTRL+l.
 nnoremap <c-j> <c-w>j
@@ -64,21 +58,20 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
-" Resize split windows using arrow keys by pressing:
-" CTRL+UP, CTRL+DOWN, CTRL+LEFT, or CTRL+RIGHT.
-noremap <c-up> <c-w>+
-noremap <c-down> <c-w>-
-noremap <c-left> <c-w>>
-noremap <c-right> <c-w><
-
-" }}}
-
-" Snippets {{{
+" Open NERDTree with <CR>n
+nnoremap <C-n> :NERDTree<CR>
 
 " }}}
 
 " Plugin Settings {{{
 
 " NerdTREE settings
+
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " }}}
