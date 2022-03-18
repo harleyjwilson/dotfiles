@@ -7,6 +7,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf'
 Plug 'preservim/nerdtree' 
 Plug 'tpope/vim-fugitive'
+" Plug 'vim-airline/vim-airline'
 
 call plug#end()
 
