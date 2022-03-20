@@ -7,7 +7,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf'
 Plug 'preservim/nerdtree' 
 Plug 'tpope/vim-fugitive'
-" Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline'
 
 call plug#end()
 
@@ -38,6 +38,9 @@ set hls
 
 " Set partial search result highlighting
 set is
+
+" Use system clipboard
+set clipboard=unnamedplus
 
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
