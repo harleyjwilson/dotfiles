@@ -95,3 +95,6 @@ source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 # To use autojump
 [ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
