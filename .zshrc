@@ -11,6 +11,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
+export PATH="/Users/harleywilson/Library/Python/3.8/bin:$PATH"
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/harleywilson/.oh-my-zsh"
 
@@ -77,9 +78,11 @@ export LANG=en_US.UTF-8
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vim="nvim"
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 if test -n "$KITTY_INSTALLATION_DIR"; then
     export KITTY_SHELL_INTEGRATION="enabled"

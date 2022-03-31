@@ -4,6 +4,7 @@ echo "Symbolic linking of dotfiles..."
 
 # Symlink directories
 ln -sf ~/dotfiles/bin ~/bin
+ln -sf ~/dotfiles/.config ~/.config
 
 # Symlink files
 ln -sf ~/dotfiles/.gitconfig ~/.gitconfig

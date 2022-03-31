@@ -1,9 +1,6 @@
 Package    Version
----------- ----------
-pip        22.0.3
-protobuf   3.19.4
-psutil     5.9.0
-setuptools 60.6.0
-six        1.16.0
-trash-cli  0.21.10.24
-wheel      0.37.1
+---------- -------
+pip        20.2.3
+setuptools 49.2.1
+six        1.15.0
+wheel      0.36.2
