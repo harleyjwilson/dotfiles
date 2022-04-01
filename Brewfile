@@ -28,8 +28,10 @@ brew "pandoc"
 brew "php"
 brew "prettier"
 brew "speedtest-cli"
+brew "stow"
 brew "thefuck"
 brew "tmux"
+brew "trash-cli"
 brew "tree"
 brew "vim"
 brew "wget"
@@ -101,9 +103,7 @@ mas "iA Writer", id: 775737590
 mas "Instapaper Save", id: 1481302432
 mas "Keynote", id: 409183694
 mas "Numbers", id: 409203825
-mas "One Thing", id: 1604176982
 mas "Pages", id: 409201541
 mas "Reeder", id: 1529448980
 mas "Spark", id: 1176895641
-mas "Timery", id: 1425368544
 mas "Xcode", id: 497799835
