@@ -27,6 +27,9 @@ set softtabstop=4
 " Set tabs to expand to 4 spaces
 set expandtab
 
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+
 " Add numbers to each line on the left-hand side
 set number
 
