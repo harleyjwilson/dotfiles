@@ -10,8 +10,8 @@ fi
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-
 export PATH="/Users/harleywilson/Library/Python/3.8/bin:$PATH"
+
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/harleywilson/.oh-my-zsh"
 
