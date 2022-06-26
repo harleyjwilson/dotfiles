@@ -4,7 +4,7 @@ echo "Symbolic linking of dotfiles..."
 
 # Symlink directories
 ln -sf ~/dotfiles/bin ~/bin
-ln -sf ~/dotfiles/.config ~/.config
+# ln -sf ~/dotfiles/.config ~/.config
 
 # Symlink files
 ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
@@ -12,3 +12,4 @@ ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/.vimrc ~/.vimrc
 ln -sf ~/dotfiles/.zshrc ~/.zshrc
 ln -sf ~/dotfiles/Brewfile ~/Brewfile
+ln -sf ~/dotfiles/init.vim ~/.config/nvim/init.vim
