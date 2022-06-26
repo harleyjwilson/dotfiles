@@ -2,6 +2,13 @@
 
 echo "Symlinking dotfiles..."
 
+# Setting up directories
+echo "Remove and create new ~/.config/nvim/"
+rm -rf ~/.config/nvim/
+mkdir ~/.config/nvim/
+echo "Remove existing ~/bin"
+rm -rf ~/bin
+
 # Symlink directories
 echo "Linking ~/dotfiles/bin -> ~/bin"
 ln -sf ~/dotfiles/bin ~/bin
