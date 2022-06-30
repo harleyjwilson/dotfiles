@@ -1,3 +1,4 @@
+tap "1password/tap"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-drivers"
@@ -24,6 +25,7 @@ brew "openjdk"
 brew "pandoc"
 brew "php"
 brew "prettier"
+brew "pygments"
 brew "speedtest-cli"
 brew "thefuck"
 brew "tmux"
@@ -34,6 +36,7 @@ brew "wget"
 brew "zsh"
 brew "romkatv/powerlevel10k/powerlevel10k"
 cask "1password"
+cask "1password-cli"
 cask "aerial"
 cask "alfred"
 cask "anki"
@@ -88,6 +91,7 @@ cask "vmware-horizon-client"
 cask "whatsapp"
 cask "zoom"
 cask "zotero"
+mas "1Password for Safari", id: 1569813296
 mas "Accelerate", id: 1459809092
 mas "Adblock Plus", id: 1432731683
 mas "Amphetamine", id: 937984704
