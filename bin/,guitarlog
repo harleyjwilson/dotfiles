@@ -34,7 +34,7 @@ class guitar_log:
         csv_writer.writerow(new_entry)
     csv_file.close()
 
-    print("\nGuitar Practice.csv")
+    print("\n" + os.path.basename(CSV_FILE_PATH))
     print("----------------------------------------")
     os.system("cat \"" + CSV_FILE_PATH + "\"")
     print("----------------------------------------")
