@@ -1,0 +1,35 @@
+#!/usr/bin/env python3
+
+import csv
+import os
+
+CSV_FILE_PATH = "/Users/harleywilson/Documents/2 Areas/Guitar/Guitar Practice.csv"
+
+column_names = []
+new_entry = []
+
+class guitar_log:
+    with open(CSV_FILE_PATH, mode='r') as csv_file:
+        csv_reader = csv.reader(csv_file)
+        line_count = 0
+        for row in csv_reader:
+            if line_count == 0:
+                for items in row:
+                    column_names.append(items)
+            line_count += 1
+    csv_file.close()
+
+
+    for items in column_names:
+        new_entry.append(input("Input entry for: " + items + "\n"))
+
+    with open(CSV_FILE_PATH, mode='a', newline='') as csv_file:
+        csv_writer = csv.writer(csv_file)
+        csv_writer.writerow(new_entry)
+    csv_file.close()
+    
+    print("\nGuitar Practice.csv")
+    print("----------------------------------------")
+    os.system("cat \"" + CSV_FILE_PATH + "\"")
+    print("----------------------------------------")
+
