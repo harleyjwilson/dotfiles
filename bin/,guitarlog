@@ -27,7 +27,6 @@ class GuitarLog:
     print(heading_string + "\n")
 
     for items in column_names:
-
         if items != "Total":
             new_entry.append(input("Input entry for: " + items + "\n"))
         elif items == "Total":
@@ -43,5 +42,5 @@ class GuitarLog:
 
     print("\n" + os.path.basename(CSV_FILE_PATH))
     print("----------------------------------------")
-    os.system("cat \"" + CSV_FILE_PATH + "\"")
+    os.system("bat \"" + CSV_FILE_PATH + "\"")
     print("----------------------------------------")
