@@ -6,7 +6,7 @@ import os
 CSV_FILE_PATH = "/Users/harleywilson/Documents/2 Areas/Guitar/Guitar Practice.csv"
 
 
-class guitar_log:
+class GuitarLog:
     column_names = []
     new_entry = []
     heading_string = ""
@@ -21,13 +21,20 @@ class guitar_log:
             line_count += 1
     csv_file.close()
 
-    print("-----Guitar Practice CSV Log-----")
+    print("----------Guitar Practice CSV Log----------")
     for headings in column_names:
         heading_string += headings + "    "
     print(heading_string + "\n")
 
     for items in column_names:
-        new_entry.append(input("Input entry for: " + items + "\n"))
+
+        if items != "Total":
+            new_entry.append(input("Input entry for: " + items + "\n"))
+        elif items == "Total":
+            total_count = 0
+            for i in range(len(column_names) - 3):
+                total_count += int(new_entry[i + 1])
+            new_entry.append(total_count)
 
     with open(CSV_FILE_PATH, mode='a', newline='') as csv_file:
         csv_writer = csv.writer(csv_file)
