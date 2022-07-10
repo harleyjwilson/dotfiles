@@ -5,10 +5,12 @@ import os
 
 CSV_FILE_PATH = "/Users/harleywilson/Documents/2 Areas/Guitar/Guitar Practice.csv"
 
-column_names = []
-new_entry = []
 
 class guitar_log:
+    column_names = []
+    new_entry = []
+    heading_string = ""
+
     with open(CSV_FILE_PATH, mode='r') as csv_file:
         csv_reader = csv.reader(csv_file)
         line_count = 0
@@ -19,6 +21,10 @@ class guitar_log:
             line_count += 1
     csv_file.close()
 
+    print("-----Guitar Practice CSV Log-----")
+    for headings in column_names:
+        heading_string += headings + "    "
+    print(heading_string + "\n")
 
     for items in column_names:
         new_entry.append(input("Input entry for: " + items + "\n"))
@@ -27,9 +33,8 @@ class guitar_log:
         csv_writer = csv.writer(csv_file)
         csv_writer.writerow(new_entry)
     csv_file.close()
-    
+
     print("\nGuitar Practice.csv")
     print("----------------------------------------")
     os.system("cat \"" + CSV_FILE_PATH + "\"")
     print("----------------------------------------")
-
