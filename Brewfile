@@ -85,6 +85,7 @@ cask "selfcontrol"
 cask "soundsource"
 cask "spotify"
 cask "steam"
+cask "talon"
 cask "the-archive"
 cask "todoist"
 cask "visual-studio-code"
@@ -100,7 +101,6 @@ mas "Amphetamine", id: 937984704
 mas "Dark Reader for Safari", id: 1438243180
 mas "Developer", id: 640199958
 mas "Drafts", id: 1435957248
-mas "Honey", id: 1472777122
 mas "Horo", id: 1437226581
 mas "iA Writer", id: 775737590
 mas "Instapaper Save", id: 1481302432
