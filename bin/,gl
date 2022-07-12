@@ -29,7 +29,7 @@ class GuitarLog:
     for items in column_names:
         if items != "Total":
             user_input = input("Input entry for: " + items + "\n")
-            if user_input.isnumeric() == False:
+            if items != "Date" and items != "Notes" and user_input.isnumeric() == False:
                 user_input = 0
             new_entry.append(user_input)
         elif items == "Total":
