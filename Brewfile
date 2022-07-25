@@ -4,6 +4,7 @@ tap "homebrew/cask"
 tap "homebrew/cask-drivers"
 tap "homebrew/cask-fonts"
 tap "homebrew/core"
+tap "homebrew/services"
 tap "romkatv/powerlevel10k"
 brew "bat"
 brew "curl"
@@ -22,6 +23,7 @@ brew "ncdu"
 brew "tree-sitter"
 brew "neovim"
 brew "netlify-cli"
+brew "numpy"
 brew "openjdk"
 brew "pandoc"
 brew "php"
@@ -102,10 +104,12 @@ mas "Amphetamine", id: 937984704
 mas "Dark Reader for Safari", id: 1438243180
 mas "Developer", id: 640199958
 mas "Drafts", id: 1435957248
+mas "DuckDuckGo Privacy for Safari", id: 1482920575
 mas "Horo", id: 1437226581
 mas "iA Writer", id: 775737590
 mas "Instapaper Save", id: 1481302432
 mas "Keynote", id: 409183694
+mas "Negative", id: 1378123825
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Reeder", id: 1529448980
