@@ -60,7 +60,7 @@ autocmd Filetype make setlocal noexpandtab
 
 " Sets a verticle column after x amount of characters to prevent a line being
 " too long.
-set colorcolumn=80
+set colorcolumn=78
 
 " }}}
 
