@@ -82,7 +82,7 @@ alias vim="nvim"
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias gccc='gcc -Wall -Werror -ansi -pedantic'
+alias gccc='gcc -Wall -ansi -pedantic'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
