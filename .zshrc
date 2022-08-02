@@ -82,7 +82,7 @@ alias vim="nvim"
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias gccc='gcc -Wall -ansi -pedantic'
+alias gcc='gcc -Wall -ansi -pedantic'
 alias cf='clang-format -style=file:/Users/harleywilson/dotfiles/.clang-format'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
