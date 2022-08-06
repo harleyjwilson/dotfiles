@@ -19,6 +19,7 @@ brew "sqlite"
 brew "python@3.10"
 brew "howdoi"
 brew "htop"
+brew "make"
 brew "mas"
 brew "mysql", restart_service: true
 brew "ncdu"
@@ -84,10 +85,13 @@ cask "microsoft-teams"
 cask "minecraft"
 cask "monodraw"
 cask "moom"
+cask "multipass"
 cask "notion"
 cask "numi"
 cask "obsidian"
 cask "pdfpen"
+cask "raspberry-pi-imager"
+cask "rocket"
 cask "selfcontrol"
 cask "slack"
 cask "soundsource"
@@ -99,24 +103,7 @@ cask "todoist"
 cask "visual-studio-code"
 cask "vlc"
 cask "vmware-horizon-client"
+cask "vnc-viewer"
 cask "whatsapp"
 cask "zoom"
 cask "zotero"
-mas "1Password for Safari", id: 1569813296
-mas "Accelerate", id: 1459809092
-mas "Adblock Plus", id: 1432731683
-mas "Amphetamine", id: 937984704
-mas "Dark Reader for Safari", id: 1438243180
-mas "Developer", id: 640199958
-mas "Drafts", id: 1435957248
-mas "DuckDuckGo Privacy for Safari", id: 1482920575
-mas "Horo", id: 1437226581
-mas "iA Writer", id: 775737590
-mas "Instapaper Save", id: 1481302432
-mas "Keynote", id: 409183694
-mas "Negative", id: 1378123825
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
-mas "Reeder", id: 1529448980
-mas "Spark", id: 1176895641
-mas "Xcode", id: 497799835
