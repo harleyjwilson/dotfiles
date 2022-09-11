@@ -15,6 +15,7 @@ brew "eleventy"
 brew "gcc"
 brew "gh"
 brew "git"
+brew "gnuplot"
 brew "graphviz"
 brew "sqlite"
 brew "python@3.10"
@@ -52,6 +53,7 @@ cask "avibrazil-rdm"
 cask "backblaze"
 cask "bibdesk"
 cask "discord"
+cask "drawio"
 cask "dropbox"
 cask "eclipse-cpp"
 cask "eclipse-java"
@@ -77,6 +79,7 @@ cask "iina"
 cask "imageoptim"
 cask "iterm2"
 cask "kindle"
+cask "logi-options-plus"
 cask "logitech-options"
 cask "mactex"
 cask "messenger"
@@ -108,3 +111,22 @@ cask "vnc-viewer"
 cask "whatsapp"
 cask "zoom"
 cask "zotero"
+mas "1Password for Safari", id: 1569813296
+mas "Accelerate", id: 1459809092
+mas "Adblock Plus", id: 1432731683
+mas "Amphetamine", id: 937984704
+mas "Dark Reader for Safari", id: 1438243180
+mas "Developer", id: 640199958
+mas "Drafts", id: 1435957248
+mas "DuckDuckGo Privacy for Safari", id: 1482920575
+mas "Horo", id: 1437226581
+mas "iA Writer", id: 775737590
+mas "Instapaper Save", id: 1481302432
+mas "Keynote", id: 409183694
+mas "Microsoft Remote Desktop", id: 1295203466
+mas "Negative", id: 1378123825
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Reeder", id: 1529448980
+mas "Spark", id: 1176895641
+mas "Xcode", id: 497799835
