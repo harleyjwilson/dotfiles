@@ -7,12 +7,14 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 # The rest of the $PATH declarations can go here
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$HOME/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-export PATH="/Users/harleywilson/Library/Python/3.8/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="/Users/harleywilson/Library/Python/3.10/bin:$PATH"
+export PATH="/opt/homebrew/bin/python3:$PATH"
+# export PATH="/Users/harleywilson/Library/Python/3.8/bin:$PATH"
+# export PATH="/Users/harleywilson/Library/Python/3.9/bin:$PATH"
+# export PATH="/Users/harleywilson/Library/Python/3.10/bin:$PATH"
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/harleywilson/.oh-my-zsh"
 
@@ -85,7 +87,8 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias gcc='gcc -Wall -ansi -pedantic'
 alias cf='clang-format -style=file:/Users/harleywilson/dotfiles/.clang-format'
-
+alias python=/opt/homebrew/bin/python3
+alias pip=/opt/homebrew/bin/pip3
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
