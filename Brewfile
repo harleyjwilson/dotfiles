@@ -23,7 +23,7 @@ brew "howdoi"
 brew "htop"
 brew "make"
 brew "mas"
-brew "mysql", restart_service: true
+brew "mysql"
 brew "ncdu"
 brew "tree-sitter"
 brew "neovim"
@@ -124,6 +124,7 @@ mas "iA Writer", id: 775737590
 mas "Instapaper Save", id: 1481302432
 mas "Keynote", id: 409183694
 mas "Microsoft Remote Desktop", id: 1295203466
+mas "MindNode", id: 1289197285
 mas "Negative", id: 1378123825
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
