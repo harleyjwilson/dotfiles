@@ -6,6 +6,7 @@
 [user]
 	name = Harley Wilson
 	email = 54230223+harleyjwilson@users.noreply.github.com
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP8H4XuPMUHT8B12WLpIEdYGK7CHcC209dNsEd9leuxw
 [core]
 	editor = vim
 [init]
@@ -13,8 +14,12 @@
 [color]
 	ui = auto
 [credential "https://github.com"]
-	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential
+[gpg]
+  format = ssh
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+[commit]
+  gpgsign = true
