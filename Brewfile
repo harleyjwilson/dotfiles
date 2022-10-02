@@ -8,6 +8,7 @@ tap "homebrew/services"
 tap "romkatv/powerlevel10k"
 brew "bat"
 brew "clang-format"
+brew "cmake"
 brew "curl"
 brew "docker"
 brew "node"
@@ -23,7 +24,8 @@ brew "howdoi"
 brew "htop"
 brew "make"
 brew "mas"
-brew "mysql"
+brew "protobuf"
+brew "mysql", restart_service: true
 brew "ncdu"
 brew "tree-sitter"
 brew "neovim"
@@ -89,7 +91,6 @@ cask "microsoft-teams"
 cask "minecraft"
 cask "monodraw"
 cask "moom"
-cask "multipass"
 cask "notion"
 cask "numi"
 cask "obsidian"
@@ -130,4 +131,6 @@ mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Reeder", id: 1529448980
 mas "Spark", id: 1176895641
+mas "StopTheMadness", id: 1376402589
+mas "Things", id: 904280696
 mas "Xcode", id: 497799835
