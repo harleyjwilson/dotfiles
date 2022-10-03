@@ -1,5 +1,2 @@
 #!/bin/bash
-
-# Don't forget to make the file executable `chmod 755 ,rsusbuni'
-
-rsync -zavh --del "/Volumes/0406602077/University/" "/Users/harleywilson/Documents/1 Projects/University"
+rsync -zavh --del /Volumes/0406602077/University/ /Users/harleywilson/Documents/1_Projects/University

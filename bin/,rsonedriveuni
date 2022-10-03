@@ -1,5 +1,2 @@
 #!/bin/bash
-
-# Don't forget to make the file executable `chmod 755 ,rsonedriveuni'
-
-rsync -zavh --del "/Users/harleywilson/Library/CloudStorage/OneDrive-CurtinUniversityofTechnologyAustralia/" "/Users/harleywilson/Documents/1 Projects/University"
+rsync -zavh --del /Users/harleywilson/Library/CloudStorage/OneDrive-CurtinUniversityofTechnologyAustralia/ /Users/harleywilson/Documents/1_Projects/University
