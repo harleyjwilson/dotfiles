@@ -6,7 +6,7 @@
 [user]
 	name = Harley Wilson
 	email = 54230223+harleyjwilson@users.noreply.github.com
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP8H4XuPMUHT8B12WLpIEdYGK7CHcC209dNsEd9leuxw
+	signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDE1MsKjSt+usvFvXrgZcc4+LgerHj1r1gn/4rp56nZMktyTOi+Z6XCBpaqT5dZPVhwspoI8/g8sxM/eg/ZQj55VP0X4489RbDDm/ndq3k1SzXd65RnAJmiO3G0P0Nz17OzKkqnKx+705PAPdssqbQkeowUgnEAqLb2Z5VR+h8h1YZxhwMawuQB72hvr9cejkr/2O7/Q+hzm8DAfRVYNQfd8VpTYQHdKDKta6Rwq8mu2PL7d7ioEMm/KdcK86ziAULYJRdxHC7PuD7G8sy2y/FNSIlVIWge+kDGj0WO/aPt/AW5w2HGZd9ulITDbOjRa6TETSITZRUjMDIVE2phSGcfA6tt55vtxMiAhCjhlevreIDGKifw5qy5hWtNl6EqQtlLV+hSuw8aFEFE456oKZZvGScXQT12zpPkQh+0wagOpucp6uMU0fqYb1N8e04vI5rdvSEKgta4F9/oNJthx5YEbJ+pJ4xXCYw71J8ttHR4xexflucMHVL1w94LZYkgweU=
 [core]
 	editor = vim
 [init]
@@ -22,4 +22,4 @@
 [gpg "ssh"]
   program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 [commit]
-  gpgsign = true
+	gpgsign = true
