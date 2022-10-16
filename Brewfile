@@ -10,13 +10,11 @@ brew "bat"
 brew "clang-format"
 brew "cmake"
 brew "curl"
-brew "docker"
 brew "node"
 brew "eleventy"
 brew "gcc"
 brew "gh"
 brew "git"
-brew "gnuplot"
 brew "graphviz"
 brew "sqlite"
 brew "python@3.10"
@@ -33,7 +31,6 @@ brew "netlify-cli"
 brew "numpy"
 brew "openjdk"
 brew "pandoc"
-brew "php"
 brew "prettier"
 brew "pygments"
 brew "speedtest-cli"
@@ -53,12 +50,10 @@ cask "alfred"
 cask "anki"
 cask "avibrazil-rdm"
 cask "backblaze"
-cask "bibdesk"
+cask "diffusionbee"
 cask "discord"
 cask "drawio"
 cask "dropbox"
-cask "eclipse-cpp"
-cask "eclipse-java"
 cask "endnote"
 cask "figma"
 cask "firefox"
@@ -69,6 +64,7 @@ cask "font-ia-writer-duo"
 cask "font-ia-writer-duospace"
 cask "font-ia-writer-mono"
 cask "font-ia-writer-quattro"
+cask "font-jetbrains-mono"
 cask "font-lato"
 cask "font-sacramento"
 cask "github"
@@ -76,13 +72,11 @@ cask "google-chrome"
 cask "google-drive"
 cask "google-earth-pro"
 cask "grammarly"
-cask "hazel"
 cask "iina"
-cask "imageoptim"
 cask "iterm2"
 cask "kindle"
+cask "kitty"
 cask "logi-options-plus"
-cask "logitech-options"
 cask "mactex"
 cask "messenger"
 cask "microsoft-auto-update"
@@ -91,6 +85,7 @@ cask "microsoft-teams"
 cask "minecraft"
 cask "monodraw"
 cask "moom"
+cask "mos"
 cask "notion"
 cask "numi"
 cask "obsidian"
@@ -102,19 +97,15 @@ cask "slack"
 cask "soundsource"
 cask "spotify"
 cask "steam"
-cask "talon"
 cask "the-archive"
 cask "todoist"
 cask "visual-studio-code"
 cask "vlc"
 cask "vmware-horizon-client"
-cask "vnc-viewer"
 cask "whatsapp"
 cask "zoom"
-cask "zotero"
 mas "1Password for Safari", id: 1569813296
 mas "Accelerate", id: 1459809092
-mas "Adblock Plus", id: 1432731683
 mas "Amphetamine", id: 937984704
 mas "Dark Reader for Safari", id: 1438243180
 mas "Developer", id: 640199958
@@ -124,7 +115,6 @@ mas "Horo", id: 1437226581
 mas "iA Writer", id: 775737590
 mas "Instapaper Save", id: 1481302432
 mas "Keynote", id: 409183694
-mas "Microsoft Remote Desktop", id: 1295203466
 mas "MindNode", id: 1289197285
 mas "Negative", id: 1378123825
 mas "Numbers", id: 409203825
@@ -133,4 +123,5 @@ mas "Reeder", id: 1529448980
 mas "Spark", id: 1176895641
 mas "StopTheMadness", id: 1376402589
 mas "Things", id: 904280696
+mas "Timery", id: 1425368544
 mas "Xcode", id: 497799835
