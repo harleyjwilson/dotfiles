@@ -6,6 +6,9 @@ tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "homebrew/services"
 tap "romkatv/powerlevel10k"
+brew "sqlite"
+brew "python@3.10"
+brew "autopep8", link: false
 brew "bat"
 brew "clang-format"
 brew "cmake"
@@ -18,13 +21,11 @@ brew "openjpeg"
 brew "git"
 brew "gnupg"
 brew "graphviz"
-brew "sqlite"
-brew "python@3.10"
 brew "howdoi"
 brew "htop"
 brew "make"
 brew "mas"
-brew "protobuf"
+brew "protobuf", link: false
 brew "mysql", restart_service: true
 brew "ncdu"
 brew "tree-sitter"
@@ -113,6 +114,7 @@ mas "Dark Reader for Safari", id: 1438243180
 mas "Developer", id: 640199958
 mas "Drafts", id: 1435957248
 mas "DuckDuckGo Privacy for Safari", id: 1482920575
+mas "GarageBand", id: 682658836
 mas "Horo", id: 1437226581
 mas "iA Writer", id: 775737590
 mas "Instapaper Save", id: 1481302432
