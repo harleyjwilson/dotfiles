@@ -1,4 +1,5 @@
 require "user.options"
+require "user.keymaps"
 
 -- vim:fileencoding=utf-8:foldmethod=marker
 
