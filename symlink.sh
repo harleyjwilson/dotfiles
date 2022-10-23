@@ -3,13 +3,18 @@
 echo "Symlinking dotfiles..."
 
 # Setting up directories
-echo "Remove and create new ~/.config/nvim/"
-rm -rf ~/.config/nvim/
-mkdir ~/.config/nvim/
+echo "Remove existing ~/.config/nvim/"
+rm -rf ~/.config/nvim
+echo "Remove existing ~/.config/kitty/"
+rm -rf ~/.config/kitty
 echo "Remove existing ~/bin"
 rm -rf ~/bin
 
 # Symlink directories
+echo "Linking ~/dotfiles/.config/nvim -> ~/.config/nvim"
+ln -sf ~/dotfiles/.config/nvim ~/.config/nvim
+echo "Linking ~/dotfiles/.config/kitty -> ~/.config/kitty"
+ln -sf ~/dotfiles/.config/kitty ~/.config/kitty
 echo "Linking ~/dotfiles/bin -> ~/bin"
 ln -sf ~/dotfiles/bin ~/bin
 
@@ -24,7 +29,5 @@ echo "Linking ~/dotfiles/.zshrc -> ~/.zshrc"
 ln -sf ~/dotfiles/.zshrc ~/.zshrc
 echo "Linking ~/dotfiles/Brewfile -> ~/Brewfile"
 ln -sf ~/dotfiles/Brewfile ~/Brewfile
-echo "Linking ~/dotfiles/init.vim -> ~/.config/nvim/init.vim"
-ln -sf ~/dotfiles/init.vim ~/.config/nvim/init.vim
 
 echo "Symlinking complete."
