@@ -1,3 +1,5 @@
+require "user.options"
+
 -- vim:fileencoding=utf-8:foldmethod=marker
 
 -- Plugin Loader {{{
@@ -5,42 +7,39 @@
 
 -- }}}
 
-
-
 -- General Settings {{{
 
 -- Tab set to 2 spaces
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
+-- vim.opt.tabstop = 2
+--vim.opt.softtabstop = 2
+--vim.opt.shiftwidth = 2
+--vim.opt.expandtab = true
 
 -- Set line nunbers
-vim.wo.number = true
+--vim.wo.number = true
 
 -- Set colour column at 78 characters
-vim.wo.colorcolumn = "78"
+--vim.wo.colorcolumn = "78"
 
 -- Set search result highlighting
-vim.opt.hls = true
-vim.opt.is = true
+--vim.opt.hls = true
+--vim.opt.is = true
 
 -- Use system clipboard
-vim.opt.clipboard = "unnamedplus"
+--vim.opt.clipboard = "unnamedplus"
 
 -- Allow mouse to work in neovim
-vim.opt.mouse = "a"
+--vim.opt.mouse = "a"
 
 -- }}}
-
 
 -- Mapping {{{
---
+
+
 -- }}}
---
---
+
 -- Plugin Settings {{{
---
---
---
+
+
 -- }}}
+
