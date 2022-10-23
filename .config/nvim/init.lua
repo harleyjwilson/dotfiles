@@ -1,7 +1,7 @@
 require "user.options"
 require "user.keymaps"
 require "user.plugins"
-
+require "user.colourscheme"
 -- vim:fileencoding=utf-8:foldmethod=marker
 
 -- Plugin Loader {{{
