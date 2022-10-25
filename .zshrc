@@ -90,6 +90,9 @@ alias cf='clang-format -style=file:/Users/harleywilson/dotfiles/.clang-format'
 alias python=/opt/homebrew/bin/python3
 alias pip=/opt/homebrew/bin/pip3
 alias speedtest='speedtest --secure'
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit -m '
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
