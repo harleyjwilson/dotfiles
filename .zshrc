@@ -81,7 +81,6 @@ export LANG=en_US.UTF-8
 # For a full list of active aliases, run `alias`.
 
 # Example aliases
-alias vim="nvim"
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
