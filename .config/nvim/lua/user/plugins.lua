@@ -108,7 +108,7 @@ return packer.startup(function(use)
   }
 
   -- Java
-  use "mfussenegger/nvim-jdtls"
+  use { "mfussenegger/nvim-jdtls", commit = "47472f648f329c1bf23257c9e5230535949baeec" }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
