@@ -35,6 +35,8 @@
     sidescrolloff = 8,
     guifont = "monospace:h17",               -- the font used in graphical neovim applications
     colorcolumn = "80",
+    foldmethod = "indent",
+    foldenable = false,
 }
 
 vim.opt.shortmess:append "c"
