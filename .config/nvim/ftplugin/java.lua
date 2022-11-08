@@ -45,16 +45,25 @@ JAVA_DAP_ACTIVE = true
 local bundles = {}
 
 if JAVA_DAP_ACTIVE then
-  vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.config/nvim/vscode-java-test/server/*.jar"), "\n"))
+  local mason_path = vim.fn.glob(vim.fn.stdpath("data") .. "/mason/")
+  vim.list_extend(bundles, vim.split(vim.fn.glob(mason_path .. "packages/java-test/extension/server/*.jar"), "\n"))
   vim.list_extend(
     bundles,
     vim.split(
-      vim.fn.glob(
-        home .. "/.config/nvim/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"
-      ),
+      vim.fn.glob(mason_path .. "packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar"),
       "\n"
     )
   )
+  -- vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.config/nvim/vscode-java-test/server/*.jar"), "\n"))
+  -- vim.list_extend(
+  --   bundles,
+  --   vim.split(
+  --     vim.fn.glob(
+  --       home .. "/.config/nvim/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"
+  --     ),
+  --     "\n"
+  --   )
+  -- )
 end
 
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
