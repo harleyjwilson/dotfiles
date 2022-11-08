@@ -99,9 +99,6 @@ return packer.startup(function(use)
 	-- Helper plugins
 	use({ "folke/which-key.nvim", commit = "1b7f09a38afb48e295109137790c3a3099881c2f" })
 
-	-- Java
-	use({ "mfussenegger/nvim-jdtls", commit = "47472f648f329c1bf23257c9e5230535949baeec" })
-
 	-- Fun Stuff
 	use({ "folke/drop.nvim", commit = "049ac75cfdea62b8984a98a4788f7ef55ba04515" })
 	-- })
