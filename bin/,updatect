@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo "Updating created time to UUID at beginning of file name"
+
+for f in $1/*; do 
+  if [[ ! -d $f ]]; then
+    ct=${f:2:12}
+    sfct="${ct:4:2}/${ct:6:2}/${ct:0:4} ${ct:8:2}:${ct:10:2}"
+    echo "Changing creation time of $f to $sfct"
+    SetFile -d "$sfct" "$f"
+  fi
+done
