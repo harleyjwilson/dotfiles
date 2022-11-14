@@ -12,6 +12,7 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export PATH="/opt/homebrew/bin/python3:$PATH"
+export PATH="/Users/harleywilson/.local/bin:$PATH"
 # export PATH="/Users/harleywilson/Library/Python/3.8/bin:$PATH"
 # export PATH="/Users/harleywilson/Library/Python/3.9/bin:$PATH"
 # export PATH="/Users/harleywilson/Library/Python/3.10/bin:$PATH"
@@ -62,7 +63,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(1password autoupdate brew colorize git gh npm macos python vscode z zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(1password autoupdate brew colorize gh git npm macos python sdk vscode z zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
