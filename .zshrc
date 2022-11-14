@@ -19,6 +19,10 @@ export PATH="/Users/harleywilson/.local/bin:$PATH"
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/harleywilson/.oh-my-zsh"
 
+# SDK Man replaced GVM. Using for Groovy, Gradle, and Maven Version Management
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
