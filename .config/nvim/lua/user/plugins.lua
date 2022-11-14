@@ -96,6 +96,9 @@ return packer.startup(function(use)
 	use({ "rcarriga/nvim-dap-ui", commit = "1cd4764221c91686dcf4d6b62d7a7b2d112e0b13" })
 	use({ "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" })
 
+  -- Java 
+  -- use { "mfussenegger/nvim-jdtls", commit = "7bc572fc357d7dec8d3ca620b53e763776472582" }
+
 	-- Helper plugins
 	use({ "folke/which-key.nvim", commit = "1b7f09a38afb48e295109137790c3a3099881c2f" })
 
