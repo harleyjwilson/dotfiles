@@ -54,16 +54,16 @@ if JAVA_DAP_ACTIVE then
       "\n"
     )
   )
-  vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.config/nvim/vscode-java-test/server/*.jar"), "\n"))
-  vim.list_extend(
-    bundles,
-    vim.split(
-      vim.fn.glob(
-        home .. "/.config/nvim/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"
-      ),
-      "\n"
-    )
-  )
+  -- vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/.config/nvim/vscode-java-test/server/*.jar"), "\n"))
+  -- vim.list_extend(
+    -- bundles,
+    -- vim.split(
+      -- vim.fn.glob(
+        -- home .. "/.config/nvim/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"
+      -- ),
+      -- "\n"
+    -- )
+  -- )
 end
 
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
@@ -81,14 +81,16 @@ local config = {
     "-Declipse.product=org.eclipse.jdt.ls.core.product",
     "-Dlog.protocol=true",
     "-Dlog.level=ALL",
+    "-javajagent:" .. home .. ".local/share/nvim/mason/packages/jdtls/lombok.jar",
     "-Xms1g",
     "--add-modules=ALL-SYSTEM",
     "--add-opens", "java.base/java.util=ALL-UNNAMED",
     "--add-opens", "java.base/java.lang=ALL-UNNAMED",
 
     -- 💀
-    "-jar", home .. ".local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar",
-        vim.fn.glob(home .. "/.local/share/nvim/lsp_servers/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
+    "-jar",
+    vim.fn.glob(home .. ".local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
+        -- vim.fn.glob(home .. "/.local/share/nvim/lsp_servers/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
     -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
     -- Must point to the                                                     Change this to
     -- eclipse.jdt.ls installation                                           the actual version
@@ -105,7 +107,7 @@ local config = {
     workspace_dir,
   },
 
-  on_attach = require("user.lsp.handlers").on_attach,
+  -- on_attach = require("user.lsp.handlers").on_attach,
   capabilities = capabilities,
 
   -- 💀
@@ -119,16 +121,26 @@ local config = {
   -- for a list of options
   settings = {
     java = {
-      jdt = {
-        ls = {
-          vmargs = "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m"
-        }
-      },
+      -- jdt = {
+        -- ls = {
+          -- vmargs = "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m"
+        -- }
+      -- },
       eclipse = {
         downloadSources = true,
       },
       configuration = {
         updateBuildConfiguration = "interactive",
+        runtimes = {
+          {
+            name = "JavaSE-11",
+            path = "~/.sdkman/candidates/java/11.0.17-ms/",
+          },
+          {
+            name = "JavaSE-17",
+            path = "~/.sdkman/candidates/java/17.0.5-tem/",
+          }
+        }
       },
       maven = {
         downloadSources = true,
@@ -149,9 +161,9 @@ local config = {
       },
       format = {
         enabled = false,
-        settings = {
-          profile = "asdf"
-        }
+        -- settings = {
+          -- profile = "asdf"
+        -- }
       },
     },
     signatureHelp = { enabled = true },
@@ -201,16 +213,47 @@ local config = {
 
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
+-- jdtls.start_or_attach(config)
+
+-- require('jdtls').setup_dap()
+
+config["on_attach"] = function(client, bufnr)
+	local _, _ = pcall(vim.lsp.codelens.refresh)
+	require("jdtls.dap").setup_dap_main_class_configs()
+	jdtls.setup_dap({ hotcodereplace = "auto" })
+	require("lvim.lsp").common_on_attach(client, bufnr)
+	local map = function(mode, lhs, rhs, desc)
+		if desc then
+			desc = desc
+		end
+
+		vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc, buffer = bufnr, noremap = true })
+	end
+	map("n", "<leader>Co", jdtls.organize_imports(), "Organize Imports")
+	map("n", "<leader>Cv", jdtls.extract_variable(), "Extract Variable")
+	map("n", "<leader>Cc", jdtls.extract_constant(), "Extract Constant")
+	map("n", "<leader>Ct", jdtls.test_nearest_method(), "Test Method")
+	map("n", "<leader>CT", jdtls.test_class(), "Test Class")
+	map("n", "<leader>Cu", "<Cmd>JdtUpdateConfig<CR>", "Update Config")
+	map("v", "<leader>Cv", "<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>", "Extract Variable")
+	map("v", "<leader>Cc", "<Esc><Cmd>lua require('jdtls').extract_constant(true)<CR>", "Extract Constant")
+	map("v", "<leader>Cm", "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>", "Extract Method")
+end
+
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+	pattern = { "*.java" },
+	callback = function()
+		local _, _ = pcall(vim.lsp.codelens.refresh)
+	end,
+})
+
+-- This starts a new client & server,
+-- or attaches to an existing client & server depending on the `root_dir`.
 jdtls.start_or_attach(config)
 
-require('jdtls').setup_dap()
-
--- vim.cmd "command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_compile JdtCompile lua require('jdtls').compile(<f-args>)"
--- vim.cmd "command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_set_runtime JdtSetRuntime lua require('jdtls').set_runtime(<f-args>)"
--- vim.cmd "command! -buffer JdtUpdateConfig lua require('jdtls').update_project_config()"
--- vim.cmd "command! -buffer JdtJol lua require('jdtls').jol()"
--- vim.cmd "command! -buffer JdtBytecode lua require('jdtls').javap()"
--- vim.cmd "command! -buffer JdtJshell lua require('jdtls').jshell()"
+vim.cmd(
+	[[command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_set_runtime JdtSetRuntime lua require('jdtls').set_runtime(<f-args>)]]
+)
 
 local status_ok, which_key = pcall(require, "whichkey")
 if not status_ok then
