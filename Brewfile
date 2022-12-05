@@ -6,6 +6,7 @@ tap "homebrew/cask-drivers"
 tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "homebrew/services"
+tap "robotsandpencils/made"
 tap "romkatv/powerlevel10k"
 brew "sqlite"
 brew "python@3.10"
@@ -24,6 +25,7 @@ brew "gcc"
 brew "gh"
 brew "git"
 brew "gnupg"
+brew "openjdk"
 brew "google-java-format"
 brew "graphviz"
 brew "howdoi"
@@ -62,28 +64,25 @@ cask "alfred"
 cask "anki"
 cask "avibrazil-rdm"
 cask "backblaze"
+cask "darktable"
 cask "diffusionbee"
 cask "discord"
 cask "drawio"
 cask "dropbox"
+cask "eloston-chromium"
 cask "endnote"
 cask "exodus"
 cask "figma"
 cask "firefox"
 cask "flux"
-cask "font-fira-code"
 cask "font-fira-code-nerd-font"
-cask "font-fira-mono"
 cask "font-fira-mono-nerd-font"
 cask "font-ia-writer-duo"
 cask "font-ia-writer-duospace"
 cask "font-ia-writer-mono"
 cask "font-ia-writer-quattro"
-cask "font-jetbrains-mono"
-cask "font-jetbrains-mono-nerd-font"
 cask "font-lato"
 cask "font-sacramento"
-cask "font-symbols-only-nerd-font"
 cask "github"
 cask "google-chrome"
 cask "google-drive"
@@ -120,6 +119,7 @@ cask "visual-studio-code"
 cask "vlc"
 cask "vmware-horizon-client"
 cask "whatsapp"
+cask "xcodes"
 cask "zoom"
 mas "1Password for Safari", id: 1569813296
 mas "Accelerate", id: 1459809092
@@ -127,7 +127,6 @@ mas "Amphetamine", id: 937984704
 mas "Dark Reader for Safari", id: 1438243180
 mas "Developer", id: 640199958
 mas "Drafts", id: 1435957248
-mas "DuckDuckGo Privacy for Safari", id: 1482920575
 mas "GarageBand", id: 682658836
 mas "Horo", id: 1437226581
 mas "iA Writer", id: 775737590
@@ -138,9 +137,9 @@ mas "Negative", id: 1378123825
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Paprika Recipe Manager 3", id: 1303222628
+mas "PayPal Honey", id: 1472777122
 mas "Reeder", id: 1529448980
 mas "Spark", id: 1176895641
 mas "StopTheMadness", id: 1376402589
 mas "Things", id: 904280696
 mas "Timery", id: 1425368544
-mas "Xcode", id: 497799835
