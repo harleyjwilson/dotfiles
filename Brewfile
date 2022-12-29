@@ -43,6 +43,7 @@ brew "prettier"
 brew "pygments"
 brew "speedtest-cli"
 brew "stylua"
+brew "swiftlint"
 brew "thefuck"
 brew "tldr"
 brew "tmux"
@@ -130,7 +131,6 @@ mas "Developer", id: 640199958
 mas "Drafts", id: 1435957248
 mas "GarageBand", id: 682658836
 mas "Hand Mirror", id: 1502839586
-mas "Horo", id: 1437226581
 mas "iA Writer", id: 775737590
 mas "Instapaper Save", id: 1481302432
 mas "Keynote", id: 409183694
@@ -140,6 +140,7 @@ mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Paprika Recipe Manager 3", id: 1303222628
 mas "PayPal Honey", id: 1472777122
+mas "Progress Bar", id: 1441939775
 mas "Reeder", id: 1529448980
 mas "Spark", id: 1176895641
 mas "StopTheMadness", id: 1376402589
