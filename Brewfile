@@ -126,6 +126,7 @@ cask "zoom"
 mas "1Password for Safari", id: 1569813296
 mas "Accelerate", id: 1459809092
 mas "Amphetamine", id: 937984704
+mas "Dark Noise", id: 1465439395
 mas "Dark Reader for Safari", id: 1438243180
 mas "Developer", id: 640199958
 mas "Drafts", id: 1435957248
