@@ -1,4 +1,6 @@
-harleywilson@ /Users/harleywilson
+/opt/homebrew/lib
+├── eleventy@1.0.6
+├── gulp-cli@2.3.0
 ├── live-server@1.2.2
-└── reveal.js@4.3.1
+└── npm@9.2.0
 
