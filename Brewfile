@@ -32,7 +32,6 @@ brew "tree-sitter", link: false
 brew "neovim"
 brew "netlify-cli"
 brew "nginx"
-brew "nvm"
 brew "openjdk@11"
 brew "pandoc"
 brew "pdfgrep"
