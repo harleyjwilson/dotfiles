@@ -11,14 +11,7 @@ export PATH="$HOME/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
 export PATH="/Users/harleywilson/.local/bin:$PATH"
-# export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
-# export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
 export PATH="/opt/homebrew/bin/python3:$PATH"
-# export PATH="/Users/harleywilson/Library/Python/3.8/bin:$PATH"
-# export PATH="/Users/harleywilson/Library/Python/3.9/bin:$PATH"
-# export PATH="/Users/harleywilson/Library/Python/3.10/bin:$PATH"
-# Path to your oh-my-zsh installation.
 export ZSH="/Users/harleywilson/.oh-my-zsh"
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
@@ -87,6 +80,7 @@ export LANG=en_US.UTF-8
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias .....='cd ../../../..'
 alias gcc='gcc -Wall -ansi -pedantic'
 alias cf='clang-format -style=file:/Users/harleywilson/dotfiles/.clang-format'
 alias python=/opt/homebrew/bin/python3
@@ -102,3 +96,6 @@ alias push=/Users/harleywilson/dotfiles/bin/,git-push
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 eval $(thefuck --alias)
+
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
