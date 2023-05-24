@@ -7,10 +7,11 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 # The rest of the $PATH declarations can go here
+export PATH="/Users/harleywilson/.nvm/:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
-export PATH="/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
 export PATH="/Users/harleywilson/.local/bin:$PATH"
+export PATH="/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
 export PATH="/opt/homebrew/bin/python3:$PATH"
 export ZSH="/Users/harleywilson/.oh-my-zsh"
 
