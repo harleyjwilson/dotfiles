@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "Navigating to zettelkasten directory"
+cd /Users/harleywilson/Documents/1_Projects/Zettelkasten
+echo "Pulling updates"
+git pull
+echo "Committing updates"
+git add .
+git add -u
+date=`date +"%Y-%m-%d %T"`
+git commit -m "$date"
+echo "Pushing updates"
+git push
