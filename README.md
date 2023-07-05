@@ -26,8 +26,7 @@
 
 ### 5. Update Dotfiles
 
-- Load [`.config/`](.config/) contents into `~/.config/` folder. This includes the kitty and nvim config files.
-- Load [`.vim/`](/.vim/) contents into `~/.vim/` folder
+- Load [`.config/`](.config/) contents into `~/.config/` folder. This includes the nvim config files.
 - Load [`.zshrc`](/.zshrc) contents into `~/.zshrc`
 - Load [`.vimrc`](/.vimrc) contents into `~/.vimrc`
 - Load [`.gitconfig`](/.gitconfig) contents into the global `~/.gitconfig`
