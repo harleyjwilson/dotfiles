@@ -9,6 +9,9 @@ fi
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
+# Set up Jabba
+[ -s "/Users/harleywilson/.jabba/jabba.sh" ] && source "/Users/harleywilson/.jabba/jabba.sh"
+
 # Environment variable declarations
 export PATH="$PATH:$HOME/.nvm/"
 export PATH="$PATH:$HOME/.nvm/versions/node/v20.1.0/bin"
@@ -82,6 +85,3 @@ eval $(thefuck --alias)
 
 # Set up jenv
 eval "$(jenv init -)"
-
-# Set up Jabba
-[ -s "/Users/harleywilson/.jabba/jabba.sh" ] && source "/Users/harleywilson/.jabba/jabba.sh"
