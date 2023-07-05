@@ -1,7 +1,0 @@
-Package    Version
----------- -------
-pip        23.1.2
-setuptools 67.6.1
-six        1.16.0
-tinydb     4.7.1
-wheel      0.40.0
