@@ -6,14 +6,11 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 eval "$(jenv init -)"
 
 # Environment variable declarations
-export PATH="$PATH:$HOME/.nvm/"
-export PATH="$PATH:$HOME/.nvm/versions/node/v20.1.0/bin"
-export PATH="$PATH:$HOME/.jenv/bin"
-export PATH="$PATH:/opt/homebrew/bin/python3"
-export PATH="$PATH:/usr/local/lib/ruby/gems/3.0.0/bin"
+#export PATH="$PATH:$HOME/.nvm/"
+#export PATH="$PATH:$HOME/.jenv/bin"
+#export PATH="$PATH:/opt/homebrew/bin/python3"
+#export PATH="$PATH:/usr/local/lib/ruby/gems/3.0.0/bin"
 export PATH="$PATH:$HOME/bin"
-export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:/usr/local/bin"
 export ZSH="$HOME/.oh-my-zsh"
 export MANPATH="/usr/local/man:$MANPATH"
 export LANG=en_US.UTF-8
