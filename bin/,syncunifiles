@@ -1,0 +1,111 @@
+#!/bin/bash
+# Don't forget to make the file executable `chmod 755 ,syncunifiles`
+
+# When setting variables, leave off trailing slashes
+local="/Users/harleywilson/Documents/1_Projects/University"
+onedrive="/Users/harleywilson/Library/CloudStorage/OneDrive-CurtinUniversityofTechnologyAustralia"
+usb="/Volumes/0406602077/University"
+sleep=1
+
+# Prompt user to select an option
+echo "Please select an option:"
+echo "  1. Local    -> OneDrive"
+echo "  2. OneDrive -> Local"
+echo "  3. Local    -> USB"
+echo "  4. USB      -> Local"
+echo "  0. Exit"
+read n
+
+# Execute the appropriate command based on the user's selection
+case $n in
+  1) echo "Option Selected: Local -> OneDrive"
+    echo "Are you sure? y/n"
+    read m
+    case $m in # Option 1 selected
+      y|yes) echo "Syncing..."
+        # Clean file names to OneDrive standard
+        echo "Running \`find \"${local}/\" -depth -type f -execdir rename 's/(?<!\/)[\/:*?\"<>|]//g' {} +\`"
+        find "${local}/" -depth -type f -execdir rename 's/(?<!\/)[\/:*?"<>|]//g' {} +
+        echo "Running \`find \"${local}/\" -depth -type f -execdir rename 's/^\s+|\s+$//g' {} +\`"
+        find "${local}/" -depth -type f -execdir rename 's/^\s+|\s+$//g' {} +
+        echo "Running \`find \"${local}/\" -depth -type d -execdir rename 's/^\s+|\s+$//g' {} +\`"
+        find "${local}/" -depth -type d -execdir rename 's/^\s+|\s+$//g' {} +
+
+        # Sync files
+        echo "Running \`rsync -zavh --del \"${local}/\" \"${onedrive}\"\`"
+        rsync -zavh --del "${local}/" "${onedrive}"
+
+        sleep $sleep
+      ;;
+      n|no) echo "Cancelling operation"
+        sleep $sleep
+      ;;
+      *) echo "Invalid option"
+        read -rp "Press any key to close"
+      ;;
+    esac
+  ;;
+  2) echo "Option Selected: OneDrive -> Local"
+    echo "Are you sure? y/n"
+    read m
+    case $m in # Option 2 selected
+      y|yes) echo "Syncing..."
+        # Sync files
+        echo "Running \`rsync -zavh --del \"${onedrive}\" \"${local}/\"\`"
+        rsync -zavh --del "${onedrive}/" "${local}"
+
+        sleep $sleep
+      ;;
+      n|no) echo "Cancelling operation"
+        sleep $sleep
+      ;;
+      *) echo "Invalid option"
+        read -rp "Press any key to close"
+      ;;
+    esac
+  ;;
+  3) echo "Option Selected: Local -> USB"
+    echo "Are you sure? y/n"
+    read m
+    case $m in # Option 2 selected
+      y|yes) echo "Syncing..."
+        # Sync files
+        echo "Running \`rsync -zavh --del \"${onedrive}\" \"${local}/\"\`"
+        rsync -zavh --del "${local}/" "${usb}"
+
+        sleep $sleep
+      ;;
+      n|no) echo "Cancelling operation"
+        sleep $sleep
+      ;;
+      *) echo "Invalid option"
+        read -rp "Press any key to close"
+      ;;
+    esac
+  ;;
+  4) echo "Option Selected: USB -> Local"
+    echo "Are you sure? y/n"
+    read m
+    case $m in # Option 2 selected
+      y|yes) echo "Syncing..."
+        # Sync files
+        echo "Running \`rsync -zavh --del \"${onedrive}\" \"${local}/\"\`"
+        rsync -zavh --del "${usb}/" "${local}"
+
+        sleep $sleep
+      ;;
+      n|no) echo "Cancelling operation"
+        sleep $sleep
+      ;;
+      *) echo "Invalid option"
+        read -rp "Press any key to close"
+      ;;
+    esac
+  ;;
+  0) echo "Exiting"
+    sleep $sleep
+  ;;
+  *) echo "Invalid option"
+    read -rp "Press any key to close"
+  ;;
+esac
