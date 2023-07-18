@@ -31,6 +31,7 @@ brew "pandoc"
 brew "pdfgrep"
 brew "protobuf"
 brew "python@3.10"
+brew "rename"
 brew "ripgrep"
 brew "speedtest-cli"
 brew "thefuck"
@@ -116,6 +117,7 @@ mas "Dark Reader for Safari", id: 1438243180
 mas "Developer", id: 640199958
 mas "Drafts", id: 1435957248
 mas "GarageBand", id: 682658836
+mas "Grammarly for Safari", id: 1462114288
 mas "Hand Mirror", id: 1502839586
 mas "iA Writer", id: 775737590
 mas "Instapaper Save", id: 1481302432
