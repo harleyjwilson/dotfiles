@@ -3,3 +3,5 @@
 echo "Removing characters that aren't allowed for syncing with OneDrive"
 # OneDrive prohibited characters:    \/:*?"<>|
 find $1 -depth -type f -execdir rename 's/(?<!\/)[\/:*?"<>|]//g' {} +
+find $1 -depth -type f -execdir rename 's/^\s+|\s+$//g' {} +
+
