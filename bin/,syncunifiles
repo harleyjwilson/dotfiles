@@ -13,7 +13,7 @@ echo "  1. Local    -> OneDrive"
 echo "  2. OneDrive -> Local"
 echo "  3. Local    -> USB"
 echo "  4. USB      -> Local"
-echo "  4. Clean filenames"
+echo "  5. Clean filenames"
 echo "  0. Exit"
 read n
 
