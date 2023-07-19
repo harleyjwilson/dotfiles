@@ -13,6 +13,7 @@ echo "  1. Local    -> OneDrive"
 echo "  2. OneDrive -> Local"
 echo "  3. Local    -> USB"
 echo "  4. USB      -> Local"
+echo "  4. Clean filenames"
 echo "  0. Exit"
 read n
 
@@ -23,14 +24,6 @@ case $n in
     read m
     case $m in # Option 1 selected
       y|yes) echo "Syncing..."
-        # Clean file names to OneDrive standard
-        echo "Running \`find \"${local}/\" -depth -type f -execdir rename 's/(?<!\/)[\/:*?\"<>|]//g' {} +\`"
-        find "${local}/" -depth -type f -execdir rename 's/(?<!\/)[\/:*?"<>|]//g' {} +
-        echo "Running \`find \"${local}/\" -depth -type f -execdir rename 's/^\s+|\s+$//g' {} +\`"
-        find "${local}/" -depth -type f -execdir rename 's/^\s+|\s+$//g' {} +
-        echo "Running \`find \"${local}/\" -depth -type d -execdir rename 's/^\s+|\s+$//g' {} +\`"
-        find "${local}/" -depth -type d -execdir rename 's/^\s+|\s+$//g' {} +
-
         # Sync files
         echo "Running \`rsync -zavh --del \"${local}/\" \"${onedrive}\"\`"
         rsync -zavh --del "${local}/" "${onedrive}"
@@ -67,7 +60,7 @@ case $n in
   3) echo "Option Selected: Local -> USB"
     echo "Are you sure? y/n"
     read m
-    case $m in # Option 2 selected
+    case $m in # Option 3 selected
       y|yes) echo "Syncing..."
         # Sync files
         echo "Running \`rsync -zavh --del \"${onedrive}\" \"${local}/\"\`"
@@ -86,11 +79,34 @@ case $n in
   4) echo "Option Selected: USB -> Local"
     echo "Are you sure? y/n"
     read m
-    case $m in # Option 2 selected
+    case $m in # Option 4 selected
       y|yes) echo "Syncing..."
         # Sync files
         echo "Running \`rsync -zavh --del \"${onedrive}\" \"${local}/\"\`"
         rsync -zavh --del "${usb}/" "${local}"
+
+        sleep $sleep
+      ;;
+      n|no) echo "Cancelling operation"
+        sleep $sleep
+      ;;
+      *) echo "Invalid option"
+        read -rp "Press any key to close"
+      ;;
+    esac
+  ;;
+  5) echo "Option Selected: Clean filenames"
+    echo "Are you sure? y/n"
+    read m
+    case $m in # Option 5 selected
+      y|yes) echo "Cleaning..."
+        # Clean file names to OneDrive standard
+        echo "Running \`find \"${local}/\" -depth -type f -execdir rename 's/(?<!\/)[\/:*?\"<>|]//g' {} +\`"
+        find "${local}/" -depth -type f -execdir rename 's/(?<!\/)[\/:*?"<>|]//g' {} +
+        echo "Running \`find \"${local}/\" -depth -type f -execdir rename 's/^\s+|\s+$//g' {} +\`"
+        find "${local}/" -depth -type f -execdir rename 's/^\s+|\s+$//g' {} +
+        echo "Running \`find \"${local}/\" -depth -type d -execdir rename 's/^\s+|\s+$//g' {} +\`"
+        find "${local}/" -depth -type d -execdir rename 's/^\s+|\s+$//g' {} +
 
         sleep $sleep
       ;;
