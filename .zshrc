@@ -72,6 +72,8 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias gcc='gcc -Wall -ansi -pedantic'
 alias cf='clang-format -style=file:/Users/harleywilson/dotfiles/.clang-format'
+alias update='mas outdated && omz update && brew update && brew outdated && softwareupdate -l'
+alias upgrade='mas upgrade && omz update && brew upgrade && brew cleanup && softwareupdate -ia' 
 alias python=/opt/homebrew/bin/python3
 alias pip=/opt/homebrew/bin/pip3
 alias speedtest='speedtest --secure'
