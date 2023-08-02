@@ -1,0 +1,116 @@
+<html><body>
+<style>
+pre {
+font-family: Consolas, Courier, monospace;
+white-space: pre-wrap;
+tab-size: 4;
+background: #D3D3D3;
+color: black;
+padding:20px;
+border-radius: 5px;
+}
+</style>
+<h1>Alfred</h1>
+<p>The Doctor Drafts workflow for Alfred is for controlling the Drafts app. Alfred is a foundational pre-requisite, and expects Alfred version 4 to be available.</p>
+<p style="color:green">&check; Alfred 4 is installed.</p>
+<p>Doctor Drafts is a custom Alfred workflow. To run it, you <strong>must</strong> have a valid <a href="https://www.alfredapp.com/powerpack/">Alfred Power Pack license</a> in place.</p>
+<p style="color:green">&check; Alfred 4 Power Pack information identified.</p>
+<details>
+<summary>Alfred Power Pack Information</summary>
+<div><ul>
+	<li>License E-mail: thermal.spindle@gmail.com</li>
+	<li>License Code: A4MFYjY1NGZlNGJmZGZiH2o3E5enxWELil5TW86jzDfch0OhXhyC5dwOyFKwAPS1W6uPHwj6il09P/gRHixhv6qiuXTES2Hj6bhXXOKiC8KGSY6YTxzl2zGwpkOmtLEPJCXLHBVMvZ+Hln0F6qRBEqB977q+GadzvrR5u3fJCZK6UUEeXLF686joepOj9qqzRLYPB2qh</li>
+</ul></div>
+</details>
+<h2>Doctor Drafts Workflow</h2>
+<p>
+<strong>Installed Version:</strong> 1.8.0
+<br>
+<strong>Latest Available Version:</strong> 1.7.0</p>
+<h1>Drafts</h1>
+<p>The Doctor Drafts workflow for Alfred is for controlling the Drafts app. Drafts is a foundational pre-requisite. Some Drafts functionality, such as workspaces, are only available to Drafts Pro subscribers. If you wish to make use of such functionality in Doctor Drafts, you must ensure that you have an active <a href="https://docs.getdrafts.com/draftspro">Drafts Pro Subscription</a>.</p>
+<p style="color:green">&check; Drafts is installed.</p>
+<ul>
+	<li>Drafts Version: 50 *</li>
+	<li>OS Version: macOS, 12.3.1 (21E258)</li>
+</ul>
+<details>
+<summary>Drafts Subscription Information</summary>
+<div><ul>
+	<li>Subscription ID: A9D407BC-5E7E-482B-ADDB-8486DF652878</li>
+	<li>Subscribed Until: 2022-04-25 15:15:25 +0000</li>
+</ul></div>
+</details>
+<h1>Python</h1>
+<p>Doctor Drafts uses Python 3 for some of the more advanced interaction  features. While you can still use many fgeatures without it, we strongly recommend having Python 3 available in order to access the full power of Doctor Drafts.</p>
+<p>To make use of Python 3, it must be installed and be found in your $PATH environment variable, so that Doctor Drafts knows where to find it.</p>
+
+<p>We found the following Python versions available:</p>
+
+<ul>
+<li>Python 3: Python 3.10.0</li>
+<li>Python 2: ./diagnostic.sh:109: command not found: python2</li>
+<li>Python (Default): Python 3.10.0</li>
+</ul>
+
+<p style="color:green">&check; Alfred can find a Python 3 installation.</p>
+
+<h1>PATH Variable</h1>
+<p>Your $PATH variable paths are as follows:</p>
+
+<pre>
+/Users/stephen/.pyenv/shims
+/usr/local/texlive/2021basic/bin/universal-darwin
+/Users/stephen/.gem/ruby/2.6.0/bin
+/usr/local/opt/ruby/bin
+/usr/local/bin
+/usr/bin
+/bin
+/usr/sbin
+/sbin
+</pre>
+
+<h1>.zshenv Content</h1>
+<p>Your ZSH Environment file content is as follows:</p>
+
+<pre>
+
+</pre>
+
+<h1>.zshenv Content</h1>
+<p>Your ZSH Environment file content is as follows:</p>
+
+<pre>
+
+</pre>
+
+<h1>.zprofile Content</h1>
+<p>Your ZSH Profile file content is as follows:</p>
+
+<pre>
+
+# Setting PATH for Python 3.6
+# The original version is saved in .zprofile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
+export PATH
+</pre>
+
+<h1>.zshrc Content</h1>
+<p>Your ZSH Run Command file content is as follows:</p>
+
+<pre>
+PATH=/Users/stephen/.pyenv/shims:/usr/local/texlive/2021basic/bin/universal-darwin:$HOME/.gem/ruby/2.6.0/bin:/usr/local/opt/ruby/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+source $HOME/.zshenv
+
+eval "$(pyenv init -)"
+
+</pre>
+
+<h1>.zlogin Content</h1>
+<p>Your ZSH login file content is as follows:</p>
+
+<pre>
+</pre>
+
+<hr><p>Last Generated: Sat Apr 16 15:10:12 BST 2022 by &copy; Doctor Drafts.</p><hr>
+</body></html>

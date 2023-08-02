@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>customSites</key>
+	<dict>
+		<key>218785D4-EED2-4D89-9A5A-BD59720EDFF1</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>instapaper</string>
+			<key>text</key>
+			<string>Open Instapaper</string>
+			<key>url</key>
+			<string>https://www.instapaper.com/u</string>
+		</dict>
+		<key>33A72A1F-AD1E-4044-AE53-66D4E43B6A5D</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>fm</string>
+			<key>text</key>
+			<string>Open Fastmail</string>
+			<key>url</key>
+			<string>https://www.fastmail.com/</string>
+		</dict>
+		<key>4279BC1B-F0E6-436A-A3C0-891FF5946BBA</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>stack</string>
+			<key>text</key>
+			<string>Search Stack Overflow for {query}</string>
+			<key>url</key>
+			<string>https://stackoverflow.com/search?q={query}</string>
+		</dict>
+		<key>9767CD03-9337-49C0-BAFF-86601506378B</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>py</string>
+			<key>text</key>
+			<string>Search Python Docs for {query}</string>
+			<key>url</key>
+			<string>https://docs.python.org/3/search.html?q={query}&amp;check_keywords=yes&amp;area=default</string>
+		</dict>
+		<key>A17D9589-CB70-43C4-8356-751101BB051E</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>etsy</string>
+			<key>text</key>
+			<string>Search Etsy for {query}</string>
+			<key>url</key>
+			<string>https://www.etsy.com/au/search?q={query}</string>
+		</dict>
+		<key>A694F8FB-0952-4072-9852-44A8D7384B48</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>reddit</string>
+			<key>text</key>
+			<string>Search Reddit for '{query}'</string>
+			<key>url</key>
+			<string>https://www.reddit.com/search/?q={query}</string>
+		</dict>
+		<key>AB18B176-1E5C-47D2-A2E5-98C09406F5BD</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>fm</string>
+			<key>text</key>
+			<string>Search Fastmail for {query}</string>
+			<key>url</key>
+			<string>https://www.fastmail.com/mail/search:{query}</string>
+		</dict>
+		<key>BAC46E7C-2DEC-4530-AD09-330A22C73423</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>mdn</string>
+			<key>text</key>
+			<string>Search Mozilla Developer Network for '{query}'</string>
+			<key>url</key>
+			<string>https://developer.mozilla.org/en-US/search?q={query}</string>
+		</dict>
+		<key>CF1FB01C-E493-468C-83F1-722A9893BF2A</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>git</string>
+			<key>text</key>
+			<string>Search Github for {query}</string>
+			<key>url</key>
+			<string>https://github.com/search?q={query}</string>
+		</dict>
+		<key>CFAB42BF-00E6-4950-ADBB-196A51038974</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>lofi</string>
+			<key>text</key>
+			<string>Open Lofi Girl Youtube Channel</string>
+			<key>url</key>
+			<string>https://www.youtube.com/c/LofiGirl/featured</string>
+		</dict>
+		<key>D078C9E2-0FB2-410F-9CE2-EEF24C199D6B</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>ynab</string>
+			<key>text</key>
+			<string>Open YNAB</string>
+			<key>url</key>
+			<string>https://app.youneedabudget.com/</string>
+		</dict>
+		<key>D8899AE0-8DE2-43EE-9704-0B0866A3460C</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>wbm</string>
+			<key>text</key>
+			<string>Search Wayback Machine for {query}</string>
+			<key>url</key>
+			<string>https://web.archive.org/web/*/{query}</string>
+		</dict>
+		<key>E9C615D5-9785-4FE1-B10B-95B13DF8391E</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>akb</string>
+			<key>text</key>
+			<string>Search Apple Knowledge Base for {query}</string>
+			<key>url</key>
+			<string>https://support.apple.com/kb/index?page=search&amp;q={query}&amp;product=&amp;doctype=&amp;currentPage=1&amp;includeArchived=false&amp;locale=en_US&amp;src=globalnav_support&amp;type=organic</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

@@ -1,0 +1,109 @@
+<html>
+<head><title>Search Quick Reference</title></head>
+<body>
+<style>
+	body {
+		color: #333;
+		background-color: #ccc;
+		margin: 0 auto;
+		font-family: arial;
+		font-size: small;
+		max-width: 90%;
+	}
+	div, p{
+		font-size: 1em;
+		padding: 1em;
+		background-color: #fff;
+		margin: 1em 0em;
+		
+		-webkit-box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+		-moz-box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+		box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+	}
+	
+	code {
+		white-space: nowrap;
+		padding: 0.1em 0.3em 0.1em 0.3em;
+		font-weight: 400;
+		background-color: rgba(2,2,2,0.1);
+		border: 1px solid #44434d;
+		border-radius: 4px;
+		margin-left: 0.1em;
+		margin-right: 0.1em;
+		font-family: "SFMono-Regular", Menlo, Consolas, Monospace;
+		font-size: 0.75em;
+		line-height: 1.4;
+	}
+
+	td, th {
+		padding: .5em 1em;
+		text-align: left;
+		vertical-align: top;
+		line-height: 1.2;
+	}
+	
+	tr:nth-child(even) {
+		background-color: #eee;
+	}
+</style>
+	
+<h1>Search</h1>
+	<div class="">
+		<table cellpadding="0" cellspacing="0" border="0">
+			<colgroup>
+				<col id="option">
+				<col id="description">
+				<col id="example">
+			</colgroup>
+			<thead>
+				<tr>
+					<th>Option</th>
+					<th>Description</th>
+					<th>Example</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Multiple Terms, AND (Implicit)</td>
+					<td>Search draft content, and match multiple terms as "<em>and</em>". For example, <code>foo</code> and <code>bar</code>.</td>
+					<td><code>foo bar</code></td>
+				</tr>
+				<tr>
+					<td>Multiple Terms, AND (Explicit)</td>
+					<td>Search draft content, and match multiple terms as "<em>and</em>" by placing <code>AND</code> between terms.</td>
+					<td><code>foo AND bar</code></td>
+				</tr>
+				<tr>
+					<td>Multiple Terms, OR</td>
+					<td>Search draft content, and match multiple terms as "<em>or</em>" by placing <code>OR</code> between terms.</td>
+					<td><code>foo OR bar</code></td>
+				</tr>
+				<tr>
+					<td>Exact Phrase</td>
+					<td>Wrap multiple terms in double quotes to match an exact phrase.</td>
+					<td><code>"quz qux"</code></td>
+				</tr>
+				<tr>
+					<td>Omission</td>
+					<td>Prefix a term with a hyphen to exclude it. So you could search for <code>foo</code> and <code>not bar</code> with this example.</td>
+					<td><code>foo -bar</code></td>
+				</tr>
+				<tr>
+					<td>Term in Title</td>
+					<td>Search draft titles only by prefixing a search term with <code>title:</code>. For example drafts with both <code>foo</code> and <code>bar</code> in the title.</td>
+					<td><code>title:foo title:bar</code></td>
+				</tr>
+				<tr>
+					<td>With Tag</td>
+					<td>Search draft for particular tags by prefixing a search term with <code>tag:</code>. For example drafts with both <code>foo</code> and <code>quz qux</code> as tags.</td>
+					<td><code>tag:foo tag:"quz qux"</code></td>
+				</tr>
+				<tr>
+					<td>Regular Expression</td>
+					<td>Search draft content using regular expressions uses <code>/</code> as the delimiters for the expression and utilises standard tokens. They can be combined with other search elements.</td>
+					<td><code>/\s*\d+\. /</code></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</html>

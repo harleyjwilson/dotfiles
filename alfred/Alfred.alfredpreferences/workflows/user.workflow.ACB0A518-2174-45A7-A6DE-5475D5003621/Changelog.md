@@ -1,0 +1,202 @@
+- 2022-06-28	release 9.6.0
+- 2022-06-28	readme update for Alfred 5
+- 2022-06-27	switch 'open literature note' to meh (⌥⇧⌃)
+- 2022-06-13	buffer reload after deletion of an entry
+- 2022-06-12	release 9.5.7
+- 2022-06-12	release 9.5.6
+- 2022-06-09	also reload buffer on PDF & litnote change
+- 2022-06-07	release 9.5.5
+- 2022-06-07	addings now also works with URLs containing DOIs
+- 2022-06-03	release 9.5.4
+- 2022-06-03	added logging + fix #9
+- 2022-06-03	make last version indicator uploadable to github
+- 2022-05-30	added some decoding for chars created by bibtex-tidy
+- 2022-05-29	opening literature notes in Obsidian more stable now
+- 2022-05-29	release 9.5.3
+- 2022-05-29	fix adding DOIs
+- 2022-05-25	release 9.5.2
+- 2022-05-25	release 9.5.1
+- 2022-05-25	fix fuzzy pdf opener
+- 2022-05-24	release 9.5.0
+- 2022-05-24	release 9.4.0
+- 2022-05-24	switch provider of isbns, since ottobib shut down
+- 2022-05-24	release 9.4.0
+- 2022-05-24	new: use Hyper key to open associated pdf
+- 2022-05-20	release 9.3.0
+- 2022-05-20	added bare citekey formatting option
+- 2022-05-20	release 9.2.3
+- 2022-05-20	release 9.2.2
+- 2022-05-20	fix multiple citations
+- 2022-05-20	release 9.2.2
+- 2022-05-20	added better error messaging for bibliography pasting
+- 2022-05-20	release 9.2.1
+- 2022-05-20	info on custom citation formats
+- 2022-05-20	release 9.2.0
+- 2022-05-20	change citation format via `scp`
+- 2022-05-20	release 9.1.2
+- 2022-05-20	formatting can now be changed without the need for a buffer reload
+- 2022-05-20	release 9.1.1
+- 2022-05-20	release 9.1.0
+- 2022-05-20	add option to switch order of citekey and pageno
+- 2022-05-19	release 9.0.0
+- 2022-05-19	citation format customization options (#1, #8)
+- 2022-05-17	release 8.3.6
+- 2022-05-17	release 8.3.5
+- 2022-05-05	added donation info
+- 2022-04-30	readme updates
+- 2022-04-30	release 8.3.4
+- 2022-04-30	fix csl download
+- 2022-04-24	fix notification for entry deletion
+- 2022-04-23	release 8.3.3
+- 2022-04-23	citekey generation when adding items considers cases with missing author or year
+- 2022-04-18	bugfixes for autocomplete dictionary creation
+- 2022-04-16	release 8.3.2
+- 2022-04-16	parser improvements + parser ignores comments
+- 2022-04-07	release 8.3.1
+- 2022-04-07	query filter for PDFs
+- 2022-04-07	release 8.3.0
+- 2022-04-07	icon to indicate the presence of pdfs added via autofile
+- 2022-04-06	release 8.2.1
+- 2022-04-06	fix #4
+- 2022-04-06	adding entries now also adds empty keywords field
+- 2022-04-03	release 8.2.0
+- 2022-04-03	option to match *only* short years
+- 2022-04-01	minor decoder improvements
+- 2022-04-01	minor parser fixes
+- 2022-04-01	release 8.1.0
+- 2022-04-01	quick search (e.g. search 'fou 77' for 'foucault 1977')
+- 2022-03-31	release 8.0.3
+- 2022-03-31	fix parser for when properties include an @ symbol
+- 2022-03-31	release 8.0.2
+- 2022-03-31	release 8.0.1
+- 2022-03-31	safer file names when auto-filing
+- 2022-03-30	release 8.0.0
+- 2022-03-30	auto-filing avoids overwriting existing pdf
+- 2022-03-30	release 7.15.0
+- 2022-03-30	✨ autofile & autorename PDFs
+- 2022-03-30	release 7.14.0
+- 2022-03-30	add scp-option for running bibtex-tidy
+- 2022-03-30	release 7.13.2
+- 2022-03-30	release 7.13.1
+- 2022-03-30	add empty new entries manually
+- 2022-03-30	strip diacritics for citekey generation
+- 2022-03-30	release 7.13.0
+- 2022-03-30	added ebooks as source for fetching isbn data
+- 2022-03-30	adding entries supports isbn as well
+- 2022-03-30	'open_entries_with' now also supports vscode
+- 2022-03-30	added failsafe for invalid DOIs
+- 2022-03-30	avoids duplicate citekeys
+- 2022-03-30	basic citekey generation + included popclip companion extension
+- 2022-03-30	add to library function
+- 2022-03-29	release 7.12.0
+- 2022-03-29	'*' filters for entries with literature notes
+- 2022-03-24	release 7.11.3
+- 2022-03-24	changes for debugging
+- 2022-03-20	autocompletelist distinguishes insert & displaytext
+- 2022-03-20	removing items does not close citation picker
+- 2022-03-17	release 7.11.2
+- 2022-03-17	release 7.11.1
+- 2022-03-17	bugfix for Obsidian autocomplete list
+- 2022-03-17	release 7.11.0
+- 2022-03-17	better autocompletion list for Obsidian
+- 2022-03-15	release 7.10.5
+- 2022-03-15	release 7.10.4
+- 2022-03-15	improved parsing
+- 2022-03-15	release 7.10.3
+- 2022-03-15	improved parsing
+- 2022-03-15	release 7.10.2
+- 2022-03-15	release 7.10.1
+- 2022-03-15	release 7.10.0
+- 2022-03-15	release 7.9.0
+- 2022-03-15	new feature: library backups
+- 2022-03-15	release 7.8.0
+- 2022-03-15	added option to open entry in Sublime instead of Bibtex (shift+return)
+- 2022-03-15	entry deletion now creates a backup and informs notifies on problems
+- 2022-03-14	improved release workflow
+- 2022-03-14	improved release workflow
+- 2022-03-14	auto-reload buffer when there is a new workflow version
+- 2022-03-14	added table meanings to the readme
+- 2022-03-14	release 7.7.8
+- 2022-03-14	preview abstract with cmd+L
+- 2022-03-14	release 7.7.7
+- 2022-03-14	fixed entry deletion for other bibtex formatting
+- 2022-03-14	release 7.7.6
+- 2022-03-14	more fixes for badly formatted bibtex files (e.g. bookends exports)
+- 2022-03-14	release 7.7.5
+- 2022-03-14	catch another edge case with bad bibtex formatting
+- 2022-03-14	release 7.7.4
+- 2022-03-14	catch errors when year field in bibtex file does not have a proper date
+- 2022-03-14	release 7.7.3
+- 2022-03-14	performance improvement for literature note reading during buffer creation
+- 2022-03-14	release 7.7.2
+- 2022-03-14	bugfix: workflow not working without literature note path
+- 2022-03-14	release 7.7.1
+- 2022-03-14	bugfix for first run
+- 2022-03-14	added request for sample bibtex entry
+- 2022-03-14	changed snippet trigger
+- 2022-03-13	release 7.7.0
+- 2022-03-13	bugfix for opening literature notes
+- 2022-03-13	added feature overview
+- 2022-03-13	new promo screenshot
+- 2022-03-13	release 7.6.0
+- 2022-03-13	if literature note is in Obsidian vault, will open in Obsidian
+- 2022-03-13	release 7.5.0
+- 2022-03-13	setting for et al matching
+- 2022-03-13	match authors/editors that are in the et al
+- 2022-03-13	release 7.4.0
+- 2022-03-13	simplified picking (no cmd+alt+enter anymore)
+- 2022-03-13	release 7.3.0
+- 2022-03-13	better icon
+- 2022-03-12	release 7.2.0
+- 2022-03-12	new icon
+- 2022-03-12	also match by type of entry
+- 2022-03-12	removal of more unnecessary fields
+- 2022-03-12	release 7.1.1
+- 2022-03-12	fix for workflow renaming
+- 2022-03-12	release 7.1.0
+- 2022-03-12	show URLs when holding ctrl
+- 2022-03-12	release 7.0.0
+- 2022-03-12	improved readme & opening literature notes
+- 2022-03-11	release 6.5.0
+- 2022-03-11	quicklook preview of url via cmd + Y
+- 2022-03-11	release 6.4.0
+- 2022-03-11	replace url with doi if no URL
+- 2022-03-11	release 6.3.2
+- 2022-03-11	better spaces handling for fn+return
+- 2022-03-05	release 6.3.0
+- 2022-03-05	speed improvements though not writing whole bibtex for fn+return
+- 2022-03-05	release 6.2.0
+- 2022-03-05	pandoc citation syntax cheat sheet
+- 2022-03-04	release 6.1.5
+- 2022-03-04	release 6.1.4
+- 2022-03-04	release 6.1.3
+- 2022-03-04	release 6.1.2
+- 2022-03-04	release 6.1.1
+- 2022-03-04	release 6.1.0
+- 2022-03-04	csl downloader added
+- 2022-03-04	release 6.0.1
+- 2022-03-04	release 6.0.0
+- 2022-03-04	release 1.0.0
+- 2022-03-04	init
+- 2022-02-14	local csl folder not needed as value anymore
+- 2022-02-08	retiring anticipatory word count feature
+- 2022-01-31	release 5.3.5
+- 2022-01-31	fix bibtex title key parsing for alternative formatting (#8)
+- 2022-01-18	release 5.3.4
+- 2022-01-18	release 5.3.3
+- 2022-01-18	release 5.3.2
+- 2021-10-31	Update FUNDING.yml
+- 2021-10-05	fix #4
+- 2021-09-18	5.2
+- 2021-09-05	Create FUNDING.yml
+- 2021-08-05	Merge pull request #3 from manuelhubacher/main
+- 2021-08-05	feat: Use date field
+- 2021-06-02	added `2>&1` in the command construction to enable error-log saving later in the workflow
+- 2021-05-09	info.plist
+- 2021-05-08	info.plist
+- 2021-05-08	info.plist
+- 2021-04-26	v. 1.2.1
+- 2021-04-26	v. 1.2.1
+- 2020-11-16	version 1.2
+- 2020-10-22	Create README.md
+- 2020-10-22	Initial commit

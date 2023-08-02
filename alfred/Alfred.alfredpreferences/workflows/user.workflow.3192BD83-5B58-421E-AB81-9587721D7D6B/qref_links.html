@@ -1,0 +1,157 @@
+<html>
+<head><title>Links Quick Reference</title></head>
+<body>
+<style>
+	body {
+		color: #333;
+		background-color: #ccc;
+		margin: 0 auto;
+		font-family: arial;
+		font-size: small;
+		max-width: 90%;
+	}
+	div, p{
+		font-size: 1em;
+		padding: 1em;
+		background-color: #fff;
+		margin: 1em 0;
+		
+		-webkit-box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+		-moz-box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+		box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+	}
+	
+	code {
+		white-space: nowrap;
+		padding: 0.1em 0.3em 0.1em 0.3em;
+		font-weight: 400;
+		background-color: rgba(2,2,2,0.1);
+		border: 1px solid #44434d;
+		border-radius: 4px;
+		margin-left: 0.1em;
+		margin-right: 0.1em;
+		font-family: "SFMono-Regular", Menlo, Consolas, Monospace;
+		font-size: 0.75em;
+		line-height: 1.4;
+	}
+	
+	td, th {
+		padding: .5em 1em;
+		text-align: left;
+		vertical-align: top;
+		line-height: 1.2;
+	}
+	
+	tr:nth-child(even) {
+		background-color: #eee;
+	}
+</style>
+	
+<h1>Links</h1>
+
+<h2>URL</h2>
+	<div class="">
+		<table cellpadding="0" cellspacing="0" border="0">
+			<colgroup>
+				<col id="directive">
+				<col id="type">
+				<col id="meaning">
+			</colgroup>
+			<thead>
+				<tr>
+					<th>Link Structure</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><code>drafts://open?uuid=UUID-OF-DRAFT</code></td>
+					<td>A standard URL utilising the <code>/open</code> option of the Drafts URL scheme.</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+<h2>Wiki - Internal</h2>
+	<div class="">
+		<table cellpadding="0" cellspacing="0" border="0">
+			<colgroup>
+				<col id="directive">
+				<col id="type">
+				<col id="meaning">
+			</colgroup>
+			<thead>
+				<tr>
+					<th>Link Structure</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><code>[[Title of Draft]]</code></td>
+					<td>Open a draft with the specified title. This will search for and open a draft with "Title of Draft" in the first line of the draft. If more than one is found, it will offer to search to help you locate the correct draft - if none is found, it will offer to create a new draft with the first line "Title of Draft" and open it. The search is loose, so would also match a draft with the title "# Title of Draft".</td>
+				</tr>
+				<tr>
+					<td><code>[[d:Title of Draft]]</code></td>
+					<td>This format is the same as above, but can be used if it is important to avoid possible conflicts.</td>
+				</tr>
+				<tr>
+					<td><code>[[u:UUID-OF-DRAFT]]</code></td>
+					<td>Open a draft with the specified UUID. Useful to force linking directly to a known draft. The draft will not be created if it does not exist. Useful in cases where matching by title may not be reliable and specific enough and you would rather link to a specific draft by its identifier.</td>
+				</tr>
+				<tr>
+					<td><code>[[w:Workspace Name]]</code></td>
+					<td>Open the named Workspace.</td>
+				</tr>
+				<tr>
+					<td><code>[[s:Search String]]</code></td>
+					<td>Open quick search to a search for the search term/phase used.</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<p>
+		Wiki-style links can also be used to link directly to a navigation marker within a longer draft, using the format <code>[[Title of Draft/Marker Name]]</code>. Navigation markers are defined by the syntax definition, and are used by Drafts Navigation features.<br><br>
+
+		The most common use of marker linking would be to navigate directly to a specific header in a Markdown document. For example, a link like <code>[[Title of Draft/Section 1]]</code> would open the Draft titled "Title of Draft", and scroll directly to a header "# Section 1" (or "## Section 1", etc.).<br><br>
+
+		Due to the use of the / forward slash character, if you have links to titles which contain a /, it will need to be escaped to function properly. For example a draft titled "Blue / Green" would be linked to as <code>[[Blue \/ Green]]</code>.
+	</p>
+	</div>
+
+<h2>Wiki - External</h2>
+	<div class="">
+		<table cellpadding="0" cellspacing="0" border="0">
+			<colgroup>
+				<col id="directive">
+				<col id="type">
+				<col id="meaning">
+			</colgroup>
+			<thead>
+				<tr>
+					<th>Link Structure</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><code>[[google:Search Term]]</code></td>
+					<td>Open link to Google search for "Search Term".</td>
+				</tr>
+				<tr>
+					<td><code>[[wikipedia:Page Name]]</code></td>
+					<td>Open link to Wikipedia page for "Page Name".</td>
+				</tr>
+				<tr>
+					<td><code>[[bear:Title of Bear Note]]</code></td>
+					<td>Open a note with the provided title in the Bear notes app (utilises Bear’s /open-note URL action).</td>
+				</tr>
+				<tr>
+					<td><code>[[url:http://full.url.com/]]</code></td>
+					<td>Open the URL provided. Should be a fully-qualified URL.</td>
+				</tr>
+			</tbody>
+		</table>
+		<p>These links are supported int he default markdown syntaxes among others.</p>
+	</div>
+</html>
