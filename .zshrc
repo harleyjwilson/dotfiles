@@ -10,6 +10,7 @@ eval "$(jenv init -)"
 #export PATH="$PATH:$HOME/.jenv/bin"
 #export PATH="$PATH:/opt/homebrew/bin/python3"
 #export PATH="$PATH:/usr/local/lib/ruby/gems/3.0.0/bin"
+#export PATH="$PATH:/opt/homebrew/opt/ruby/bin"
 export PATH="$PATH:$HOME/bin"
 export ZSH="$HOME/.oh-my-zsh"
 export MANPATH="/usr/local/man:$MANPATH"
@@ -81,3 +82,8 @@ alias ga='git add'
 alias gc='git commit -m '
 alias push=/Users/harleywilson/dotfiles/bin/,git-push
 alias f='fuck'
+
+if [ -d "/opt/homebrew/opt/ruby/bin" ]; then
+  export PATH=/opt/homebrew/opt/ruby/bin:$PATH
+  export PATH=`gem environment gemdir`/bin:$PATH
+fi
