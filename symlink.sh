@@ -17,6 +17,8 @@ ln -sf ~/dotfiles/bin ~/bin
 # Symlink files
 echo "Linking ~/dotfiles/.gitconfig -> ~/.gitconfig"
 ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
+echo "Linking ~/dotfiles/.tool-versions -> ~/.tool-versions"
+ln -sf ~/dotfiles/.tool-versions ~/.tool-versions
 echo "Linking ~/dotfiles/.vimrc -> ~/.vimrc"
 ln -sf ~/dotfiles/.vimrc ~/.vimrc
 echo "Linking ~/dotfiles/.zshrc -> ~/.zshrc"
