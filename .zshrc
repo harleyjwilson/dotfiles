@@ -1,16 +1,9 @@
-# Set up and load nvm
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-# Set up jenv
-eval "$(jenv init -)"
+# Set up and load asdf
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
 
 # Environment variable declarations
-#export PATH="$PATH:$HOME/.nvm/"
-#export PATH="$PATH:$HOME/.jenv/bin"
-#export PATH="$PATH:/opt/homebrew/bin/python3"
-#export PATH="$PATH:/usr/local/lib/ruby/gems/3.0.0/bin"
-#export PATH="$PATH:/opt/homebrew/opt/ruby/bin"
+export PATH="$PATH:/opt/homebrew/opt/gawk/libexec/gnubin"
+export PATH="/Users/harleywilson/.vscode-dotnet-sdk/.dotnet:$PATH"
 export PATH="$PATH:$HOME/bin"
 export ZSH="$HOME/.oh-my-zsh"
 export MANPATH="/usr/local/man:$MANPATH"
@@ -32,18 +25,12 @@ source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 # iTerm2 shell integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# Set up 'thefuck'
-eval $(thefuck --alias)
-
 # Update automatically without asking
 zstyle ':omz:update' mode auto 
 
 # Uncomment the following line to change how often to auto-update (in days).
 export UPDATE_ZSH_DAYS=7
 ZSH_CUSTOM_AUTOUPDATE_QUIET=true
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -61,7 +48,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(1password autoupdate brew colorize gh git npm macos python sdk vscode z zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(brew colorize gh git npm macos python z) # zsh-autosuggestions zsh-syntax-highlighting)
 
 # Source oh-my-zsh.sh
 source $ZSH/oh-my-zsh.sh
@@ -73,18 +60,11 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias gcc='gcc -Wall -ansi -pedantic'
 alias cf='clang-format -style=file:/Users/harleywilson/dotfiles/.clang-format'
-alias update='mas outdated && omz update && brew update && brew outdated && softwareupdate -l'
-alias upgrade='mas upgrade && omz update && brew upgrade && brew cleanup && softwareupdate -ia' 
-alias python=/opt/homebrew/bin/python3
-alias pip=/opt/homebrew/bin/pip3
 alias speedtest='speedtest --secure'
 alias ga='git add'
 alias gc='git commit -m '
 alias push=/Users/harleywilson/dotfiles/bin/,git-push
 alias f='fuck'
 
-if [ -d "/opt/homebrew/opt/ruby/bin" ]; then
-  export PATH=/opt/homebrew/opt/ruby/bin:$PATH
-  export PATH=`gem environment gemdir`/bin:$PATH
-fi
-export PATH="/Users/harleywilson/.vscode-dotnet-sdk/.dotnet:$PATH"
+# Set up 'thefuck'
+eval $(thefuck --alias)
