@@ -35,7 +35,8 @@ def titlecase_plus(text):
 
 variations = {
     'title': escape(titlecase_plus(text), {'"': '&quot;', '\n': '&#10;'}),
-    'camel': escape(text.title(), {'"': '&quot;', '\n': '&#10;'}).replace(' ', ''),
+    'camel': (escape(text.title(), {'"': '&quot;', '\n': '&#10;'}).replace(' ', '').lower()[0] +
+          escape(text.title(), {'"': '&quot;', '\n': '&#10;'}).replace(' ', '')[1:]),
     'kebab': escape(text.lower(), {'"': '&quot;', '\n': '&#10;'}).replace(' ', '-').replace('_', '-'),
     'snake': escape(text.lower(), {'"': '&quot;', '\n': '&#10;'}).replace(' ', '_').replace('-', '_'),
     'lower': escape(text.lower(), {'"': '&quot;', '\n': '&#10;'}),
@@ -51,7 +52,7 @@ print("""<?xml version="1.0"?>
   </item>
   <item arg="%(camel)s">
     <title>%(camel)s</title>
-    <subtitle>Transform text to `CamelCase`</subtitle>
+    <subtitle>Transform text to `camelCase`</subtitle>
     <icon>camelcase.png</icon>
   </item>
   <item arg="%(kebab)s">
