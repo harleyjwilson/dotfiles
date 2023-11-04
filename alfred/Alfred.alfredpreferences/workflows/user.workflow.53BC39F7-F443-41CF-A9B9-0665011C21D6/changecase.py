@@ -34,27 +34,16 @@ def titlecase_plus(text):
 
 
 variations = {
-    'lower': escape(text.lower(), {'"': '&quot;', '\n': '&#10;'}),
-    'upper': escape(text.upper(), {'"': '&quot;', '\n': '&#10;'}),
     'title': escape(titlecase_plus(text), {'"': '&quot;', '\n': '&#10;'}),
     'camel': escape(text.title(), {'"': '&quot;', '\n': '&#10;'}).replace(' ', ''),
     'kebab': escape(text.lower(), {'"': '&quot;', '\n': '&#10;'}).replace(' ', '-').replace('_', '-'),
-    'snake': escape(text.lower(), {'"': '&quot;', '\n': '&#10;'}).replace(' ', '_').replace('-', '_')
-
+    'snake': escape(text.lower(), {'"': '&quot;', '\n': '&#10;'}).replace(' ', '_').replace('-', '_'),
+    'lower': escape(text.lower(), {'"': '&quot;', '\n': '&#10;'}),
+    'upper': escape(text.upper(), {'"': '&quot;', '\n': '&#10;'})
 }
 
 print("""<?xml version="1.0"?>
 <items>
-  <item arg="%(lower)s">
-    <title>%(lower)s</title>
-    <subtitle>Transform text to `lowercase`</subtitle>
-    <icon>lowercase.png</icon>
-  </item>
-  <item arg="%(upper)s">
-    <title>%(upper)s</title>
-    <subtitle>Transform text to `UPPERCASE`</subtitle>
-    <icon>uppercase.png</icon>
-  </item>
   <item arg="%(title)s">
     <title>%(title)s</title>
     <subtitle>Transform text to `Title Case`</subtitle>
@@ -67,13 +56,23 @@ print("""<?xml version="1.0"?>
   </item>
   <item arg="%(kebab)s">
     <title>%(kebab)s</title>
-    <subtitle>Transform text to hyphenated `kebab-case`</subtitle>
+    <subtitle>Transform text to `kebab-case`</subtitle>
     <icon>kebabcase.png</icon>
   </item>
   <item arg="%(snake)s">
     <title>%(snake)s</title>
     <subtitle>Transform text to `snake_case`</subtitle>
     <icon>snakecase.png</icon>
+  </item>
+  <item arg="%(lower)s">
+    <title>%(lower)s</title>
+    <subtitle>Transform text to `lowercase`</subtitle>
+    <icon>lowercase.png</icon>
+  </item>
+  <item arg="%(upper)s">
+    <title>%(upper)s</title>
+    <subtitle>Transform text to `UPPERCASE`</subtitle>
+    <icon>uppercase.png</icon>
   </item>
 
 </items>""" % variations)
