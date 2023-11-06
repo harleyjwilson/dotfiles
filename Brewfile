@@ -6,6 +6,7 @@ tap "homebrew/cask-versions"
 tap "homebrew/services"
 tap "mongodb/brew"
 tap "romkatv/powerlevel10k"
+tap "supabase/tap"
 brew "gmp"
 brew "coreutils"
 brew "libyaml"
@@ -32,12 +33,14 @@ brew "make"
 brew "mas"
 brew "maven"
 brew "mypy"
+brew "mysql", restart_service: true
 brew "tree-sitter", link: false
 brew "neovim"
 brew "netlify-cli"
 brew "openssl@1.1"
 brew "pandoc"
 brew "pdfgrep"
+brew "postgresql@16"
 brew "powerlevel10k"
 brew "protobuf"
 brew "python@3.10"
@@ -53,9 +56,9 @@ brew "wget"
 brew "yarn"
 brew "zsh"
 brew "mongodb/brew/mongodb-community"
+brew "supabase/tap/supabase"
 cask "1password"
 cask "1password-cli"
-cask "aerial"
 cask "alfred"
 cask "anki"
 cask "arc"
@@ -103,6 +106,7 @@ cask "numi"
 cask "obsidian"
 cask "pdfpen"
 cask "postman"
+cask "raindropio"
 cask "raspberry-pi-imager"
 cask "selfcontrol"
 cask "sf-symbols"
@@ -123,6 +127,7 @@ mas "Dark Noise", id: 1465439395
 mas "Dark Reader for Safari", id: 1438243180
 mas "Developer", id: 640199958
 mas "Drafts", id: 1435957248
+mas "FoodNoms", id: 1479461686
 mas "Grammarly for Safari", id: 1462114288
 mas "Hand Mirror", id: 1502839586
 mas "iA Writer", id: 775737590
