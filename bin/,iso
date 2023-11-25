@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "Getting current time in ISO8601 UTC format"
+date=`date -u +%Y-%m-%dT%H:%M:%SZ`
+echo "$date"
