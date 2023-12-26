@@ -64,10 +64,9 @@ alias .....='cd ../../../..'
 alias gcc='gcc -Wall -ansi -pedantic'
 alias cf='clang-format -style=file:/Users/harleywilson/dotfiles/.clang-format'
 alias speedtest='speedtest --secure'
-alias ga='git add'
-alias gc='git commit -m '
-alias push=/Users/harleywilson/dotfiles/bin/,git-push
 alias f='fuck'
+alias rm='rm -r'
+alias cp='cp -r'
 
 # Set up 'thefuck'
 eval $(thefuck --alias)
