@@ -33,7 +33,7 @@ brew "make"
 brew "mas"
 brew "maven"
 brew "mypy"
-brew "mysql", restart_service: true
+brew "mysql"
 brew "tree-sitter", link: false
 brew "neovim"
 brew "netlify-cli"
@@ -61,13 +61,12 @@ cask "1password"
 cask "1password-cli"
 cask "alfred"
 cask "anki"
-cask "arc"
 cask "backblaze"
 cask "cleanmymac"
+cask "db-browser-for-sqlite"
 cask "discord"
 cask "docker"
 cask "drawio"
-cask "dropbox"
 cask "exodus"
 cask "figma"
 cask "firefox"
@@ -83,7 +82,6 @@ cask "font-sacramento"
 cask "github"
 cask "google-chrome"
 cask "google-drive"
-cask "google-earth-pro"
 cask "grammarly"
 cask "hyperkey"
 cask "iina"
@@ -98,7 +96,6 @@ cask "microsoft-office"
 cask "microsoft-teams"
 cask "mission-control-plus"
 cask "monitorcontrol"
-cask "mono-mdk-for-visual-studio"
 cask "moom"
 cask "mos"
 cask "notion"
@@ -123,11 +120,12 @@ cask "zoom"
 mas "1Password for Safari", id: 1569813296
 mas "Accelerate", id: 1459809092
 mas "Amphetamine", id: 937984704
+mas "ColorSlurp", id: 1287239339
 mas "Dark Noise", id: 1465439395
 mas "Dark Reader for Safari", id: 1438243180
+mas "Dato", id: 1470584107
 mas "Developer", id: 640199958
 mas "Drafts", id: 1435957248
-mas "FoodNoms", id: 1479461686
 mas "Grammarly for Safari", id: 1462114288
 mas "Hand Mirror", id: 1502839586
 mas "iA Writer", id: 775737590
@@ -139,7 +137,6 @@ mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Reeder", id: 1529448980
 mas "StopTheMadness", id: 1376402589
-mas "The Clock", id: 488764545
 mas "Timery", id: 1425368544
 mas "Xcode", id: 497799835
 vscode "aaron-bond.better-comments"
@@ -148,6 +145,7 @@ vscode "asciidoctor.asciidoctor-vscode"
 vscode "astro-build.astro-vscode"
 vscode "bradlc.vscode-tailwindcss"
 vscode "chrmarti.regex"
+vscode "csstools.postcss"
 vscode "dbaeumer.vscode-eslint"
 vscode "eamodio.gitlens"
 vscode "ecmel.vscode-html-css"
@@ -174,11 +172,8 @@ vscode "ms-python.black-formatter"
 vscode "ms-python.isort"
 vscode "ms-python.python"
 vscode "ms-python.vscode-pylance"
-vscode "MS-SarifVSCode.sarif-viewer"
 vscode "ms-vscode-remote.remote-containers"
 vscode "ms-vscode-remote.remote-ssh"
-vscode "ms-vscode-remote.remote-wsl"
-vscode "ms-vscode.azure-repos"
 vscode "ms-vscode.cmake-tools"
 vscode "ms-vscode.cpptools"
 vscode "ms-vscode.cpptools-extension-pack"
@@ -188,7 +183,9 @@ vscode "ms-vscode.remote-repositories"
 vscode "ms-vsliveshare.vsliveshare"
 vscode "PKief.material-icon-theme"
 vscode "Postman.postman-for-vscode"
-vscode "RaillyHugo.one-hunter"
+vscode "Prisma.prisma"
+vscode "quicktype.quicktype"
+vscode "rangav.vscode-thunder-client"
 vscode "redhat.java"
 vscode "redhat.vscode-xml"
 vscode "ritwickdey.LiveServer"
@@ -197,6 +194,7 @@ vscode "Shopify.ruby-lsp"
 vscode "sorbet.sorbet-vscode-extension"
 vscode "streetsidesoftware.code-spell-checker"
 vscode "streetsidesoftware.code-spell-checker-australian-english"
+vscode "svelte.svelte-vscode"
 vscode "unifiedjs.vscode-mdx"
 vscode "VisualStudioExptTeam.intellicode-api-usage-examples"
 vscode "VisualStudioExptTeam.vscodeintellicode"
@@ -206,5 +204,3 @@ vscode "vscjava.vscode-java-dependency"
 vscode "vscjava.vscode-java-pack"
 vscode "vscjava.vscode-java-test"
 vscode "vscjava.vscode-maven"
-vscode "vscode-icons-team.vscode-icons"
-vscode "zhuangtongfa.material-theme"
