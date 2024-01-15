@@ -3,7 +3,7 @@
 
 # When setting variables, leave off trailing slashes
 local="/Users/harleywilson/Documents/1_Projects/University"
-onedrive="/Users/harleywilson/Library/CloudStorage/OneDrive-CurtinUniversityofTechnologyAustralia"
+onedrive="/Users/harleywilson/Library/CloudStorage/OneDrive-Curtin"
 usb="/Volumes/0406602077/University"
 sleep=1
 
