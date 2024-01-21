@@ -26,7 +26,7 @@ case $n in
       y|yes) echo "Syncing..."
         # Sync files
         echo "Running \`rsync -zavh --del \"${local}/\" \"${onedrive}\"\`"
-        rsync -zavh --del "${local}/" "${onedrive}"
+        rsync -zavh --del --exclude='.Trash' "${local}/" "${onedrive}"
 
         sleep $sleep
       ;;
@@ -45,7 +45,7 @@ case $n in
       y|yes) echo "Syncing..."
         # Sync files
         echo "Running \`rsync -zavh --del \"${onedrive}\" \"${local}/\"\`"
-        rsync -zavh --del "${onedrive}/" "${local}"
+        rsync -zavh --del --exclude='.Trash' "${onedrive}/" "${local}"
 
         sleep $sleep
       ;;
@@ -64,7 +64,7 @@ case $n in
       y|yes) echo "Syncing..."
         # Sync files
         echo "Running \`rsync -zavh --del \"${onedrive}\" \"${local}/\"\`"
-        rsync -zavh --del "${local}/" "${usb}"
+        rsync -zavh --del --exclude='.Trash' "${local}/" "${usb}"
 
         sleep $sleep
       ;;
@@ -83,7 +83,7 @@ case $n in
       y|yes) echo "Syncing..."
         # Sync files
         echo "Running \`rsync -zavh --del \"${onedrive}\" \"${local}/\"\`"
-        rsync -zavh --del "${usb}/" "${local}"
+        rsync -zavh --del --exclude='.Trash' "${usb}/" "${local}"
 
         sleep $sleep
       ;;
