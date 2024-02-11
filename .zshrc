@@ -68,6 +68,7 @@ alias speedtest='speedtest --secure'
 alias f='fuck'
 alias rm='rm -r'
 alias cp='cp -r'
+alias pn='pnpm'
 
 # Set up 'thefuck'
 eval $(thefuck --alias)
