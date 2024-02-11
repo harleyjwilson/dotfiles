@@ -3,8 +3,9 @@
 
 # Environment variable declarations
 export PATH="$PATH:/opt/homebrew/opt/gawk/libexec/gnubin"
-export PATH="/Users/harleywilson/.vscode-dotnet-sdk/.dotnet:$PATH"
+export PATH="$PATH:/Users/harleywilson/.vscode-dotnet-sdk/.dotnet"
 export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:/Users/harleywilson/.local/bin"
 export ZSH="$HOME/.oh-my-zsh"
 export MANPATH="/usr/local/man:$MANPATH"
 export LANG=en_US.UTF-8
