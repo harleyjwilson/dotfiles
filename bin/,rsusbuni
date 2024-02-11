@@ -1,2 +1,0 @@
-#!/bin/bash
-rsync -zavh --del /Volumes/0406602077/University/ /Users/harleywilson/Documents/1_Projects/University

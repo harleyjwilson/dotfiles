@@ -1,2 +1,0 @@
-#!/bin/bash
-rsync -zavh --del /Users/harleywilson/Library/CloudStorage/OneDrive-CurtinUniversityofTechnologyAustralia/ /Users/harleywilson/Documents/1_Projects/University
