@@ -4,7 +4,7 @@
 # When setting variables, leave off trailing slashes
 local="/Users/harleywilson/Documents/1_Projects/University/2024, Semester 1"
 onedrive="/Users/harleywilson/Library/CloudStorage/OneDrive-Curtin"
-usb="/Volumes/0406602077/University"
+usb="/Volumes/0406602077"
 sleep=1
 
 # Prompt user to select an option
@@ -64,7 +64,7 @@ case $n in
       y|yes) echo "Syncing..."
         # Sync files
         echo "Running \`rsync -zavh --del \"${onedrive}\" \"${local}/\"\`"
-        rsync -zavh --del --exclude='.Trash' "${local}/" "${usb}"
+        rsync -zavvvvh --del --exclude='.Trash' --exclude='.DS_Store' "${local}/" "${usb}"
 
         sleep $sleep
       ;;
@@ -83,7 +83,7 @@ case $n in
       y|yes) echo "Syncing..."
         # Sync files
         echo "Running \`rsync -zavh --del \"${onedrive}\" \"${local}/\"\`"
-        rsync -zavh --del --exclude='.Trash' "${usb}/" "${local}"
+        rsync -zavh --del --exclude='.Trash' --exclude='.DS_Store' "${usb}/" "${local}"
 
         sleep $sleep
       ;;
