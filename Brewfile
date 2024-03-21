@@ -30,7 +30,7 @@ brew "make"
 brew "mas"
 brew "maven"
 brew "mypy"
-brew "mysql", restart_service: true
+brew "mysql"
 brew "tree-sitter", link: false
 brew "neovim"
 brew "openssl@1.1"
@@ -41,6 +41,7 @@ brew "powerlevel10k"
 brew "protobuf"
 brew "python@3.10"
 brew "ripgrep"
+brew "rsync"
 brew "ruby"
 brew "semgrep"
 brew "speedtest-cli"
@@ -55,14 +56,17 @@ cask "1password"
 cask "1password-cli"
 cask "alfred"
 cask "anki"
+cask "arc"
 cask "backblaze"
-cask "basictex"
 cask "bibdesk"
 cask "cleanmymac"
+cask "db-browser-for-sqlite"
 cask "dbngin"
+cask "diffusionbee"
 cask "discord"
 cask "docker"
 cask "drawio"
+cask "exodus"
 cask "figma"
 cask "firefox"
 cask "flux"
@@ -80,12 +84,17 @@ cask "grammarly"
 cask "hyperkey"
 cask "iina"
 cask "imageoptim"
+cask "inkscape"
 cask "iterm2"
 cask "keyboardcleantool"
 cask "logi-options-plus"
+cask "logseq"
+cask "mactex"
 cask "messenger"
 cask "microsoft-auto-update"
 cask "microsoft-office"
+cask "microsoft-teams"
+cask "miro"
 cask "mission-control-plus"
 cask "monitorcontrol"
 cask "moom"
@@ -106,27 +115,7 @@ cask "steam"
 cask "transmit"
 cask "visual-studio-code"
 cask "vmware-horizon-client"
-mas "1Password for Safari", id: 1569813296
-mas "Accelerate", id: 1459809092
-mas "Amphetamine", id: 937984704
-mas "Dark Noise", id: 1465439395
-mas "Dato", id: 1470584107
-mas "Developer", id: 640199958
-mas "Drafts", id: 1435957248
-mas "Grammarly for Safari", id: 1462114288
-mas "Hand Mirror", id: 1502839586
-mas "iA Writer", id: 775737590
-mas "Instapaper Save", id: 1481302432
-mas "Keynote", id: 409183694
-mas "Kindle", id: 302584613
-mas "Mela", id: 1568924476
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
-mas "Reeder", id: 1529448980
-mas "Save to Raindrop.io", id: 1549370672
-mas "StopTheMadness", id: 1376402589
-mas "Timery", id: 1425368544
-mas "Xcode", id: 497799835
+cask "zed"
 vscode "aaron-bond.better-comments"
 vscode "alefragnani.bookmarks"
 vscode "asciidoctor.asciidoctor-vscode"
@@ -175,8 +164,10 @@ vscode "quicktype.quicktype"
 vscode "redhat.java"
 vscode "redhat.vscode-xml"
 vscode "ritwickdey.liveserver"
+vscode "shengchen.vscode-checkstyle"
 vscode "shopify.ruby-extensions-pack"
 vscode "shopify.ruby-lsp"
+vscode "sonarsource.sonarlint-vscode"
 vscode "sorbet.sorbet-vscode-extension"
 vscode "streetsidesoftware.code-spell-checker"
 vscode "streetsidesoftware.code-spell-checker-australian-english"
@@ -184,9 +175,13 @@ vscode "svelte.svelte-vscode"
 vscode "unifiedjs.vscode-mdx"
 vscode "visualstudioexptteam.intellicode-api-usage-examples"
 vscode "visualstudioexptteam.vscodeintellicode"
+vscode "vmware.vscode-boot-dev-pack"
+vscode "vmware.vscode-spring-boot"
 vscode "vscjava.vscode-gradle"
 vscode "vscjava.vscode-java-debug"
 vscode "vscjava.vscode-java-dependency"
 vscode "vscjava.vscode-java-pack"
 vscode "vscjava.vscode-java-test"
 vscode "vscjava.vscode-maven"
+vscode "vscjava.vscode-spring-boot-dashboard"
+vscode "vscjava.vscode-spring-initializr"
