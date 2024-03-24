@@ -58,11 +58,9 @@ cask "alfred"
 cask "anki"
 cask "arc"
 cask "backblaze"
-cask "bibdesk"
 cask "cleanmymac"
 cask "db-browser-for-sqlite"
 cask "dbngin"
-cask "diffusionbee"
 cask "discord"
 cask "docker"
 cask "drawio"
@@ -94,7 +92,6 @@ cask "messenger"
 cask "microsoft-auto-update"
 cask "microsoft-office"
 cask "microsoft-teams"
-cask "miro"
 cask "mission-control-plus"
 cask "monitorcontrol"
 cask "moom"
@@ -104,7 +101,6 @@ cask "numi"
 cask "obsidian"
 cask "pdfpen"
 cask "postman"
-cask "raindropio"
 cask "raspberry-pi-imager"
 cask "selfcontrol"
 cask "sf-symbols"
@@ -116,6 +112,25 @@ cask "transmit"
 cask "visual-studio-code"
 cask "vmware-horizon-client"
 cask "zed"
+mas "1Password for Safari", id: 1569813296
+mas "Accelerate", id: 1459809092
+mas "Amphetamine", id: 937984704
+mas "Dark Noise", id: 1465439395
+mas "Dato", id: 1470584107
+mas "Developer", id: 640199958
+mas "Drafts", id: 1435957248
+mas "Grammarly for Safari", id: 1462114288
+mas "Hand Mirror", id: 1502839586
+mas "iA Writer", id: 775737590
+mas "Instapaper Save", id: 1481302432
+mas "Keynote", id: 409183694
+mas "Kindle", id: 302584613
+mas "Mela", id: 1568924476
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Reeder", id: 1529448980
+mas "Timery", id: 1425368544
+mas "Xcode", id: 497799835
 vscode "aaron-bond.better-comments"
 vscode "alefragnani.bookmarks"
 vscode "asciidoctor.asciidoctor-vscode"
