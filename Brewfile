@@ -78,7 +78,6 @@ cask "font-lato"
 cask "font-sacramento"
 cask "github"
 cask "google-chrome"
-cask "grammarly"
 cask "hyperkey"
 cask "iina"
 cask "imageoptim"
@@ -119,7 +118,6 @@ mas "Dark Noise", id: 1465439395
 mas "Dato", id: 1470584107
 mas "Developer", id: 640199958
 mas "Drafts", id: 1435957248
-mas "Grammarly for Safari", id: 1462114288
 mas "Hand Mirror", id: 1502839586
 mas "iA Writer", id: 775737590
 mas "Instapaper Save", id: 1481302432
