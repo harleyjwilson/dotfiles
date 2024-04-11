@@ -7,11 +7,8 @@ export PATH="$PATH:/Users/harleywilson/.vscode-dotnet-sdk/.dotnet"
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:/Users/harleywilson/.local/bin"
 export ZSH="$HOME/.oh-my-zsh"
-export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH="$MANPATH:/usr/local/man"
 export LANG=en_US.UTF-8
-
-# Stop tldr from auto updating
-export TLDR_AUTO_UPDATE_DISABLED=true
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -36,26 +33,43 @@ zstyle ':omz:update' mode auto
 export UPDATE_ZSH_DAYS=7
 ZSH_CUSTOM_AUTOUPDATE_QUIET=true
 
+# Stop tldr from auto updating
+export TLDR_AUTO_UPDATE_DISABLED=true
+
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-HIST_STAMPS="yyyy-mm-dd"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(brew colorize gh git npm macos python z zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(brew colorize gh git fzf npm macos python z zsh-autosuggestions zsh-syntax-highlighting)
 
 # Source oh-my-zsh.sh
 source $ZSH/oh-my-zsh.sh
+
+# History Settings
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=10000000
+SAVEHIST=10000000
+HIST_STAMPS="yyyy-mm-dd"
+HISTORY_IGNORE="(ls|cd|pwd|exit|cd)*"
+
+setopt EXTENDED_HISTORY      # Write the history file in the ':start:elapsed;command' format.
+setopt INC_APPEND_HISTORY    # Write to the history file immediately, not when the shell exits.
+setopt SHARE_HISTORY         # Share history between all sessions.
+setopt HIST_IGNORE_DUPS      # Do not record an event that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS  # Delete an old recorded event if a new event is a duplicate.
+setopt HIST_IGNORE_SPACE     # Do not record an event starting with a space.
+setopt HIST_SAVE_NO_DUPS     # Do not write a duplicate event to the history file.
+setopt HIST_VERIFY           # Do not execute immediately upon history expansion.
+setopt APPEND_HISTORY        # append to history file (Default)
+setopt HIST_NO_STORE         # Don't store history commands
+setopt HIST_REDUCE_BLANKS    # Remove superfluous blanks from each command line being added to the history.
+
+export FZF_DEFAULT_COMMAND='ag --hidden -g ""'
 
 # Personal aliases
 alias ..='cd ..'
