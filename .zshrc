@@ -6,6 +6,7 @@ export PATH="$PATH:/opt/homebrew/opt/gawk/libexec/gnubin"
 export PATH="$PATH:/Users/harleywilson/.vscode-dotnet-sdk/.dotnet"
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:/Users/harleywilson/.local/bin"
+export PATH="$PATH:/Users/harleywilson/.asdf/installs/rust/1.78.0/env"
 export ZSH="$HOME/.oh-my-zsh"
 export MANPATH="$MANPATH:/usr/local/man"
 export LANG=en_US.UTF-8

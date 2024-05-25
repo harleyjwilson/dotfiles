@@ -5,3 +5,5 @@ ruby 3.2.2
 pnpm 8.15.1
 gradle 8.7
 maven 3.9.6
+elixir 1.16.3
+rust 1.78.0
