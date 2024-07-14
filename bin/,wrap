@@ -1,0 +1,29 @@
+#!/usr/bin/env python
+import pyperclip  # type: ignore
+import textwrap
+
+LINE_WIDTH = 72
+
+
+def wrap_text(original_text, width):
+    wrapper = textwrap.TextWrapper(
+        width=width,
+        replace_whitespace=False,
+    )
+    wrapped_text_list = []
+    wrapped_line = None
+    try:
+        lines = original_text.split("\n")
+        for line in lines:
+            wrapped_line = "\n".join(wrapper.wrap(text=line.strip()))
+            wrapped_text_list.append(wrapped_line)
+        return "\n".join(wrapped_text_list)
+    except AttributeError:
+        print("ERROR")
+        wrapped_line = "\n".join(wrapper.wrap(text=original_text.strip()))
+        return "\n".join(wrapped_line)
+
+
+clipboard_text = pyperclip.paste()
+edited_text = wrap_text(clipboard_text, LINE_WIDTH)
+pyperclip.copy(edited_text)
