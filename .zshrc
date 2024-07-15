@@ -46,7 +46,7 @@ COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Which plugins would you like to load?
-plugins=(brew colorize gh git fzf npm macos python z zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(brew colorize gh fzf python thefuck dotenv z)
 
 # Source oh-my-zsh.sh
 source $ZSH/oh-my-zsh.sh
