@@ -4,8 +4,6 @@
 <dict>
 	<key>chromeProfile</key>
 	<string>Default</string>
-	<key>indexChrome</key>
-	<true/>
 	<key>indexSafari</key>
 	<true/>
 </dict>
