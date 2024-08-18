@@ -2,7 +2,7 @@
 # Don't forget to make the file executable `chmod 755 ,syncunifiles`
 
 # When setting variables, leave off trailing slashes
-local="/Users/harleywilson/Documents/1_Projects/University/2024, Semester 2"
+local="/Users/harleywilson/Documents/1_Projects/University/2024_S2"
 onedrive="/Users/harleywilson/Library/CloudStorage/OneDrive-Curtin"
 usb="/Volumes/0406602077"
 sleep=1
