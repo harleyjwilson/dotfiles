@@ -1,4 +1,0 @@
-#!/bin/bash
-
-date=`date -u +%Y-%m-%d\ %H:%M:%S`
-echo "$date"
