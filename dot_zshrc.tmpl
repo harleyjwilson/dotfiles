@@ -1,0 +1,471 @@
+#!/bin/zsh
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║                                                                            ║
+# ║                        ______    ______    __  __                          ║
+# ║                       /\___  \  /\  ___\  /\ \_\ \                         ║
+# ║                       \/_/  /__ \ \___  \ \ \  __ \                        ║
+# ║                         /\_____\ \/\_____\ \ \_\ \_\                       ║
+# ║                         \/_____/  \/_____/  \/_/\/_/                       ║
+# ║                                                                            ║
+# ║   harleyjwilson.com * github.com/harleyjwilson * hello@harleyjwilson.com   ║
+# ║                                                                            ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+# zmodload zsh/zprof
+
+unset LS_COLORS
+unset LSCOLORS
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Basics                                                                     ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+# Guard aliases/integrations so they only activate when the tool is installed
+function __is_available {
+  type "${1}" > /dev/null 2>&1
+}
+
+function __source_first_existing {
+  local source_path
+  for source_path in "$@"; do
+    [ -f "$source_path" ] && source "$source_path" && return 0
+  done
+  return 1
+}
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ ${PATH}                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+{{ if eq .chezmoi.os "darwin" -}}
+export PATH="/opt/homebrew/bin:$PATH"
+export PNPM_HOME="$HOME/Library/pnpm"
+{{ end -}}
+export PATH="$PATH:/bin:/usr/bin"
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+
+# Rust/Cargo
+if [ -x "$HOME/.cargo/bin/cargo" ]; then
+  export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+# pnpm
+if [ -n "$PNPM_HOME" ] && [ -d "$PNPM_HOME" ]; then
+  case ":$PATH:" in
+    *":$PNPM_HOME:"*) ;;
+    *) export PATH="$PNPM_HOME:$PATH" ;;
+  esac
+  if [ -d "$PNPM_HOME/bin" ]; then
+    case ":$PATH:" in
+      *":$PNPM_HOME/bin:"*) ;;
+      *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+    esac
+  fi
+fi
+
+# Mise
+__is_available mise && eval "$(mise activate zsh)"
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Exports                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+
+# Allow GPG's pinentry prompt to use the active terminal.
+export GPG_TTY="$(tty)"
+
+if __is_available nvim; then
+  export EDITOR="nvim"
+elif __is_available vim; then
+  export EDITOR="vim"
+fi
+
+{{- if eq .chezmoi.os "darwin" }}
+export PKG_CONFIG_PATH="/usr/local/opt/ncurses/lib/pkgconfig" 
+export BEMENU_BACKEND=curses
+{{- end }}
+
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Completions                                                                ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+# Collect all fpath entries before calling compinit exactly once
+fpath=(
+{{- if eq .chezmoi.os "darwin" }}
+  /opt/homebrew/share/zsh/site-functions
+  "$HOME/.docker/completions"
+{{- end }}
+  $fpath
+)
+
+autoload -Uz compinit zrecompile
+if mkdir -p "$HOME/.cache/zsh"; then
+  _zcompdump="$HOME/.cache/zsh/.zcompdump"
+  compinit -d "$_zcompdump"
+  if command mkdir "${_zcompdump}.lock" 2>/dev/null; then
+    zrecompile -q -p "$_zcompdump"
+    command rm -rf "${_zcompdump}.zwc.old" "${_zcompdump}.lock"
+  fi
+  unset _zcompdump
+
+  zstyle ':completion:*' use-cache yes
+  zstyle ':completion:*' cache-path "$HOME/.cache/zsh"
+else
+  compinit
+fi
+
+# Load bash completions for tools that only ship bash completion scripts
+autoload -U +X bashcompinit && bashcompinit
+
+unsetopt menu_complete   # do not autoselect the first completion entry
+unsetopt flowcontrol
+setopt auto_menu         # show completion menu on successive tab press
+setopt complete_in_word
+setopt always_to_end
+
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' special-dirs true
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ History                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=10000000
+SAVEHIST=10000000
+
+setopt EXTENDED_HISTORY       # record timestamp and elapsed time
+setopt SHARE_HISTORY          # share history across all sessions (implies INC_APPEND)
+setopt HIST_EXPIRE_DUPS_FIRST # expire duplicate entries first when trimming
+setopt HIST_IGNORE_ALL_DUPS   # delete older duplicates when a new one is added
+setopt HIST_IGNORE_SPACE      # do not record entries starting with a space
+setopt HIST_SAVE_NO_DUPS      # do not write duplicate entries to the history file
+setopt HIST_VERIFY            # show expanded history before executing
+setopt HIST_NO_STORE          # do not store the history/fc command itself
+setopt HIST_REDUCE_BLANKS     # strip superfluous blanks from history entries
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Shell Options                                                              ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+setopt interactivecomments  # allow # comments in interactive shell
+setopt multios              # redirect to multiple streams: echo >file1 >file2
+setopt long_list_jobs       # show long format for job notifications
+
+autoload -Uz is-at-least
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Keybindings                                                                ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+bindkey -e  # emacs key bindings
+
+# Edit the current command line in $EDITOR
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '\C-x\C-e' edit-command-line
+
+WORDCHARS=''  # word navigation stops at '/', '.', '-', etc.
+
+# Word navigation
+bindkey '^[[1;5C' forward-word   # Ctrl+Right
+bindkey '^[[1;5D' backward-word  # Ctrl+Left
+
+# Shift-Tab — navigate completion menu backwards
+[[ -n "${terminfo[kcbt]}" ]] && bindkey "${terminfo[kcbt]}" reverse-menu-complete
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Tool Integrations                                                          ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+# Ghostty shell integration (cursor, title, SSH, etc.)
+if [[ -n "${GHOSTTY_RESOURCES_DIR}" && -r "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration" ]]; then
+  builtin source "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration"
+fi
+
+# zsh-autosuggestions — brew install zsh-autosuggestions
+# Config must be set before sourcing the plugin
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20   # skip suggestions for long pastes
+{{- if eq .chezmoi.os "darwin" }}
+__source_first_existing \
+  /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh \
+  /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+{{- end }}
+
+# fzf — modern setup via fzf --zsh (requires fzf >= 0.48)
+if __is_available fzf; then
+  eval "$(fzf --zsh)"
+  __is_available rg && export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
+fi
+
+# zoxide — smarter cd, replaces the z plugin (brew install zoxide)
+__is_available zoxide && eval "$(zoxide init zsh)"
+
+# atuin — enhanced shell history
+__is_available atuin && eval "$(atuin init zsh)"
+
+# thefuck
+__is_available thefuck && eval "$(thefuck --alias)"
+
+# zsh-syntax-highlighting — brew install zsh-syntax-highlighting
+# Must be sourced after all integrations that create ZLE widgets.
+{{- if eq .chezmoi.os "darwin" }}
+__source_first_existing \
+  /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
+  /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+{{- end }}
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Aliases                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+# ── Package Managers ──────────────────────────────────────────────────────────
+
+alias pn='pnpm'
+
+{{- if eq .chezmoi.os "darwin" }}
+# Upgrade Homebrew casks separately from the full system update.
+alias buc='brew upgrade --cask'
+{{- end }}
+
+# ── System ────────────────────────────────────────────────────────────────────
+
+{{- if eq .chezmoi.os "darwin" }}
+alias speedtest='networkQuality'
+{{- end }}
+alias cp='cp -r'
+alias rmrf='rm -rf'
+
+# ── Archives ──────────────────────────────────────────────────────────────────
+
+alias tgz='tar -czf'
+alias ugz='tar -xzf'
+alias tbz='tar -cjf'
+alias ubz='tar -xjf'
+
+# ── Encoding ──────────────────────────────────────────────────────────────────
+
+alias e64=encode64
+alias d64=decode64
+alias ef64=encodefile64
+
+# ── Git ───────────────────────────────────────────────────────────────────────
+
+alias ga='git add'
+alias gb='git branch'
+alias gc='git commit --verbose'
+alias 'gc!'='git commit --verbose --amend'
+alias glg='git log --oneline'
+alias gd='git diff'
+alias gds='git diff --staged'
+alias gf='git fetch'
+alias gl='git pull'
+alias grb='git rebase'
+alias grba='git rebase --abort'
+alias grbc='git rebase --continue'
+alias gm='git merge'
+alias gp='git push'
+alias gst='git status --short --branch'
+alias gstl='git stash list'
+alias gstaa='git stash apply'
+alias gstp='git stash pop'
+alias gstd='git stash drop'
+alias gsw='git switch'
+
+# ── Tools ─────────────────────────────────────────────────────────────────────
+
+__is_available eza && \
+  alias ls='eza --icons --color=auto' && \
+  alias l='eza --icons --color=auto -l --no-time' && \
+  alias ll='eza --icons --color=auto -la' && \
+  alias lll='eza --icons --color=auto -la --total-size'
+__is_available bat             && alias cat='bat'
+__is_available fd              && alias find='fd'
+__is_available duf             && alias df='duf'
+__is_available dust            && alias du='dust'
+__is_available btm             && alias top='btm'
+__is_available rg              && alias grep='rg'
+__is_available nvim            && alias vi='nvim' && alias vim='nvim'
+__is_available fzf && __is_available bat && alias preview='fzf --preview="bat {} --color=always"'
+__is_available taskwarrior-tui && alias tt='taskwarrior-tui'
+__is_available bandwhich       && alias bandwhich='sudo bandwhich'
+__is_available csview          && alias csv='csview'
+__is_available eva             && alias bc='eva'
+__is_available gping           && alias ping='gping'
+__is_available procs           && alias ps='procs'
+__is_available tre             && alias tree='tre'
+__is_available wikit           && alias wiki='wikit'
+__is_available tz              && alias tz='env TZ_LIST="${TZ_LIST:-America/Los_Angeles,Las Vegas;Zulu;Europe/Amsterdam,Amsterdam;Asia/Karachi,Lahore;Australia/Perth,Perth;Australia/Melbourne,Melbourne;Australia/Sydney,Sydney}" tz'
+__is_available thefuck         && alias f='fuck'
+__is_available zoxide          && alias cd='z'
+__is_available kubectl         && alias k='kubectl'
+__is_available chezmoi         && alias cm='chezmoi'
+__is_available cmatrix         && alias matrix='cmatrix -ba'
+__is_available bemenu          && alias b='bemenu-run'
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Functions                                                                  ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+# ── System Updates ───────────────────────────────────────────────────────────
+
+{{- if eq .chezmoi.os "darwin" }}
+# Upgrade apps and macOS; report when a macOS update requires a restart.
+function sysup() {
+  brew upgrade
+  __is_available mas && mas upgrade
+
+  local update_log softwareupdate_status
+  update_log="$(mktemp)" || return 1
+  sudo softwareupdate --install --all 2>&1 | tee "$update_log"
+  softwareupdate_status=${pipestatus[1]}
+
+  if (( softwareupdate_status != 0 )); then
+    rm -f "$update_log"
+    return "$softwareupdate_status"
+  fi
+
+  if grep -qi 'restart' "$update_log"; then
+    printf 'A macOS update requires a restart.\n'
+  fi
+  rm -f "$update_log"
+}
+{{- end }}
+
+# ── Multimedia ────────────────────────────────────────────────────────────────
+
+# Convert a video to an optimised gif: video-to-gif <input> <output> [fps=10]
+function video-to-gif() {
+  local fps="${3:-10}"
+  ffmpeg \
+    -i "$1" \
+    -filter_complex \
+    "[0:v]setpts=0.5*PTS,fps=${fps},scale=800:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" \
+    -loop 0 \
+    "$2"
+}
+
+# Download audio from a URL as mp3: rip <url>
+function rip() {
+  yt-dlp \
+    -f bestaudio \
+    --extract-audio \
+    --audio-format mp3 \
+    --audio-quality 0 \
+    --yes-playlist \
+    --add-metadata \
+    "$1"
+}
+
+# Play audio or a stream without video: listen [to] <url>
+function listen() {
+  local url="$1"
+  [[ "$1" = "to" ]] && url="$2"
+  mpv --quiet --no-video "$url"
+}
+
+# ── Encoding ──────────────────────────────────────────────────────────────────
+
+function encode64() {
+  if [[ $# -eq 0 ]]; then
+    base64
+  else
+    printf '%s' "$1" | base64
+  fi
+}
+
+function decode64() {
+  if [[ $# -eq 0 ]]; then
+{{- if eq .chezmoi.os "darwin" }}
+    base64 -D
+{{- else }}
+    base64 --decode
+{{- end }}
+  else
+{{- if eq .chezmoi.os "darwin" }}
+    printf '%s' "$1" | base64 -D
+{{- else }}
+    printf '%s' "$1" | base64 --decode
+{{- end }}
+  fi
+}
+
+function encodefile64() {
+  if [[ -z "$1" ]]; then
+    echo "Usage: encodefile64 <file>"
+    return 1
+  fi
+
+  local output_file="${1}.txt"
+  local temporary_output
+  temporary_output="$(mktemp "${output_file}.XXXXXX")" || return 1
+
+  if ! base64 < "$1" > "$temporary_output"; then
+    rm -f "$temporary_output"
+    return 1
+  fi
+
+  if ! mv -f "$temporary_output" "$output_file"; then
+    rm -f "$temporary_output"
+    return 1
+  fi
+
+  printf 'Encoded %s → %s\n' "$1" "$output_file"
+}
+
+# ── File Navigation ───────────────────────────────────────────────────────────
+
+lfcd () {
+  local tmp
+  tmp="$(mktemp)" || return 1
+
+  if ! lf -last-dir-path="$tmp" "$@"; then
+    rm -f "$tmp"
+    return 1
+  fi
+
+  if [[ -f "$tmp" ]]; then
+    local dir
+    if ! dir="$(<"$tmp")"; then
+      rm -f "$tmp"
+      return 1
+    fi
+    rm -f "$tmp" || return 1
+
+    if [[ -d "$dir" ]] && [[ "$dir" != "$(pwd)" ]]; then
+      cd "$dir"
+    fi
+  fi
+}
+
+# ── Networking ────────────────────────────────────────────────────────────────
+
+my-ip() {
+{{- if eq .chezmoi.os "darwin" }}
+  local local_ip
+  local_ip="$(ipconfig getifaddr en0)" || return 1
+  printf 'Local:  %s\n' "$local_ip"
+{{- end }}
+  local public_ip
+  public_ip="$(curl --fail --silent --show-error https://ipecho.net/plain)" || return 1
+  printf 'Public: %s\n' "$public_ip"
+}
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Prompt                                                                     ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+__is_available starship && eval "$(starship init zsh)"
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Stuff other programs append goes here                                      ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+#
+# ...
+
+# zprof

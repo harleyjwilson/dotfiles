@@ -1,0 +1,21 @@
+# MacOS files
+.DS_Store
+
+# Agents files
+.pi/
+
+# Private age identity
+dot_config/chezmoi/key.txt
+key.txt
+
+# GPG secret-key backup (used by the import script; never deploy the decrypted export)
+.gnupg/gpg-secret-key.asc
+
+# Private env var
+**/dot_env.local
+**/dot_env.remote
+!**/dot_env.local.example
+!**/dot_env.remote.example
+
+# Repository documentation
+README.md

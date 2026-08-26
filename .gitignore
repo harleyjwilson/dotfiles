@@ -1,0 +1,15 @@
+# MacOS files
+.DS_Store
+
+# Agents files
+.pi/
+
+# Private age identity
+dot_config/chezmoi/key.txt
+key.txt
+
+# Private env var
+**/dot_env.local
+**/dot_env.remote
+!**/dot_env.local.example
+!**/dot_env.remote.example

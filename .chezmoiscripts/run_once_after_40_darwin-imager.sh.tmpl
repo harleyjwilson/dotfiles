@@ -1,0 +1,24 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+# Install the upstream macOS Imager release in ~/.local/bin.
+set -euo pipefail
+
+readonly imager_version="0.3.4"
+readonly imager_release_url="https://github.com/imager-io/imager/releases/download/auto-release/imager/${imager_version}/imager-v${imager_version}-apple.tar.gz"
+readonly imager_install_directory="${HOME}/.local/bin"
+readonly imager_temporary_directory="$(mktemp -d "${TMPDIR:-/tmp}/imager.XXXXXX")"
+
+cleanup_imager_temporary_directory() {
+    rm -rf "${imager_temporary_directory}"
+}
+trap cleanup_imager_temporary_directory EXIT
+
+curl --fail --location --silent --show-error "${imager_release_url}" \
+    --output "${imager_temporary_directory}/imager.tar.gz"
+tar -xzf "${imager_temporary_directory}/imager.tar.gz" -C "${imager_temporary_directory}"
+
+mkdir -p "${imager_install_directory}"
+install -m 0755 \
+    "${imager_temporary_directory}/apple/bin/imager" \
+    "${imager_install_directory}/imager"
+{{- end }}

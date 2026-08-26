@@ -1,0 +1,19 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+set -euo pipefail
+
+defaults write -g InitialKeyRepeat -int 12
+defaults write -g KeyRepeat -int 2
+
+defaults write com.apple.dock autohide-delay -int 0
+defaults write com.apple.dock autohide-time-modifier -float 0.4
+killall Dock || true
+
+defaults write com.apple.systemsound "com.apple.sound.uiaudio.enabled" -int 0
+
+defaults write -g com.apple.trackpad.scaling -float 2.5
+defaults write -g com.apple.mouse.scaling -float 2.5
+defaults write com.apple.AppleMultitouchTrackpad Clicking -int 1
+defaults write com.apple.AppleMultitouchTrackpad FirstClickThreshold -int 0
+defaults write com.apple.AppleMultitouchTrackpad SecondClickThreshold -int 0
+{{- end }}

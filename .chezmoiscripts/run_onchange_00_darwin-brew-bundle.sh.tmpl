@@ -1,0 +1,18 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+# Brewfile checksum: {{ include "Brewfile" | sha256sum }}
+set -euo pipefail
+
+if command -v brew >/dev/null 2>&1; then
+    brew_command="$(command -v brew)"
+elif [[ -x /opt/homebrew/bin/brew ]]; then
+    brew_command=/opt/homebrew/bin/brew
+elif [[ -x /usr/local/bin/brew ]]; then
+    brew_command=/usr/local/bin/brew
+else
+    echo "brew is required to install Brewfile packages" >&2
+    exit 1
+fi
+
+"${brew_command}" bundle --file={{ joinPath .chezmoi.sourceDir "Brewfile" | quote }}
+{{- end }}

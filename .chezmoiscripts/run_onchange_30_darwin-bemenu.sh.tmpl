@@ -1,0 +1,43 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+# Build the curses backend because macOS has neither X11 nor Wayland by default.
+set -euo pipefail
+
+readonly bemenu_repository_url="https://github.com/Cloudef/bemenu.git"
+readonly bemenu_version="0.6.23"
+readonly bemenu_build_directory="$(mktemp -d "${TMPDIR:-/tmp}/bemenu.XXXXXX")"
+
+cleanup_bemenu_build_directory() {
+    rm -rf "${bemenu_build_directory}"
+}
+trap cleanup_bemenu_build_directory EXIT
+
+if ! command -v brew >/dev/null 2>&1; then
+    echo "bemenu installation failed: Homebrew is not installed" >&2
+    exit 1
+fi
+
+readonly brew_command="$(command -v brew)"
+
+"${brew_command}" install make ncurses pkgconf scdoc
+
+readonly bemenu_install_prefix="$("${brew_command}" --prefix)"
+readonly ncurses_pkgconfig_directory="$("${brew_command}" --prefix ncurses)/lib/pkgconfig"
+
+git clone --branch "${bemenu_version}" --depth 1 "${bemenu_repository_url}" "${bemenu_build_directory}"
+
+cd "${bemenu_build_directory}"
+PKG_CONFIG_PATH="${ncurses_pkgconfig_directory}${PKG_CONFIG_PATH:+:${PKG_CONFIG_PATH}}" \
+    sh build-osx.sh clients curses bemenu.1 PREFIX="${bemenu_install_prefix}"
+sh build-osx.sh install-base install-curses install-man PREFIX="${bemenu_install_prefix}"
+
+# build-osx.sh preserves the Linux-style library name, which dyld cannot locate.
+readonly bemenu_library_path="${bemenu_install_prefix}/lib/libbemenu.so.${bemenu_version}"
+install_name_tool -id "${bemenu_library_path}" "${bemenu_library_path}"
+for bemenu_linked_program in \
+    "${bemenu_install_prefix}/bin/bemenu" \
+    "${bemenu_install_prefix}/bin/bemenu-run" \
+    "${bemenu_install_prefix}/lib/bemenu/bemenu-renderer-curses.so"; do
+    install_name_tool -change "libbemenu.so.0" "${bemenu_library_path}" "${bemenu_linked_program}"
+done
+{{- end }}

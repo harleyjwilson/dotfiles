@@ -1,0 +1,17 @@
+{{- $name := promptStringOnce . "name" "Full name" -}}
+{{- $email := promptStringOnce . "email" "Email address" -}}
+{{- $gpgKeyId := promptStringOnce . "gpgKeyId" "GPG key ID" -}}
+{{- $ageIdentityFile := promptStringOnce . "ageIdentityFile" "Age identity file location" (joinPath .chezmoi.homeDir ".config/chezmoi/key.txt") -}}
+{{- $ageRecipient := output (lookPath "chezmoi") "age-keygen" "--convert" $ageIdentityFile | trim -}}
+encryption = "age"
+useBuiltinAge = true
+
+[age]
+    identity = {{ $ageIdentityFile | quote }}
+    recipient = {{ $ageRecipient | quote }}
+
+[data]
+    email = {{ $email | quote }}
+    name = {{ $name | quote }}
+    gpgKeyId = {{ $gpgKeyId | quote }}
+    ageIdentityFile = {{ $ageIdentityFile | quote }}

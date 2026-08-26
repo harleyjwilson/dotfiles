@@ -1,0 +1,42 @@
+theme = "tokyonight"
+
+[editor]
+color-modes = true
+cursorline = true
+gutters = ["diagnostics", "line-numbers"]
+line-number = "relative"
+mouse = true
+trim-trailing-whitespace = true
+
+[editor.lsp]
+display-inlay-hints = true
+
+[editor.auto-save]
+after-delay.enable = true
+after-delay.timeout = 30000
+focus-lost = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.inline-diagnostics]
+cursor-line = "hint"
+
+[editor.soft-wrap]
+enable = false
+
+[keys.insert]
+j = { k = "normal_mode" }
+
+[keys.normal]
+ret = "goto_word"
+p = "paste_clipboard_before"
+y = "yank_main_selection_to_clipboard"
+
+[keys.normal.space]
+o = "file_picker_in_current_buffer_directory"

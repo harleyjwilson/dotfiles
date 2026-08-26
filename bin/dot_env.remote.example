@@ -1,0 +1,30 @@
+BACKUP_ENV_FILE="$HOME/bin/.env.remote"
+export BACKUP_ENV_FILE
+
+BACKUP_LABEL="Backing up to S3-compatible object storage"
+BACKUP_REPO="s3:s3.REGION.amazonaws.com/your-bucket-name"
+RESTIC_PASSWORD="AReallySecurePasswordGoesHere"
+
+AWS_ACCESS_KEY_ID="AWS Access Key ID"
+AWS_SECRET_ACCESS_KEY="AWS Secret Access Key"
+
+BACKUP_PATHS=(
+  "$HOME/path/to/folder/one"
+  "$HOME/path/to/folder/two"
+)
+
+EXCLUDE_FLAGS=(
+  --exclude=".DS_Store"
+  --exclude="*.tmp"
+)
+
+RETENTION_FLAGS=(
+  --keep-daily 7
+  --keep-weekly 4
+  --keep-monthly 12
+  --prune
+)
+
+if [ -z "${BACKUP_LOADING:-}" ] && [ "$#" -gt 0 ]; then
+  "$@"
+fi
