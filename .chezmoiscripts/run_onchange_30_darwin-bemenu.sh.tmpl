@@ -19,8 +19,6 @@ fi
 
 readonly brew_command="$(command -v brew)"
 
-"${brew_command}" install make ncurses pkgconf scdoc
-
 readonly bemenu_install_prefix="$("${brew_command}" --prefix)"
 readonly ncurses_pkgconfig_directory="$("${brew_command}" --prefix ncurses)/lib/pkgconfig"
 

@@ -2,19 +2,19 @@
 
 Personal configuration managed with [chezmoi](https://www.chezmoi.io/). The source directory is the desired state; chezmoi renders templates and copies the result into the home directory.
 
-The configuration currently targets macOS. Homebrew packages and applications are declared in the included `Brewfile`.
+The configuration currently targets macOS. Homebrew, Mac App Store, and Cargo packages are declared in `.chezmoidata/packages.yaml`.
 
 ## Current Status
 
 This is an active macOS workstation configuration. Applying it manages:
 
 - shell, Git, SSH, Starship, Ghostty, Helix, lf, and Neovim configuration;
-- a large Homebrew bundle of command-line tools, developer language servers, and desktop applications;
+- a declarative package set of command-line tools, developer language servers, desktop applications, Mac App Store applications, and Cargo tools;
 - age-encrypted `~/.ssh/id_ed25519` plus its public key;
 - a Restic backup command and non-secret local/remote environment-file examples; and
 - macOS keyboard-repeat, Dock, sound, and pointing-device defaults.
 
-A macOS `run_once` script installs Homebrew when needed. `run_onchange` scripts then apply the Brewfile and macOS defaults; the Brewfile script is re-run when the Brewfile changes, and the defaults script is re-run when its source changes.
+A macOS `run_once` script installs Homebrew when needed. `run_onchange` scripts then install the packages declared in `.chezmoidata/packages.yaml` and apply macOS defaults. The package script is re-run when the package data changes, and the defaults script is re-run when its source changes.
 
 ## Contents
 
@@ -47,7 +47,7 @@ Paste the complete age identity into that file, save it, and do not commit or sh
 
 ### macOS
 
-The macOS scripts install Homebrew if it is not already available, then run `brew bundle` with this repository's `Brewfile`. The Brewfile includes age, chezmoi, 1Password, and 1Password CLI. 1Password is not needed to bootstrap encryption when the identity has already been copied into place.
+The macOS scripts install Homebrew if it is not already available, then install the packages declared in `.chezmoidata/packages.yaml`. The package data includes age, chezmoi, 1Password, and 1Password CLI. 1Password is not needed to bootstrap encryption when the identity has already been copied into place.
 
 ## Bootstrap
 
@@ -90,6 +90,7 @@ chezmoi diff
 
 | Source                                                                                   | Target            | Notes                                                                                                              |
 | ---------------------------------------------------------------------------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `.chezmoidata/packages.yaml`                                                            | —                 | Declarative Homebrew formulae, casks, Mac App Store applications, and Cargo tools.                                |
 | `dot_zshrc.tmpl`                                                                         | `~/.zshrc`        | Zsh completions, history, aliases, and integrations for Homebrew tools, fzf, zoxide, atuin, Starship, and Ghostty. |
 | `dot_config/git/`                                                                        | `~/.config/git/`  | Global Git defaults, Delta pager, ignore file, identity template, and optional GPG signing.                        |
 | `private_dot_ssh/`                                                                       | `~/.ssh/`         | Encrypted Ed25519 private key and matching public key.                                                             |
@@ -97,7 +98,7 @@ chezmoi diff
 | `dot_config/nvim/`                                                                       | `~/.config/nvim/` | Mini.nvim-based Neovim setup, Tree-sitter, LSP settings, snippets, and format-on-demand support.                   |
 | `bin/executable_backup`                                                                  | `~/bin/backup`    | Restic backup command.                                                                                             |
 
-The Neovim configuration enables LSP integrations for Bash, CSS, Docker/Compose, Go, HTML, JSON, Lua, Markdown, Python, Rust, Svelte, Tailwind CSS, TOML, TypeScript, and YAML. The corresponding server packages are declared in the Brewfile where available.
+The Neovim configuration enables LSP integrations for Bash, CSS, Docker/Compose, Go, HTML, JSON, Lua, Markdown, Python, Rust, Svelte, Tailwind CSS, TOML, TypeScript, and YAML. The corresponding server packages are declared in `.chezmoidata/packages.yaml` where available.
 
 ## Encryption
 
@@ -224,10 +225,12 @@ chezmoi init --prompt
 chezmoi apply
 ```
 
-### Homebrew packages did not install
+### Packages did not install
 
-The macOS bootstrap script installs Homebrew before applying the Brewfile. If the package installation fails, re-run:
+The macOS bootstrap script installs Homebrew before applying the declarative package data. If package installation fails, re-render and run the package script:
 
 ```sh
-brew bundle --file="$(chezmoi source-path)/Brewfile"
+chezmoi execute-template --file \
+  "$(chezmoi source-path)/.chezmoiscripts/run_onchange_00_darwin-install-packages.sh.tmpl" \
+  | bash
 ```

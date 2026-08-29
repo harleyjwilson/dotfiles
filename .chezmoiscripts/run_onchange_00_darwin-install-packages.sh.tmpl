@@ -1,0 +1,38 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+# Packages are declared in .chezmoidata/packages.yaml.
+set -euo pipefail
+
+if command -v brew >/dev/null 2>&1; then
+    brew_command="$(command -v brew)"
+elif [[ -x /opt/homebrew/bin/brew ]]; then
+    brew_command=/opt/homebrew/bin/brew
+elif [[ -x /usr/local/bin/brew ]]; then
+    brew_command=/usr/local/bin/brew
+else
+    echo "package installation failed: Homebrew is not installed" >&2
+    exit 1
+fi
+
+"${brew_command}" bundle --file=/dev/stdin <<'EOF'
+{{ range .packages.darwin.taps -}}
+tap {{ . | quote }}
+{{ end -}}
+{{ range .packages.darwin.brews -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ range .packages.darwin.trustedBrews -}}
+brew {{ . | quote }}, trusted: true
+{{ end -}}
+{{ range .packages.darwin.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+{{ range .packages.darwin.mas -}}
+mas {{ .name | quote }}, id: {{ .id }}
+{{ end -}}
+EOF
+
+{{ range .packages.darwin.cargo -}}
+cargo install {{ . | quote }}
+{{ end -}}
+{{- end }}
