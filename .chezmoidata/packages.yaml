@@ -1,4 +1,5 @@
-# Homebrew and Cargo packages installed by run_onchange_00_darwin-install-packages.sh.tmpl.
+# Homebrew and Cargo packages are installed by run_onchange_00_darwin-install-packages.sh.tmpl.
+# Go packages are installed by run_onchange_10_darwin-install-go-packages.sh.tmpl.
 packages:
   darwin:
     taps:
@@ -164,6 +165,8 @@ packages:
         id: 310633997
       - name: "Xcode"
         id: 497799835
+    go:
+      - "github.com/mrusme/reader@latest"
     cargo:
       - "battop"
       - "jwt-cli"

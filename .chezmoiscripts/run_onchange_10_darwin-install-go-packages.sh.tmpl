@@ -1,0 +1,17 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+# Install Go command-line tools declared in .chezmoidata/packages.yaml.
+set -euo pipefail
+
+readonly go_install_directory="${HOME}/.local/bin"
+
+if ! command -v go >/dev/null 2>&1; then
+    echo "Go package installation failed: Go is not installed" >&2
+    exit 1
+fi
+
+mkdir -p "${go_install_directory}"
+{{ range .packages.darwin.go -}}
+GOBIN="${go_install_directory}" go install {{ . | quote }}
+{{ end -}}
+{{- end }}

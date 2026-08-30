@@ -2,7 +2,7 @@
 
 Personal configuration managed with [chezmoi](https://www.chezmoi.io/). The source directory is the desired state; chezmoi renders templates and copies the result into the home directory.
 
-The configuration currently targets macOS. Homebrew, Mac App Store, and Cargo packages are declared in `.chezmoidata/packages.yaml`.
+The configuration currently targets macOS. Homebrew, Mac App Store, Go, and Cargo packages are declared in `.chezmoidata/packages.yaml`.
 
 ## Current Status
 
@@ -90,7 +90,7 @@ chezmoi diff
 
 | Source                                                                                   | Target            | Notes                                                                                                              |
 | ---------------------------------------------------------------------------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------ |
-| `.chezmoidata/packages.yaml`                                                            | —                 | Declarative Homebrew formulae, casks, Mac App Store applications, and Cargo tools.                                |
+| `.chezmoidata/packages.yaml`                                                            | —                 | Declarative Homebrew formulae, casks, Mac App Store applications, and Go/Cargo tools.                             |
 | `dot_zshrc.tmpl`                                                                         | `~/.zshrc`        | Zsh completions, history, aliases, and integrations for Homebrew tools, fzf, zoxide, atuin, Starship, and Ghostty. |
 | `dot_config/git/`                                                                        | `~/.config/git/`  | Global Git defaults, Delta pager, ignore file, identity template, and optional GPG signing.                        |
 | `private_dot_ssh/`                                                                       | `~/.ssh/`         | Encrypted Ed25519 private key and matching public key.                                                             |
