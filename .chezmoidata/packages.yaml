@@ -50,6 +50,7 @@ packages:
       - "helix"
       - "hyperfine"
       - "jless"
+      - "jrnl"
       - "just"
       - "lemmeknow"
       - "lf"
