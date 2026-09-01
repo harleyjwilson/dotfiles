@@ -13,3 +13,6 @@ key.txt
 **/dot_env.remote
 !**/dot_env.local.example
 !**/dot_env.remote.example
+
+# Notes
+NOTES.md
