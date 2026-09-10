@@ -1,0 +1,7 @@
+{{- if and .personal (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora") -}}
+#!/bin/bash
+set -euo pipefail
+
+uv tool install --upgrade \
+  pyright
+{{- end }}

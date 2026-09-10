@@ -1,0 +1,39 @@
+{{- if and .personal (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora") (or (eq .chezmoi.arch "amd64") (eq .chezmoi.arch "arm64")) -}}
+#!/bin/bash
+set -euo pipefail
+
+readonly handy_version="0.9.6"
+readonly handy_release="1"
+# Update both hashes from https://github.com/cjpais/Handy/releases when changing the version.
+{{ if eq .chezmoi.arch "arm64" -}}
+readonly handy_rpm_architecture="aarch64"
+readonly handy_rpm_sha256="a8f5ed63c58222b9233483c51643bfb3ece0fdacf6a745169ca60a49f9486240"
+{{ else -}}
+readonly handy_rpm_architecture="x86_64"
+readonly handy_rpm_sha256="d7eb166a96b5a8ce3b2180f8e8cddbb581f6644b719a0defaa4e65633ec30a9f"
+{{ end -}}
+readonly handy_package_version="${handy_version}-${handy_release}"
+readonly handy_rpm_filename="Handy-${handy_package_version}.${handy_rpm_architecture}.rpm"
+readonly handy_rpm_url="https://github.com/cjpais/Handy/releases/download/v${handy_version}/${handy_rpm_filename}"
+
+installed_handy_package_version=""
+if installed_handy_package_version="$(rpm --query --queryformat '%{VERSION}-%{RELEASE}' --file /usr/bin/handy 2>/dev/null)" \
+  && [[ "${installed_handy_package_version}" == "${handy_package_version}" ]]; then
+  exit 0
+fi
+
+handy_rpm_path="$(mktemp --suffix=.rpm)"
+trap 'rm -f "${handy_rpm_path}"' EXIT
+
+curl --fail --silent --show-error --location \
+  --output "${handy_rpm_path}" \
+  "${handy_rpm_url}"
+
+if ! printf '%s  %s\n' "${handy_rpm_sha256}" "${handy_rpm_path}" \
+  | sha256sum --check --status; then
+  echo "Handy installation failed: SHA-256 mismatch for ${handy_rpm_filename}" >&2
+  exit 1
+fi
+
+sudo dnf install --assumeyes "${handy_rpm_path}"
+{{- end }}

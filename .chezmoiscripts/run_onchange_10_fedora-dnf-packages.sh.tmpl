@@ -1,0 +1,93 @@
+{{- if and .personal (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora") -}}
+#!/bin/bash
+set -euo pipefail
+
+sudo dnf install --assumeyes \
+  "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" \
+  "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
+
+sudo dnf install --assumeyes \
+  1password \
+  1password-cli \
+  age \
+  bat \
+  brave-browser \
+  chezmoi \
+  cmatrix \
+  ctop \
+  curl \
+  du-dust \
+  duf \
+  eza \
+  fd-find \
+  ffmpeg-free \
+  firefox \
+  fwupd \
+  fzf \
+  gh \
+  ghostty \
+  git \
+  git-delta \
+  gitui \
+  glow \
+  gnome-terminal \
+  gnupg2 \
+  golang \
+  golang-x-tools-goimports \
+  golang-x-tools-gopls \
+  golangci-lint \
+  gpgme-devel \
+  helix \
+  jq \
+  jrnl \
+  just \
+  libreoffice \
+  libX11-devel \
+  libyaml \
+  lnav \
+  make \
+  mosh \
+  mpv \
+  ncurses \
+  nodejs \
+  nodejs-bash-language-server \
+  opentofu \
+  pastel \
+  pi \
+  pkgconf-pkg-config \
+  pnpm \
+  procs \
+  protobuf \
+  python3-llm \
+  restic \
+  ripgrep \
+  rpi-imager \
+  rsync \
+  ruff \
+  rust \
+  rustfmt \
+  scdoc \
+  sqlite \
+  syncthing \
+  tailscale \
+  tealdeer \
+  thefuck \
+  thunderbird \
+  timeshift \
+  transmission \
+  typescript \
+  uv \
+  vlc \
+  xclip \
+  yt-dlp \
+  zed \
+  zk \
+  zoxide \
+  zsh \
+  zsh-autosuggestions \
+  zsh-syntax-highlighting
+
+{{ if eq .chezmoi.arch "amd64" -}}
+sudo dnf install --assumeyes steam
+{{ end -}}
+{{- end }}

@@ -1,0 +1,12 @@
+{{- if and .personal (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora") -}}
+#!/bin/bash
+set -euo pipefail
+
+pnpm_global_bin_directory="$HOME/.local/bin"
+mkdir -p "$pnpm_global_bin_directory"
+export PATH="$pnpm_global_bin_directory:$PATH"
+pnpm config set global-bin-dir "$pnpm_global_bin_directory"
+
+pnpm add --global \
+  typescript-language-server
+{{- end }}

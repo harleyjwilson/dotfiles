@@ -1,0 +1,15 @@
+{{- if and .personal (eq .chezmoi.os "darwin") (eq .chezmoi.arch "arm64") -}}
+#!/bin/bash
+# Brewfile content SHA-256: {{ include "Brewfile" | sha256sum }}
+set -euo pipefail
+
+readonly brewfile_path={{ joinPath .chezmoi.sourceDir "Brewfile" | quote }}
+
+readonly brew_command=/opt/homebrew/bin/brew
+if [[ ! -x "${brew_command}" ]]; then
+  echo "Mac package installation failed: Apple Silicon Homebrew is not installed" >&2
+  exit 1
+fi
+
+"${brew_command}" bundle --file="${brewfile_path}"
+{{- end }}

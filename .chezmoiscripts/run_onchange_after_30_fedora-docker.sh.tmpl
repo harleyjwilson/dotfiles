@@ -1,0 +1,36 @@
+{{- if and .personal (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora") -}}
+#!/bin/bash
+set -euo pipefail
+
+# Remove existing Docker packages
+sudo dnf remove --assumeyes \
+  docker \
+  docker-client \
+  docker-client-latest \
+  docker-common \
+  docker-engine \
+  docker-engine-selinux \
+  docker-latest \
+  docker-latest-logrotate \
+  docker-logrotate \
+  docker-selinux
+
+# Add Docker repositories
+sudo dnf config-manager addrepo --overwrite \
+  --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
+
+# Install Docker packages
+sudo dnf install --assumeyes \
+  containerd.io \
+  docker-buildx-plugin \
+  docker-ce \
+  docker-ce-cli \
+  docker-compose-plugin
+
+# Add user to Docker group
+readonly docker_user="$(id --user --name)"
+sudo usermod --append --groups docker "${docker_user}"
+
+# Run Docker service
+sudo systemctl enable --now docker
+{{- end }}

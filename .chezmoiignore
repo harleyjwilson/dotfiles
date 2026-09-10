@@ -1,0 +1,20 @@
+# macOS files
+.DS_Store
+
+# Agents files
+.pi/
+
+# Private age identity (target paths; chezmoi generates a private_ source path)
+.config/chezmoi/key.txt
+
+# Private environment files (target paths)
+**/.env.local
+**/.env.remote
+!**/.env.local.example
+!**/.env.remote.example
+
+# GPG secret-key backup used by the signing script; never deploy the decrypted export
+.gnupg/gpg-secret-key.asc
+
+# Repository documentation
+README.md

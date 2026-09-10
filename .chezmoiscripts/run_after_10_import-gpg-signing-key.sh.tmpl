@@ -1,0 +1,60 @@
+{{- if .enableGpgSigning -}}
+#!/bin/bash
+# Import the age-encrypted GPG secret-key backup selected by the managed Git configuration.
+set -euo pipefail
+
+{{ if eq .chezmoi.os "darwin" -}}
+# Homebrew may have been installed earlier in this apply, after chezmoi inherited PATH.
+export PATH="/opt/homebrew/bin:${PATH}"
+{{ end -}}
+readonly chezmoi_command={{ .chezmoi.executable | quote }}
+readonly gpg_secret_key_backup_source={{ joinPath .chezmoi.sourceDir "private_dot_gnupg/encrypted_gpg-secret-key.asc" | quote }}
+readonly git_config="${HOME}/.config/git/config"
+
+if ! command -v gpg >/dev/null 2>&1; then
+  echo "GPG signing configuration failed: gpg is not installed" >&2
+  exit 1
+fi
+
+if [[ ! -r "${gpg_secret_key_backup_source}" ]]; then
+  echo "GPG signing configuration failed: encrypted backup not found at ${gpg_secret_key_backup_source}" >&2
+  exit 1
+fi
+
+if ! gpg_secret_key_fingerprint="$(
+  "${chezmoi_command}" decrypt "${gpg_secret_key_backup_source}" \
+    | gpg --batch --with-colons --import-options show-only --import \
+    | awk -F: '$1 == "fpr" { print $10; exit }'
+)"; then
+  echo "GPG signing configuration failed: could not read the primary fingerprint from the backup" >&2
+  exit 1
+fi
+
+if [[ -z "${gpg_secret_key_fingerprint}" ]]; then
+  echo "GPG signing configuration failed: backup contains no primary fingerprint" >&2
+  exit 1
+fi
+readonly gpg_secret_key_fingerprint
+
+if ! git_signing_key_fingerprint="$(git config --file "${git_config}" --get user.signingkey)"; then
+  echo "GPG signing configuration failed: user.signingkey is missing from ${git_config}" >&2
+  exit 1
+fi
+readonly git_signing_key_fingerprint
+
+if [[ "${gpg_secret_key_fingerprint}" != "${git_signing_key_fingerprint}" ]]; then
+  echo "GPG signing configuration failed: backup fingerprint is ${gpg_secret_key_fingerprint}, expected ${git_signing_key_fingerprint}" >&2
+  exit 1
+fi
+
+if ! gpg --batch --with-colons --list-secret-keys "${gpg_secret_key_fingerprint}" 2>/dev/null \
+  | grep -q '^sec:'; then
+  "${chezmoi_command}" decrypt "${gpg_secret_key_backup_source}" | gpg --batch --import
+fi
+
+if ! gpg --batch --with-colons --list-secret-keys "${gpg_secret_key_fingerprint}" 2>/dev/null \
+  | grep -q '^sec:'; then
+  echo "GPG signing configuration failed: imported backup does not contain ${gpg_secret_key_fingerprint}" >&2
+  exit 1
+fi
+{{- end }}

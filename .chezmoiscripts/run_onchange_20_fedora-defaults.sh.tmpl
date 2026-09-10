@@ -1,0 +1,22 @@
+{{- if and .personal (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora") -}}
+#!/bin/bash
+# Set Zsh as the current Fedora user's login shell.
+set -euo pipefail
+
+if ! command -v zsh >/dev/null 2>&1; then
+    echo "Fedora defaults failed: zsh is not installed" >&2
+    exit 1
+fi
+
+readonly zsh_login_shell="$(command -v zsh)"
+readonly fedora_username="$(id --user --name)"
+readonly current_login_shell="$(getent passwd "${fedora_username}" | awk -F: '{print $7}')"
+if [[ -z "${current_login_shell}" ]]; then
+    echo "Fedora defaults failed: could not determine ${fedora_username}'s login shell" >&2
+    exit 1
+fi
+
+if [[ "${current_login_shell}" != "${zsh_login_shell}" ]]; then
+    chsh -s "${zsh_login_shell}"
+fi
+{{- end }}

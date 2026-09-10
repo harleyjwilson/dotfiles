@@ -1,0 +1,12 @@
+{{- if and .personal (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora") -}}
+#!/bin/bash
+set -euo pipefail
+
+export GOBIN="$HOME/bin"
+
+go install github.com/gokcehan/lf@latest
+go install github.com/goreleaser/goreleaser/v2@latest
+go install github.com/mrusme/reader@latest
+go install github.com/oz/tz@latest
+go install github.com/pranshuparmar/witr/cmd/witr@latest
+{{- end }}

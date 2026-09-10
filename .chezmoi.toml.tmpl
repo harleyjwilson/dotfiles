@@ -1,0 +1,18 @@
+{{- $profileChoices := list "personal" "work" -}}
+{{- $selectedProfile := promptChoice "Install profile" $profileChoices -}}
+{{- $enableGpgSigning := promptBoolOnce . "enableGpgSigning" "Enable GPG commit signing" false -}}
+{{- $ageIdentityFile := joinPath .chezmoi.homeDir ".config/chezmoi/key.txt" -}}
+{{- $ageRecipient := output .chezmoi.executable "age-keygen" "--convert" $ageIdentityFile | trim -}}
+encryption = "age"
+useBuiltinAge = true
+
+[age]
+    identity = "~/.config/chezmoi/key.txt"
+    recipient = {{ $ageRecipient | quote }}
+
+[data]
+    personal = {{ eq $selectedProfile "personal" }}
+    work = {{ eq $selectedProfile "work" }}
+    name = "Harley Wilson"
+    email = "hello@harleyjwilson.com"
+    enableGpgSigning = {{ $enableGpgSigning }}

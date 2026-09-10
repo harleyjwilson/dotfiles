@@ -1,0 +1,24 @@
+{{- if and .personal (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora") -}}
+#!/bin/bash
+set -euo pipefail
+
+cargo install --force \
+  bandwhich \
+  bottom \
+  battop \
+  cargo-update \
+  csview \
+  eva \
+  gfold \
+  gpg-tui \
+  gping \
+  jless \
+  jwt-cli \
+  lemmeknow \
+  pipe-rename \
+  rates \
+  rustlings \
+  sd \
+  starship \
+  tre-command
+{{- end }}

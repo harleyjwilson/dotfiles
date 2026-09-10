@@ -1,0 +1,576 @@
+#!/bin/zsh
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║                                                                            ║
+# ║                        ______    ______    __  __                          ║
+# ║                       /\___  \  /\  ___\  /\ \_\ \                         ║
+# ║                       \/_/  /__ \ \___  \ \ \  __ \                        ║
+# ║                         /\_____\ \/\_____\ \ \_\ \_\                       ║
+# ║                         \/_____/  \/_____/  \/_/\/_/                       ║
+# ║                                                                            ║
+# ║   harleyjwilson.com * github.com/harleyjwilson * hello@harleyjwilson.com   ║
+# ║                                                                            ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+# zmodload zsh/zprof
+
+unset LS_COLORS
+unset LSCOLORS
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Basics                                                                     ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+# Guard aliases/integrations so they only activate when the tool is installed
+function __is_available {
+  type "${1}" > /dev/null 2>&1
+}
+
+function __source_first_existing {
+  local source_path
+  for source_path in "$@"; do
+    [ -f "$source_path" ] && source "$source_path" && return 0
+  done
+  return 1
+}
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ ${PATH}                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+# Keep user-installed commands ahead of system packages, without duplicate PATH entries.
+typeset -U path
+
+{{ if eq .chezmoi.os "darwin" -}}
+# This configuration targets Apple Silicon, where Homebrew installs to /opt/homebrew.
+path=(/opt/homebrew/bin $path)
+export PNPM_HOME="$HOME/Library/pnpm"
+{{ end -}}
+
+# go install writes to GOPATH/bin, which is not always $HOME/go/bin.
+go_command_directory="$HOME/go/bin"
+if __is_available go; then
+  detected_go_path=""
+  if detected_go_path="$(go env GOPATH 2>/dev/null)" && [[ -n "$detected_go_path" ]]; then
+    detected_go_command_directory="${detected_go_path%%:*}/bin"
+    [[ -d "$detected_go_command_directory" ]] && go_command_directory="$detected_go_command_directory"
+  fi
+fi
+
+path=(
+  "$HOME/bin"
+  "$go_command_directory"
+  "$HOME/.cargo/bin"
+  "$HOME/.local/bin"
+  $path
+  /bin
+  /usr/bin
+)
+unset detected_go_command_directory detected_go_path go_command_directory
+export PATH
+
+# pnpm
+if [ -n "$PNPM_HOME" ] && [ -d "$PNPM_HOME" ]; then
+  case ":$PATH:" in
+    *":$PNPM_HOME:"*) ;;
+    *) export PATH="$PNPM_HOME:$PATH" ;;
+  esac
+  if [ -d "$PNPM_HOME/bin" ]; then
+    case ":$PATH:" in
+      *":$PNPM_HOME/bin:"*) ;;
+      *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+    esac
+  fi
+fi
+
+# Mise
+__is_available mise && eval "$(mise activate zsh)"
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Exports                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+
+# Allow GPG's pinentry prompt to use the active terminal.
+export GPG_TTY="$(tty)"
+
+if __is_available nvim; then
+  export EDITOR="nvim"
+elif __is_available vim; then
+  export EDITOR="vim"
+fi
+
+{{- if eq .chezmoi.os "darwin" }}
+export PKG_CONFIG_PATH="/opt/homebrew/opt/ncurses/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}"
+export BEMENU_BACKEND=curses
+{{- end }}
+
+
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Completions                                                                ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+# Collect all fpath entries before calling compinit exactly once
+fpath=(
+{{- if eq .chezmoi.os "darwin" }}
+  /opt/homebrew/share/zsh/site-functions
+  "$HOME/.docker/completions"
+{{- end }}
+  $fpath
+)
+
+autoload -Uz compinit zrecompile
+if mkdir -p "$HOME/.cache/zsh"; then
+  _zcompdump="$HOME/.cache/zsh/.zcompdump"
+  compinit -d "$_zcompdump"
+  if command mkdir "${_zcompdump}.lock" 2>/dev/null; then
+    zrecompile -q -p "$_zcompdump"
+    command rm -rf "${_zcompdump}.zwc.old" "${_zcompdump}.lock"
+  fi
+  unset _zcompdump
+
+  zstyle ':completion:*' use-cache yes
+  zstyle ':completion:*' cache-path "$HOME/.cache/zsh"
+else
+  compinit
+fi
+
+# Load bash completions for tools that only ship bash completion scripts
+autoload -U +X bashcompinit && bashcompinit
+
+unsetopt menu_complete   # do not autoselect the first completion entry
+unsetopt flowcontrol
+setopt auto_menu         # show completion menu on successive tab press
+setopt complete_in_word
+setopt always_to_end
+
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' special-dirs true
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ History                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=10000000
+SAVEHIST=10000000
+
+setopt EXTENDED_HISTORY       # record timestamp and elapsed time
+setopt SHARE_HISTORY          # share history across all sessions (implies INC_APPEND)
+setopt HIST_EXPIRE_DUPS_FIRST # expire duplicate entries first when trimming
+setopt HIST_IGNORE_ALL_DUPS   # delete older duplicates when a new one is added
+setopt HIST_IGNORE_SPACE      # do not record entries starting with a space
+setopt HIST_SAVE_NO_DUPS      # do not write duplicate entries to the history file
+setopt HIST_VERIFY            # show expanded history before executing
+setopt HIST_NO_STORE          # do not store the history/fc command itself
+setopt HIST_REDUCE_BLANKS     # strip superfluous blanks from history entries
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Shell Options                                                              ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+setopt interactivecomments  # allow # comments in interactive shell
+setopt multios              # redirect to multiple streams: echo >file1 >file2
+setopt long_list_jobs       # show long format for job notifications
+
+autoload -Uz is-at-least
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Keybindings                                                                ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+bindkey -e  # emacs key bindings
+
+# Edit the current command line in $EDITOR
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '\C-x\C-e' edit-command-line
+
+WORDCHARS=''  # word navigation stops at '/', '.', '-', etc.
+
+# Word navigation
+bindkey '^[[1;5C' forward-word   # Ctrl+Right
+bindkey '^[[1;5D' backward-word  # Ctrl+Left
+
+# Shift-Tab — navigate completion menu backwards
+[[ -n "${terminfo[kcbt]}" ]] && bindkey "${terminfo[kcbt]}" reverse-menu-complete
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Tool Integrations                                                          ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+# Ghostty shell integration (cursor, title, SSH, etc.)
+if [[ -n "${GHOSTTY_RESOURCES_DIR}" && -r "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration" ]]; then
+  builtin source "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration"
+fi
+
+# zsh-autosuggestions — brew install zsh-autosuggestions
+# Config must be set before sourcing the plugin
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20   # skip suggestions for long pastes
+{{- if eq .chezmoi.os "darwin" }}
+__source_first_existing \
+  /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+{{- else if eq .chezmoi.osRelease.id "fedora" }}
+__source_first_existing \
+  /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+{{- end }}
+
+# fzf — modern setup via fzf --zsh (requires fzf >= 0.48)
+if __is_available fzf; then
+  eval "$(fzf --zsh)"
+  __is_available rg && export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
+fi
+
+# zoxide — smarter cd, replaces the z plugin (brew install zoxide)
+__is_available zoxide && eval "$(zoxide init zsh)"
+
+# thefuck
+__is_available thefuck && eval "$(thefuck --alias)"
+
+# zsh-syntax-highlighting — brew install zsh-syntax-highlighting
+# Must be sourced after all integrations that create ZLE widgets.
+{{- if eq .chezmoi.os "darwin" }}
+__source_first_existing \
+  /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+{{- else if eq .chezmoi.osRelease.id "fedora" }}
+__source_first_existing \
+  /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+{{- end }}
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Aliases                                                                    ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+# ── Package Managers ──────────────────────────────────────────────────────────
+
+alias pn='pnpm'
+
+# ── System ────────────────────────────────────────────────────────────────────
+
+{{- if eq .chezmoi.os "darwin" }}
+alias speedtest='networkQuality'
+{{- end }}
+alias cp='cp -r'
+alias rmrf='rm -rf'
+
+# ── Archives ──────────────────────────────────────────────────────────────────
+
+alias tgz='tar -czf'
+alias ugz='tar -xzf'
+alias tbz='tar -cjf'
+alias ubz='tar -xjf'
+
+# ── Encoding ──────────────────────────────────────────────────────────────────
+
+alias e64=encode64
+alias d64=decode64
+alias ef64=encodefile64
+
+# ── Git ───────────────────────────────────────────────────────────────────────
+
+alias ga='git add'
+alias gb='git branch'
+alias gc='git commit --verbose'
+alias 'gc!'='git commit --verbose --amend'
+alias glg='git log --oneline'
+alias gd='git diff'
+alias gds='git diff --staged'
+alias gf='git fetch'
+alias gl='git pull'
+alias grb='git rebase'
+alias grba='git rebase --abort'
+alias grbc='git rebase --continue'
+alias gm='git merge'
+alias gp='git push'
+alias gst='git status --short --branch'
+alias gstl='git stash list'
+alias gstaa='git stash apply'
+alias gstp='git stash pop'
+alias gstd='git stash drop'
+alias gsw='git switch'
+
+# ── Tools ─────────────────────────────────────────────────────────────────────
+
+__is_available eza && \
+  alias ls='eza --icons --color=auto' && \
+  alias l='eza --icons --color=auto -l --no-time' && \
+  alias ll='eza --icons --color=auto -la' && \
+  alias lll='eza --icons --color=auto -la --total-size'
+__is_available bat             && alias cat='bat'
+__is_available fd              && alias find='fd'
+__is_available duf             && alias df='duf'
+__is_available dust            && alias du='dust'
+__is_available btm             && alias top='btm'
+__is_available rg              && alias grep='rg'
+__is_available fzf && __is_available bat && alias preview='fzf --preview="bat {} --color=always"'
+__is_available taskwarrior-tui && alias tt='taskwarrior-tui'
+__is_available csview          && alias csv='csview'
+__is_available eva             && alias bc='eva'
+__is_available gping           && alias ping='gping'
+__is_available procs           && alias ps='procs'
+__is_available tre             && alias tree='tre'
+__is_available wikit           && alias wiki='wikit'
+__is_available tz              && alias tz='env TZ_LIST="${TZ_LIST:-America/Los_Angeles,Las Vegas;Zulu;Europe/Amsterdam,Amsterdam;Asia/Karachi,Lahore;Australia/Perth,Perth;Australia/Melbourne,Melbourne;Australia/Sydney,Sydney}" tz'
+__is_available thefuck         && alias f='fuck'
+__is_available zoxide          && alias cd='z'
+__is_available kubectl         && alias k='kubectl'
+__is_available chezmoi         && alias cm='chezmoi'
+__is_available cmatrix         && alias matrix='cmatrix -ba'
+__is_available bemenu          && alias b='bemenu-run'
+__is_available jrnl            && alias j='jrnl default' && alias jw='jrnl work'
+(( $+commands[bandwhich] ))    && alias bandwhich="sudo ${(q)commands[bandwhich]}"
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Functions                                                                  ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+# ── System Updates ───────────────────────────────────────────────────────────
+
+# Update globally installed Rust, Go, pnpm, and tealdeer command-line tools.
+function update-tools() {
+  printf 'Updating Rust tools ...\n'
+  if __is_available cargo-install-update; then
+    cargo install-update --all --git || return 1
+  elif __is_available cargo; then
+    printf 'Skipping Rust tools: install cargo-update with "cargo install cargo-update" to enable updates.\n'
+  else
+    printf 'Skipping Rust tools: cargo is not installed.\n'
+  fi
+
+  printf '\nUpdating Go tools ...\n'
+  if __is_available go; then
+    local GOPROXY
+    local go_tool_directory go_binary go_module go_path
+    local -A installed_go_modules
+    unset GOPROXY
+{{ if and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora") -}}
+    # Fedora provisioning installs Go tools into HOME/bin with an explicit GOBIN.
+    go_tool_directory="$HOME/bin"
+{{ else -}}
+    go_tool_directory="$(go env GOBIN)" || return 1
+    if [[ -z "$go_tool_directory" ]]; then
+      go_path="$(go env GOPATH)" || return 1
+      go_tool_directory="${go_path%%:*}/bin"
+    fi
+{{ end -}}
+
+    if [[ -d "$go_tool_directory" ]]; then
+      for go_binary in "$go_tool_directory"/*(N); do
+        [[ -f "$go_binary" && -x "$go_binary" ]] || continue
+        go_module="$(command go version -m "$go_binary" 2>/dev/null | command awk '$1 == "path" { print $2; exit }')"
+        [[ -n "$go_module" ]] && installed_go_modules[$go_module]=1
+      done
+
+      if (( ${#installed_go_modules} )); then
+        for go_module in ${(ok)installed_go_modules}; do
+          command env GOBIN="$go_tool_directory" go install "${go_module}@latest" || return 1
+        done
+      else
+        printf 'No Go tools with module metadata found in %s.\n' "$go_tool_directory"
+      fi
+    else
+      printf 'No Go tool directory found at %s.\n' "$go_tool_directory"
+    fi
+  else
+    printf 'Skipping Go tools: go is not installed.\n'
+  fi
+
+  printf '\nUpdating pnpm tools ...\n'
+  if __is_available pnpm; then
+    pnpm update --global || return 1
+  else
+    printf 'Skipping pnpm tools: pnpm is not installed.\n'
+  fi
+
+  printf '\nUpdating tealdeer ...\n'
+  if __is_available tldr; then
+    tldr --update || return 1
+  else
+    printf 'Skipping tealdeer: tldr is not installed.\n'
+  fi
+
+  printf '\nTools update complete\n'
+}
+
+# ── Multimedia ────────────────────────────────────────────────────────────────
+
+# Convert a video to an optimised gif: video-to-gif <input> <output> [fps=10]
+function video-to-gif() {
+  local fps="${3:-10}"
+  ffmpeg \
+    -i "$1" \
+    -filter_complex \
+    "[0:v]setpts=0.5*PTS,fps=${fps},scale=800:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" \
+    -loop 0 \
+    "$2"
+}
+
+# Download audio from a URL as mp3: rip <url>
+function rip() {
+  yt-dlp \
+    -f bestaudio \
+    --extract-audio \
+    --audio-format mp3 \
+    --audio-quality 0 \
+    --yes-playlist \
+    --add-metadata \
+    "$1"
+}
+
+# Play audio or a stream without video: listen [to] <url>
+function listen() {
+  local url="$1"
+  [[ "$1" = "to" ]] && url="$2"
+  mpv --quiet --no-video "$url"
+}
+
+# ── Encoding ──────────────────────────────────────────────────────────────────
+
+function encode64() {
+  if [[ $# -eq 0 ]]; then
+    base64
+  else
+    printf '%s' "$1" | base64
+  fi
+}
+
+function decode64() {
+  if [[ $# -eq 0 ]]; then
+{{- if eq .chezmoi.os "darwin" }}
+    base64 -D
+{{- else }}
+    base64 --decode
+{{- end }}
+  else
+{{- if eq .chezmoi.os "darwin" }}
+    printf '%s' "$1" | base64 -D
+{{- else }}
+    printf '%s' "$1" | base64 --decode
+{{- end }}
+  fi
+}
+
+function encodefile64() {
+  if [[ -z "$1" ]]; then
+    echo "Usage: encodefile64 <file>"
+    return 1
+  fi
+
+  local output_file="${1}.txt"
+  local temporary_output
+  temporary_output="$(mktemp "${output_file}.XXXXXX")" || return 1
+
+  if ! base64 < "$1" > "$temporary_output"; then
+    rm -f "$temporary_output"
+    return 1
+  fi
+
+  if ! mv -f "$temporary_output" "$output_file"; then
+    rm -f "$temporary_output"
+    return 1
+  fi
+
+  printf 'Encoded %s → %s\n' "$1" "$output_file"
+}
+
+# ── File Navigation ───────────────────────────────────────────────────────────
+
+lfcd () {
+  local tmp
+  tmp="$(mktemp)" || return 1
+
+  if ! lf -last-dir-path="$tmp" "$@"; then
+    rm -f "$tmp"
+    return 1
+  fi
+
+  if [[ -f "$tmp" ]]; then
+    local dir
+    if ! dir="$(<"$tmp")"; then
+      rm -f "$tmp"
+      return 1
+    fi
+    rm -f "$tmp" || return 1
+
+    if [[ -d "$dir" ]] && [[ "$dir" != "$(pwd)" ]]; then
+      cd "$dir"
+    fi
+  fi
+}
+
+# ── Networking ────────────────────────────────────────────────────────────────
+
+my-ip() {
+{{- if eq .chezmoi.os "darwin" }}
+  # A Mac's active interface is not always en0, for example with Ethernet or a VPN.
+  local default_network_interface local_ip
+  default_network_interface="$(route -n get default 2>/dev/null | awk '/interface:/{ print $2; exit }')"
+  if [[ -n "$default_network_interface" ]] \
+    && local_ip="$(ipconfig getifaddr "$default_network_interface" 2>/dev/null)"; then
+    printf 'Local:  %s\n' "$local_ip"
+  fi
+{{- end }}
+  local public_ip
+  public_ip="$(curl --fail --silent --show-error https://ipecho.net/plain)" || return 1
+  printf 'Public: %s\n' "$public_ip"
+}
+
+# Return success when the SSH host is explicitly marked as supporting Mosh in ~/.ssh/config.
+function __ssh_host_supports_mosh() {
+  local ssh_host="$1"
+  [[ -r "${HOME}/.ssh/config" ]] || return 1
+
+  command awk -v requested_ssh_host="$ssh_host" '
+    /^[[:space:]]*#/ {
+      mosh_feature = tolower($0) ~ /features:.*mosh/
+      next
+    }
+    tolower($1) == "host" {
+      if (mosh_feature) {
+        for (field = 2; field <= NF; field++) {
+          if ($field == requested_ssh_host) found = 1
+        }
+      }
+      mosh_feature = 0
+      next
+    }
+    { mosh_feature = 0 }
+    END { exit found ? 0 : 1 }
+  ' "${HOME}/.ssh/config"
+}
+
+# Use Mosh for a single host marked with "Features: mosh"; otherwise preserve SSH exactly.
+function ssh {
+  if (( $# != 1 )) || ! __is_available mosh; then
+    command ssh "$@"
+    return
+  fi
+
+  local ssh_connection="$1"
+  local ssh_host="${ssh_connection##*@}"
+  if [[ -z "$ssh_host" || "$ssh_connection" == -* ]] \
+    || ! __ssh_host_supports_mosh "$ssh_host"; then
+    command ssh "$@"
+    return
+  fi
+
+  printf 'connecting with mosh ...\n'
+  command mosh "$ssh_connection"
+}
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Prompt                                                                     ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+__is_available starship && eval "$(starship init zsh)"
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Stuff other programs append goes here                                      ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+#
+# ...
+
+# zprof

@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+trap 'printf "\n"; exit 0' INT TERM
+
+readonly CLOCK_REFRESH_INTERVAL_SECONDS=0.2
+
+if [[ ! -t 1 ]]; then
+  printf 'dt: stdout must be a terminal\n' >&2
+  exit 1
+fi
+
+format_utc_offset() {
+  local numeric_offset="$1"
+  local offset_hours="${numeric_offset:1:2}"
+  local offset_minutes="${numeric_offset:3:2}"
+
+  offset_hours="${offset_hours#0}"
+  [[ -n "$offset_hours" ]] || offset_hours=0
+
+  if [[ "$offset_minutes" == "00" ]]; then
+    printf 'UTC%s%s' "${numeric_offset:0:1}" "$offset_hours"
+  else
+    printf 'UTC%s%s:%s' "${numeric_offset:0:1}" "$offset_hours" "$offset_minutes"
+  fi
+}
+
+while true; do
+  IFS='|' read -r display_date display_time timezone_name timezone_offset \
+    <<< "$(date '+%a %d %b %Y|%H:%M:%S|%Z|%z')"
+  printf '\r\033[2K%s · %s %s (%s)' \
+    "$display_date" "$display_time" "$timezone_name" "$(format_utc_offset "$timezone_offset")"
+  sleep "$CLOCK_REFRESH_INTERVAL_SECONDS"
+done

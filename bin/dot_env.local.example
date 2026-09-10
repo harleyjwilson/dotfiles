@@ -1,0 +1,28 @@
+BACKUP_ENV_FILE="$HOME/bin/.env.local"
+export BACKUP_ENV_FILE
+
+BACKUP_LABEL="Backing up to external drive"
+BACKUP_REPO="/Volumes/BackupDrive/ResticBackup"
+BACKUP_REPO_MUST_EXIST=1
+RESTIC_PASSWORD="AReallySecurePasswordGoesHere"
+
+BACKUP_PATHS=(
+  "$HOME/path/to/folder/one"
+  "$HOME/path/to/folder/two"
+)
+
+EXCLUDE_FLAGS=(
+  --exclude=".DS_Store"
+  --exclude="*.tmp"
+)
+
+RETENTION_FLAGS=(
+  --keep-daily 7
+  --keep-weekly 4
+  --keep-monthly 12
+  --prune
+)
+
+if [ -z "${BACKUP_LOADING:-}" ] && [ "$#" -gt 0 ]; then
+  "$@"
+fi

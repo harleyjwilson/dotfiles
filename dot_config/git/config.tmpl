@@ -1,0 +1,31 @@
+[color]
+	ui = auto
+{{- if .enableGpgSigning }}
+[commit]
+	gpgsign = true
+{{- end }}
+[core]
+	editor = vim -c startinsert
+	pager = delta
+	excludesfile = ~/.config/git/ignore
+[delta]
+	navigate = true
+	side-by-side = true
+[diff]
+	colorMoved = default
+[help]
+	autocorrect = prompt
+[init]
+	defaultBranch = main
+[interactive]
+	diffFilter = delta --color-only
+[merge]
+	conflictstyle = diff3
+[push]
+	autoSetupRemote = true
+[user]
+	email = {{ .email | quote }}
+	name = {{ .name | quote }}
+{{- if .enableGpgSigning }}
+	signingkey = "A16CB43F9D56293D58C3F1D98C05EBB09DBF07BA"
+{{- end }}

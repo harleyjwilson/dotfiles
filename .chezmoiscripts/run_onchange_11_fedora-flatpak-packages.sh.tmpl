@@ -1,0 +1,28 @@
+{{- if and .personal (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora") -}}
+#!/bin/bash
+set -euo pipefail
+
+sudo dnf install --assumeyes flatpak
+
+sudo flatpak remote-add --if-not-exists \
+  flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+sudo flatpak install --noninteractive --system flathub \
+  io.github.kolunmi.Bazaar \
+  md.obsidian.Obsidian \
+  net.ankiweb.Anki \
+  org.jellyfin.JellyfinDesktop \
+  org.jellyfin.JellyfinServer \
+  org.localsend.localsend_app \
+  org.signal.Signal \
+  org.sqlitebrowser.sqlitebrowser
+
+{{ if eq .chezmoi.arch "amd64" -}}
+# These Flathub applications only publish x86_64 builds
+sudo flatpak install --noninteractive --system flathub \
+  com.discordapp.Discord \
+  com.spotify.Client \
+  io.exodus.Exodus \
+  org.torproject.torbrowser-launcher
+{{ end -}}
+{{- end }}
