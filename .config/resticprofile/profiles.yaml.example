@@ -1,0 +1,63 @@
+# yaml-language-server: $schema=https://creativeprojects.github.io/resticprofile/jsonschema/config.json
+version: "1"
+
+global:
+  priority: low
+
+hdd:
+  repository: "/run/media/{{ .Env.USER }}/backup"
+  password-file: "{{ .Env.HOME }}/.config/resticprofile/secrets/hdd.password"
+
+  backup:
+    check-after: true
+    source:
+      - "{{ .Env.HOME }}/Documents"
+      - "{{ .Env.HOME }}/Pictures"
+      - "{{ .Env.HOME }}/Videos"
+      - "{{ .Env.HOME }}/Music"
+      - "{{ .Env.HOME }}/projects"
+    exclude:
+      - ".DS_Store"
+      - "*.tmp"
+      - "**/node_modules"
+      - "{{ .Env.HOME }}/Pictures/screenshots"
+
+  check:
+    # Verify a different seventh of repository data for each day of the week.
+    read-data-subset: '{{ len (printf "a%*s" .Now.Weekday "") }}/7'
+
+  retention:
+    after-backup: true
+    keep-daily: 7
+    keep-weekly: 4
+    keep-monthly: 12
+    prune: true
+
+s3:
+  repository: "s3:REPLACE_WITH_S3_ENDPOINT/REPLACE_WITH_BUCKET"
+  password-file: "{{ .Env.HOME }}/.config/resticprofile/secrets/s3.password"
+
+  backup:
+    check-after: true
+    source:
+      - "{{ .Env.HOME }}/Documents"
+      - "{{ .Env.HOME }}/Pictures"
+      - "{{ .Env.HOME }}/Videos"
+      - "{{ .Env.HOME }}/Music"
+      - "{{ .Env.HOME }}/projects"
+    exclude:
+      - ".DS_Store"
+      - "*.tmp"
+      - "**/node_modules"
+      - "{{ .Env.HOME }}/Pictures/screenshots"
+
+  check:
+    # Verify a different seventh of repository data for each day of the week.
+    read-data-subset: '{{ len (printf "a%*s" .Now.Weekday "") }}/7'
+
+  retention:
+    after-backup: true
+    keep-daily: 7
+    keep-weekly: 4
+    keep-monthly: 12
+    prune: true

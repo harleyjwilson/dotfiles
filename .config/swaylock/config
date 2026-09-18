@@ -1,0 +1,29 @@
+# Wallpaper background
+image=$HOME/.wallpaper
+scaling=fill
+color=1e1e2e
+
+# Dark lock indicator
+inside-color=000000
+line-color=313244
+separator-color=313244
+text-color=ffffff
+text-clear-color=ffffff
+text-caps-lock-color=ffffff
+text-ver-color=ffffff
+text-wrong-color=ffffff
+key-hl-color=89b4fa
+bs-hl-color=f38ba8
+
+# Indicator states
+inside-clear-color=000000
+inside-caps-lock-color=000000
+inside-ver-color=000000
+inside-wrong-color=000000
+
+font=Sans
+font-size=28
+indicator-radius=100
+indicator-thickness=12
+show-failed-attempts
+indicator-idle-visible

@@ -1,0 +1,35 @@
+set shell zsh
+set shellopts '-eu'
+set promptfmt "\033[37;1m%u@%h\033[0m:\033[34;1m%d\033[0m\033[1m%f\033[0m"
+set ifs "\n"
+set scrolloff 10
+set drawbox
+set borderfmt "\033[02;1m"
+set ratios '1:2:3'
+set icons
+set mouse false
+set tabstop 4
+
+map <enter> shell
+
+# Toggle hidden files
+map . set hidden!
+
+cmd z %{{
+  setopt pipefail
+  result="$(zoxide query --exclude "$PWD" "$@")"
+  if [[ -z "$result" ]]; then
+    echo "error: zoxide query returned an empty path" >&2
+    exit 1
+  fi
+  if [[ "$result" == *[[:cntrl:]]* ]]; then
+    echo "error: zoxide query returned a path containing control characters" >&2
+    exit 1
+  fi
+  result="$(printf '%s' "$result" | sed 's/\\/\\\\/g;s/"/\\"/g')"
+  lf -remote "send $id cd \"$result\""
+}}
+
+cmd on-cd &{{
+  zoxide add "$PWD"
+}}

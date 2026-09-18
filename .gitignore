@@ -1,0 +1,6 @@
+.config/resticprofile/profiles.yaml
+.config/resticprofile/secrets/*
+!.config/resticprofile/secrets/*.example
+.zcompdump*
+.DS_Store
+._*

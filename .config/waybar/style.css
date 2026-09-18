@@ -1,0 +1,79 @@
+@define-color bg    #1a1b26;
+@define-color blk   #32344a;
+@define-color red   #f7768e;
+@define-color grn   #9ece6a;
+@define-color ylw   #e0af68;
+@define-color muted #9ca3af;
+@define-color wht   #ffffff;
+
+* {
+    font-family: 'FiraMono Nerd Font', 'Noto Sans Mono', monospace;
+    font-size: 13px;
+}
+
+window#waybar {
+    background-color: @bg;
+    border-bottom: 3px solid @bg;
+    color: @wht;
+}
+
+#workspaces button {
+    /* Use box-shadow for the workspace underline so text position stays fixed. */
+    padding: 0 6px;
+    color: @muted;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: inset 0 -3px @bg;
+}
+
+#workspaces button:hover,
+#workspaces button.focused {
+    color: @wht;
+    box-shadow: inset 0 -3px @wht;
+}
+
+#workspaces button:not(.empty) {
+    color: @wht;
+}
+
+#workspaces button.urgent {
+    box-shadow: inset 0 -3px @red;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#network,
+#pulseaudio,
+#tray,
+#idle_inhibitor {
+    padding: 0 10px;
+    color: @wht;
+}
+
+#workspaces {
+    margin: 0 4px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+#battery.warning {
+    color: @ylw;
+}
+
+#battery.critical {
+    color: @red;
+}
+
+#battery.charging {
+    color: @grn;
+}
+
+label:focus {
+    background-color: @blk;
+}

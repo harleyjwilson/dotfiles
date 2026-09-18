@@ -1,0 +1,6 @@
+Legend: production dependency, optional only, dev only
+
+/home/hjw/.local/share/pnpm/global/v11 (PRIVATE)
+│
+│   dependencies:
+└── @earendil-works/pi-coding-agent@1.2.0
