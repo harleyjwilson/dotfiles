@@ -1,0 +1,24 @@
+[color]
+	ui = auto
+[core]
+	editor = vim -c startinsert
+	pager = delta
+	excludesfile = ~/.config/git/ignore
+[delta]
+	navigate = true
+	side-by-side = true
+[diff]
+	colorMoved = default
+[help]
+	autocorrect = prompt
+[init]
+	defaultBranch = main
+[interactive]
+	diffFilter = delta --color-only
+[merge]
+	conflictstyle = diff3
+[push]
+	autoSetupRemote = true
+[user]
+	email = "hello@harleyjwilson.com"
+	name = "Harley Wilson"

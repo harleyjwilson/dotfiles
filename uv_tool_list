@@ -1,0 +1,7 @@
+llm v0.35
+- llm
+pyright v1.1.414
+- pyright
+- pyright-langserver
+- pyright-python
+- pyright-python-langserver

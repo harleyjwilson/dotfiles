@@ -1,0 +1,127 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+is_1password_reference() {
+  [[ "$1" == op://* ]]
+}
+
+resolve_backup_value() {
+  local value="$1"
+
+  if is_1password_reference "$value"; then
+    op read "$value"
+  else
+    printf '%s\n' "$value"
+  fi
+}
+
+run_backup_restic() {
+  if [[ "$BACKUP_USES_1PASSWORD" == "true" ]]; then
+    op run -- restic "$@"
+  else
+    restic "$@"
+  fi
+}
+
+if [[ -n "${BACKUP_ENV_FILE:-}" ]]; then
+  if [[ ! -f "$BACKUP_ENV_FILE" ]]; then
+    echo "Error: BACKUP_ENV_FILE points to a missing file: $BACKUP_ENV_FILE" >&2
+    exit 1
+  fi
+
+  BACKUP_LOADING=1
+  # shellcheck source=/dev/null
+  source "$BACKUP_ENV_FILE"
+  unset BACKUP_LOADING
+fi
+
+require_var() {
+  local name="$1"
+
+  if [[ -z "${!name:-}" ]]; then
+    echo "Error: $name is not set. Source .env.local or .env.remote first." >&2
+    exit 1
+  fi
+}
+
+require_array() {
+  local name="$1"
+
+  if ! declare -p "$name" >/dev/null 2>&1; then
+    echo "Error: $name is not set. Define it in the sourced env file." >&2
+    exit 1
+  fi
+}
+
+require_var BACKUP_REPO
+require_var RESTIC_PASSWORD
+require_array BACKUP_PATHS
+require_array RETENTION_FLAGS
+
+if (( ${#BACKUP_PATHS[@]} == 0 )); then
+  echo "Error: BACKUP_PATHS must contain at least one path." >&2
+  exit 1
+fi
+
+if (( ${#RETENTION_FLAGS[@]} == 0 )); then
+  echo "Error: RETENTION_FLAGS must contain at least one retention policy." >&2
+  exit 1
+fi
+
+BACKUP_LABEL="${BACKUP_LABEL:-Restic backup}"
+BACKUP_USES_1PASSWORD="false"
+for backup_secret_value in "$BACKUP_REPO" "$RESTIC_PASSWORD" "${AWS_ACCESS_KEY_ID:-}" "${AWS_SECRET_ACCESS_KEY:-}"; do
+  if is_1password_reference "$backup_secret_value"; then
+    BACKUP_USES_1PASSWORD="true"
+    break
+  fi
+done
+unset backup_secret_value
+
+if ! command -v restic >/dev/null 2>&1; then
+  echo "Error: restic is required to run backups." >&2
+  exit 1
+fi
+
+if [[ "$BACKUP_USES_1PASSWORD" == "true" ]] && ! command -v op >/dev/null 2>&1; then
+  echo "Error: 1Password CLI (op) is required when backup values use op:// references." >&2
+  exit 1
+fi
+
+BACKUP_REPO_RESOLVED="$(resolve_backup_value "$BACKUP_REPO")"
+
+if ! declare -p EXCLUDE_FLAGS >/dev/null 2>&1; then
+  EXCLUDE_FLAGS=()
+fi
+
+if [[ "${BACKUP_REPO_MUST_EXIST:-0}" == "1" && ! -d "$BACKUP_REPO_RESOLVED" ]]; then
+  echo "=== Backup repository path not found, aborting ===" >&2
+  echo "BACKUP_REPO=$BACKUP_REPO" >&2
+  echo "BACKUP_REPO_RESOLVED=$BACKUP_REPO_RESOLVED" >&2
+  exit 1
+fi
+
+export RESTIC_PASSWORD
+
+if [[ -n "${AWS_ACCESS_KEY_ID:-}" ]]; then
+  export AWS_ACCESS_KEY_ID
+fi
+
+if [[ -n "${AWS_SECRET_ACCESS_KEY:-}" ]]; then
+  export AWS_SECRET_ACCESS_KEY
+fi
+
+backup_arguments=(-r "$BACKUP_REPO_RESOLVED" backup "${BACKUP_PATHS[@]}")
+if (( ${#EXCLUDE_FLAGS[@]} > 0 )); then
+  backup_arguments+=("${EXCLUDE_FLAGS[@]}")
+fi
+
+forget_arguments=(-r "$BACKUP_REPO_RESOLVED" forget "${RETENTION_FLAGS[@]}")
+
+echo "=== $BACKUP_LABEL ==="
+run_backup_restic "${backup_arguments[@]}"
+
+echo "=== Pruning old snapshots ==="
+run_backup_restic "${forget_arguments[@]}"
+
+echo "=== Done ==="
