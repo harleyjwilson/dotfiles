@@ -22,6 +22,8 @@ set $menu wofi --show drun
 # Display Polkit password prompts for privileged graphical actions.
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # Mako is D-Bus activated and managed by its systemd user service.
+# Automatically mount removable drives and show notifications.
+exec --no-startup-id udiskie --automount --notify
 
 exec swayidle -w \
 timeout 300 'swaylock -f' \

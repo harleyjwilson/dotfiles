@@ -16,6 +16,7 @@ hdd:
       - "{{ .Env.HOME }}/Videos"
       - "{{ .Env.HOME }}/Music"
       - "{{ .Env.HOME }}/projects"
+      - "{{ .Env.HOME }}/Zettelkasten"
     exclude:
       - ".DS_Store"
       - "*.tmp"
@@ -45,6 +46,7 @@ s3:
       - "{{ .Env.HOME }}/Videos"
       - "{{ .Env.HOME }}/Music"
       - "{{ .Env.HOME }}/projects"
+      - "{{ .Env.HOME }}/Zettelkasten"
     exclude:
       - ".DS_Store"
       - "*.tmp"
