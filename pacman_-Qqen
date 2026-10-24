@@ -1,3 +1,4 @@
+adw-gtk-theme
 age
 anki
 bandwhich
@@ -12,6 +13,7 @@ bluez-utils
 bottom
 brightnessctl
 btrfs-progs
+calibre
 cargo-update
 cliphist
 cmatrix
@@ -49,6 +51,7 @@ grim
 grub
 grub-btrfs
 gst-plugin-pipewire
+gvfs
 helix
 htop
 inotify-tools
@@ -69,6 +72,7 @@ linux-firmware
 lnav
 ly
 mako
+marksman
 mkinitcpio
 mosh
 mpv
@@ -110,6 +114,7 @@ sqlitebrowser
 starship
 steam
 sudo
+svelte-language-server
 sway
 swaybg
 swayidle
@@ -135,6 +140,9 @@ vim
 virt-manager
 vlc
 vlc-plugin-ffmpeg
+vscode-css-languageserver
+vscode-html-languageserver
+vscode-json-languageserver
 vulkan-intel
 vulkan-nouveau
 waybar
@@ -147,6 +155,7 @@ xdg-desktop-portal-gtk
 xdg-desktop-portal-wlr
 xdg-utils
 xorg-xwayland
+yaml-language-server
 yt-dlp
 zed
 zk
