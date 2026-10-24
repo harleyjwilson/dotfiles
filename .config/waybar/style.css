@@ -48,7 +48,8 @@ window#waybar {
 #network,
 #pulseaudio,
 #tray,
-#idle_inhibitor {
+#idle_inhibitor,
+#power-profiles-daemon {
     padding: 0 10px;
     color: @wht;
 }

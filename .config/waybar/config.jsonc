@@ -12,6 +12,7 @@
         "cpu",
         "memory",
         "idle_inhibitor",
+        "power-profiles-daemon",
         "battery",
         "clock",
         "tray"
@@ -69,6 +70,15 @@
         "format-icons": {
             "activated": "󰅶",
             "deactivated": "󰾪"
+        }
+    },
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip": false,
+        "format-icons": {
+            "performance": "",
+            "balanced": "",
+            "power-saver": ""
         }
     },
     "network": {
