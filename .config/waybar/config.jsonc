@@ -8,6 +8,7 @@
     ],
     "modules-right": [
         "pulseaudio",
+        "bluetooth",
         "network",
         "cpu",
         "memory",
@@ -36,6 +37,15 @@
     },
     "tray": {
         "spacing": 10
+    },
+    "bluetooth": {
+        "format": "󰂯",
+        "format-connected": "󰂯 <span color=\"#9ca3af\">{num_connections}</span>",
+        "format-off": "󰂲",
+        "format-disabled": "󰂲",
+        "format-no-controller": "󰂲",
+        "tooltip": false,
+        "on-click": "blueman-manager"
     },
     "clock": {
         "format": " {:%H:%M}",

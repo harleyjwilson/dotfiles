@@ -47,6 +47,7 @@ window#waybar {
 #memory,
 #network,
 #pulseaudio,
+#bluetooth,
 #tray,
 #idle_inhibitor,
 #power-profiles-daemon {
