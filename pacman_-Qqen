@@ -61,6 +61,7 @@ jless
 jrnl
 just
 jwt-cli
+kdenlive
 less
 libpulse
 libreoffice-fresh
@@ -147,6 +148,7 @@ vscode-json-languageserver
 vulkan-intel
 vulkan-nouveau
 waybar
+wdisplays
 wget
 wireplumber
 wl-clipboard
