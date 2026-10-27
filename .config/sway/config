@@ -246,13 +246,22 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
     # Lock the current session immediately.
     bindsym $mod+Ctrl+Shift+l exec swaylock -f
-    # Save a selected region under XDG_PICTURES_DIR without changing the clipboard.
-    bindsym Print exec sh -c 'screenshot_dir="${XDG_PICTURES_DIR:-$HOME/Pictures}/screenshots"; mkdir -p "$screenshot_dir"; screenshot_path="$screenshot_dir/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png"; grim -g "$(slurp)" "$screenshot_path"'
-    # Save a selected region and copy its PNG image for pasting into image-aware applications.
-    bindsym Shift+Print exec sh -c 'screenshot_dir="${XDG_PICTURES_DIR:-$HOME/Pictures}/screenshots"; mkdir -p "$screenshot_dir"; screenshot_path="$screenshot_dir/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png"; grim -g "$(slurp)" "$screenshot_path" && wl-copy --type image/png < "$screenshot_path"'
+    # Lenovo F7 display key: open the Wayland display configuration GUI.
+    bindsym XF86Display exec wdisplays
+    # Lenovo F11 phone-link key: open LocalSend to transfer files to your phone.
+    bindsym XF86LinkPhone exec localsend
+    # Save the entire desktop (all connected outputs) under XDG_PICTURES_DIR.
+    bindsym Print exec sh -c 'screenshot_dir="${XDG_PICTURES_DIR:-$HOME/Pictures}/screenshots"; mkdir -p "$screenshot_dir"; screenshot_path="$screenshot_dir/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png"; grim "$screenshot_path" && notify-send -t 5000 -a Screenshot "Screenshot saved" "$screenshot_path"'
+    # Lenovo F10 capture key: save a selected region; leave plain F10 to applications.
+    bindsym XF86SelectiveScreenshot exec sh -c 'screenshot_dir="${XDG_PICTURES_DIR:-$HOME/Pictures}/screenshots"; mkdir -p "$screenshot_dir"; screenshot_path="$screenshot_dir/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png"; grim -g "$(slurp)" "$screenshot_path" && notify-send -t 5000 -a Screenshot "Screenshot saved" "$screenshot_path"'
+    # Lenovo F12 star (bookmarks key) opens the same launcher as $mod+d.
+    bindsym XF86Favorites exec $menu
 
     # Handy cannot claim global shortcuts on this Sway/Wayland session; invoke its IPC toggle instead.
     bindsym Ctrl+space exec /usr/bin/handy --toggle-transcription
+    # Copilot keyboards may emit Super+Shift+F23 or the dedicated Assistant key.
+    bindsym $mod+Shift+F23 exec /usr/bin/handy --toggle-transcription
+    bindsym XF86Assistant exec /usr/bin/handy --toggle-transcription
 
 #
 # Status Bar:
