@@ -1,0 +1,69 @@
+# Tokyo Night (night) eza theme; keep terminal and file-list colors in sync.
+colourful: true
+
+filekinds:
+  normal: { foreground: "#c0caf5" }
+  directory: { foreground: "#7aa2f7" }
+  symlink: { foreground: "#7dcfff" }
+  mount_point: { foreground: "#7aa2f7" }
+  pipe: { foreground: "#e0af68" }
+  socket: { foreground: "#e0af68" }
+  block_device: { foreground: "#e0af68" }
+  char_device: { foreground: "#e0af68" }
+  special: { foreground: "#f7768e" }
+  executable: { foreground: "#9ece6a" }
+
+perms:
+  user_read: { foreground: "#a9b1d6" }
+  user_write: { foreground: "#7aa2f7" }
+  user_execute_file: { foreground: "#9ece6a" }
+  user_execute_other: { foreground: "#9ece6a" }
+  group_read: { foreground: "#a9b1d6" }
+  group_write: { foreground: "#7aa2f7" }
+  group_execute: { foreground: "#9ece6a" }
+  other_read: { foreground: "#a9b1d6" }
+  other_write: { foreground: "#7aa2f7" }
+  other_execute: { foreground: "#9ece6a" }
+
+size:
+  number_byte: { foreground: "#565f89" }
+  number_kilo: { foreground: "#a9b1d6" }
+  number_mega: { foreground: "#7aa2f7" }
+  number_giga: { foreground: "#e0af68" }
+  number_huge: { foreground: "#f7768e" }
+
+users:
+  user_you: { foreground: "#7aa2f7" }
+  group_yours: { foreground: "#7dcfff" }
+  user_root: { foreground: "#e0af68" }
+  group_root: { foreground: "#e0af68" }
+
+git:
+  new: { foreground: "#9ece6a" }
+  modified: { foreground: "#e0af68" }
+  deleted: { foreground: "#f7768e" }
+  renamed: { foreground: "#7aa2f7" }
+  ignored: { foreground: "#565f89" }
+  conflicted: { foreground: "#f7768e" }
+
+git_repo:
+  branch_main: { foreground: "#7aa2f7" }
+  branch_other: { foreground: "#7dcfff" }
+  git_clean: { foreground: "#9ece6a" }
+  git_dirty: { foreground: "#e0af68" }
+
+file_type:
+  source: { foreground: "#7aa2f7" }
+  document: { foreground: "#c0caf5" }
+  build: { foreground: "#e0af68" }
+  image: { foreground: "#bb9af7" }
+  video: { foreground: "#bb9af7" }
+  music: { foreground: "#bb9af7" }
+  compressed: { foreground: "#9d7cd8" }
+  crypto: { foreground: "#f7768e" }
+
+punctuation: { foreground: "#414868" }
+date: { foreground: "#a9b1d6" }
+header: { foreground: "#7aa2f7" }
+symlink_path: { foreground: "#a9b1d6" }
+broken_symlink: { foreground: "#1a1b26", background: "#f7768e" }

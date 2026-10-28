@@ -1,10 +1,12 @@
 set shell zsh
 set shellopts '-eu'
-set promptfmt "\033[37;1m%u@%h\033[0m:\033[34;1m%d\033[0m\033[1m%f\033[0m"
+# Tokyo Night (night): blue user, cyan directory, foreground file.
+# File-type colors still inherit Ghostty's matching ANSI palette.
+set promptfmt "\033[1;38;2;122;162;247m%u@%h\033[0m:\033[1;38;2;125;207;255m%d\033[0m\033[38;2;192;202;245m%f\033[0m"
 set ifs "\n"
 set scrolloff 10
 set drawbox
-set borderfmt "\033[02;1m"
+set borderfmt "\033[38;2;65;72;104m"
 set ratios '1:2:3'
 set icons
 set mouse false

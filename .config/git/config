@@ -7,6 +7,21 @@
 [delta]
 	navigate = true
 	side-by-side = true
+	# Tokyo Night (night) diff colors from folke/tokyonight.nvim extras/delta.
+	# ANSI syntax colors inherit Ghostty's Tokyo Night terminal palette.
+	dark = true
+	syntax-theme = ansi
+	minus-style = syntax "#4a272f"
+	minus-non-emph-style = syntax "#4a272f"
+	minus-emph-style = syntax "#713137"
+	minus-empty-line-marker-style = syntax "#4a272f"
+	line-numbers-minus-style = "#914c54"
+	plus-style = syntax "#243e4a"
+	plus-non-emph-style = syntax "#243e4a"
+	plus-emph-style = syntax "#2c5a66"
+	plus-empty-line-marker-style = syntax "#243e4a"
+	line-numbers-plus-style = "#449dab"
+	line-numbers-zero-style = "#3b4261"
 [diff]
 	colorMoved = default
 [help]

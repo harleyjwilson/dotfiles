@@ -1,7 +1,11 @@
++ eza/
++ eza/**
 + ghostty/
 + ghostty/**
 + git/
 + git/**
++ gitui/
++ gitui/**
 + helix/
 + helix/**
 + jrnl/

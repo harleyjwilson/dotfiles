@@ -1,5 +1,26 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
+# Tokyo Night (night): named styles in both custom and built-in modules use this palette.
+palette = 'tokyonight_night'
+
+[palettes.tokyonight_night]
+black = '#15161e'
+red = '#f7768e'
+green = '#9ece6a'
+yellow = '#e0af68'
+blue = '#7aa2f7'
+purple = '#bb9af7'
+cyan = '#7dcfff'
+white = '#c0caf5'
+bright-black = '#414868'
+bright-red = '#ff899d'
+bright-green = '#9fe044'
+bright-yellow = '#faba4a'
+bright-blue = '#8db0ff'
+bright-purple = '#c7a9ff'
+bright-cyan = '#a4daff'
+bright-white = '#c0caf5'
+
 [battery]
 full_symbol = "• "
 charging_symbol = "⇡ "
