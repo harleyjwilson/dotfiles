@@ -16,7 +16,28 @@ set $right l
 # Your preferred terminal emulator
 set $term ghostty
 # Your preferred application launcher
-set $menu wofi --show drun
+# Pass the Qt platform theme to apps launched from Wofi (Sway starts via Ly).
+set $menu env QT_QPA_PLATFORMTHEME=qt5ct wofi --show drun --no-actions
+
+# Tokyo Night (night) window borders and tab titles.
+set $tn_bg #1a1b26
+set $tn_highlight #292e42
+set $tn_fg #c0caf5
+set $tn_muted #a9b1d6
+set $tn_blue #7aa2f7
+set $tn_red #f7768e
+
+#                        border         background    text       indicator      child border
+client.focused           $tn_blue       $tn_bg        $tn_fg     $tn_blue       $tn_blue
+client.focused_inactive  $tn_highlight  $tn_bg        $tn_muted  $tn_highlight  $tn_highlight
+client.unfocused         $tn_bg         $tn_bg        $tn_muted  $tn_bg         $tn_bg
+client.urgent            $tn_red        $tn_red       $tn_bg     $tn_red        $tn_red
+client.placeholder       $tn_bg         $tn_bg        $tn_fg     $tn_bg         $tn_bg
+client.focused_tab_title $tn_blue       $tn_bg        $tn_fg
+
+# The title/tab outline is one logical pixel; match the side and bottom borders.
+default_border normal 1
+default_floating_border normal 1
 
 # Startup programs
 # Display Polkit password prompts for privileged graphical actions.
@@ -103,7 +124,7 @@ input type:touchpad {
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    bindsym --no-repeat $mod+d exec flock -n ~/.cache/wofi.lock $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.

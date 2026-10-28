@@ -12,6 +12,8 @@
 + jrnl/**
 + lf/
 + lf/**
++ mako/
++ mako/**
 + nvim/
 + nvim/**
 + qt5ct/
@@ -22,8 +24,12 @@
 + sway/**
 + swaylock/
 + swaylock/**
++ swaynag/
++ swaynag/**
 + waybar/
 + waybar/**
++ wofi/
++ wofi/**
 + starship.toml
 + user-dirs.dirs
 + resticprofile/

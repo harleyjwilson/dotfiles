@@ -1,10 +1,11 @@
+/* Tokyo Night (night); inline Pango spans in config.jsonc repeat these colors. */
 @define-color bg    #1a1b26;
-@define-color blk   #32344a;
-@define-color red   #f7768e;
-@define-color grn   #9ece6a;
-@define-color ylw   #e0af68;
-@define-color muted #9ca3af;
-@define-color wht   #ffffff;
+@define-color highlight #292e42;
+@define-color red       #f7768e;
+@define-color green     #9ece6a;
+@define-color yellow    #e0af68;
+@define-color muted     #a9b1d6;
+@define-color fg        #c0caf5;
 
 * {
     font-family: 'FiraMono Nerd Font', 'Noto Sans Mono', monospace;
@@ -14,7 +15,7 @@
 window#waybar {
     background-color: @bg;
     border-bottom: 3px solid @bg;
-    color: @wht;
+    color: @fg;
 }
 
 #workspaces button {
@@ -29,12 +30,12 @@ window#waybar {
 
 #workspaces button:hover,
 #workspaces button.visible {
-    color: @wht;
-    box-shadow: inset 0 -3px @wht;
+    color: @fg;
+    box-shadow: inset 0 -3px @fg;
 }
 
 #workspaces button:not(.empty) {
-    color: @wht;
+    color: @fg;
 }
 
 #workspaces button.urgent {
@@ -52,7 +53,7 @@ window#waybar {
 #idle_inhibitor,
 #power-profiles-daemon {
     padding: 0 10px;
-    color: @wht;
+    color: @fg;
 }
 
 #workspaces {
@@ -65,7 +66,7 @@ window#waybar {
 }
 
 #battery.warning {
-    color: @ylw;
+    color: @yellow;
 }
 
 #battery.critical {
@@ -73,9 +74,9 @@ window#waybar {
 }
 
 #battery.charging {
-    color: @grn;
+    color: @green;
 }
 
 label:focus {
-    background-color: @blk;
+    background-color: @highlight;
 }

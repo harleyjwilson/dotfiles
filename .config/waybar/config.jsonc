@@ -40,7 +40,7 @@
     },
     "bluetooth": {
         "format": "󰂯",
-        "format-connected": "󰂯 <span color=\"#9ca3af\">{num_connections}</span>",
+        "format-connected": "󰂯 <span color=\"#a9b1d6\">{num_connections}</span>",
         "format-off": "󰂲",
         "format-disabled": "󰂲",
         "format-no-controller": "󰂲",
@@ -53,11 +53,11 @@
         "tooltip": false
     },
     "cpu": {
-        "format": " {avg_frequency}GHz <span color=\"#9ca3af\">{usage}%</span>",
+        "format": " {avg_frequency}GHz <span color=\"#a9b1d6\">{usage}%</span>",
         "tooltip": false
     },
     "memory": {
-        "format": " {used:.1f}GiB<span color=\"#9ca3af\">/{total:.1f}GiB</span>",
+        "format": " {used:.1f}GiB<span color=\"#a9b1d6\">/{total:.1f}GiB</span>",
         "tooltip": false
     },
     "battery": {
@@ -67,7 +67,7 @@
         },
         "format": "{icon} {capacity}%",
         "format-full": "{icon} {capacity}%",
-        "format-charging": "{icon} <span color=\"#ffffff\">{capacity}%</span>",
+        "format-charging": "{icon} <span color=\"#c0caf5\">{capacity}%</span>",
         "format-plugged": " {capacity}%",
         "format-alt": "{icon} {time}",
         "format-time": "{H}:{m}",
@@ -93,7 +93,7 @@
     },
     "network": {
         "max-length": 24,
-        "format-wifi": " {essid} <span color=\"#9ca3af\">{signalStrength}%</span>",
+        "format-wifi": " {essid} <span color=\"#a9b1d6\">{signalStrength}%</span>",
         "format-ethernet": " {ifname}",
         "tooltip": false,
         "format-linked": " {ifname} (No IP)",

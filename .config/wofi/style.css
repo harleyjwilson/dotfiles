@@ -1,0 +1,61 @@
+/* Tokyo Night (night) launcher for `wofi --show drun` in Sway. */
+@define-color tn_bg #1a1b26;
+@define-color tn_surface #16161e;
+@define-color tn_selection #283457;
+@define-color tn_border #414868;
+@define-color tn_fg #c0caf5;
+@define-color tn_blue #7aa2f7;
+
+* {
+    font-family: 'FiraMono Nerd Font', 'Noto Sans Mono', monospace;
+    font-size: 13px;
+}
+
+#window {
+    background-color: @tn_bg;
+    color: @tn_fg;
+    border: 1px solid @tn_blue;
+    border-radius: 4px;
+}
+
+#outer-box {
+    margin: 12px;
+    background-color: @tn_bg;
+}
+
+#input {
+    margin: 4px;
+    padding: 8px;
+    background-color: @tn_surface;
+    color: @tn_fg;
+    border: 1px solid @tn_border;
+    border-radius: 4px;
+    box-shadow: none;
+}
+
+#input:focus {
+    border-color: @tn_blue;
+}
+
+#scroll, #inner-box {
+    background-color: @tn_bg;
+}
+
+#entry {
+    padding: 6px;
+    background-color: transparent;
+    color: @tn_fg;
+    border-radius: 4px;
+}
+
+#entry:selected {
+    background-color: @tn_selection;
+}
+
+#text, #entry:selected #text {
+    color: @tn_fg;
+}
+
+#img {
+    margin-right: 8px;
+}

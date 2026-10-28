@@ -1,25 +1,28 @@
-# Wallpaper background
+# Tokyo Night (night) palette; the image is displayed over the fallback color.
 image=$HOME/.wallpaper
 scaling=fill
-color=1e1e2e
+color=1a1b26
 
-# Dark lock indicator
-inside-color=000000
-line-color=313244
-separator-color=313244
-text-color=ffffff
-text-clear-color=ffffff
-text-caps-lock-color=ffffff
-text-ver-color=ffffff
-text-wrong-color=ffffff
-key-hl-color=89b4fa
-bs-hl-color=f38ba8
+# Lock indicator
+inside-color=16161e
+line-color=292e42
+ring-color=414868
+separator-color=292e42
+text-color=c0caf5
+text-clear-color=c0caf5
+text-caps-lock-color=c0caf5
+text-ver-color=7aa2f7
+text-wrong-color=f7768e
+key-hl-color=7aa2f7
+bs-hl-color=f7768e
 
 # Indicator states
-inside-clear-color=000000
-inside-caps-lock-color=000000
-inside-ver-color=000000
-inside-wrong-color=000000
+inside-clear-color=16161e
+inside-caps-lock-color=16161e
+inside-ver-color=16161e
+inside-wrong-color=16161e
+ring-ver-color=7aa2f7
+ring-wrong-color=f7768e
 
 font=Sans
 font-size=28

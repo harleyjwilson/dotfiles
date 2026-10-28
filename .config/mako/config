@@ -1,0 +1,16 @@
+# Tokyo Night (night) notification colors.
+anchor=top-right
+background-color=#16161e
+text-color=#c0caf5
+border-color=#414868
+border-size=2
+border-radius=4
+
+[urgency=low]
+text-color=#a9b1d6
+border-color=#292e42
+
+[urgency=critical]
+text-color=#c0caf5
+border-color=#f7768e
+default-timeout=0
