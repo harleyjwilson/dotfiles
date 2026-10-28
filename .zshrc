@@ -306,8 +306,12 @@ __is_available btm \
 
 # https://github.com/helix-editor/helix
 __is_available helix \
-&& alias hx=helix \
-&& export EDITOR="helix"
+&& alias hx=helix
+
+# https://neovim.io/
+__is_available nvim \
+&& alias vim=nvim \
+&& export EDITOR="nvim"
 
 # https://github.com/junegunn/fzf
 __is_available fzf \

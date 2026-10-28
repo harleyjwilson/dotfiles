@@ -8,6 +8,8 @@
 + jrnl/**
 + lf/
 + lf/**
++ nvim/
++ nvim/**
 + sway/
 + sway/**
 + swaylock/
