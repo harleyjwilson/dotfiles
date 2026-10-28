@@ -28,14 +28,23 @@ window#waybar {
     box-shadow: inset 0 -3px @bg;
 }
 
-#workspaces button:hover,
-#workspaces button.visible {
-    color: @fg;
-    box-shadow: inset 0 -3px @fg;
+/* GTK workspace labels need their own color; button color alone does not reach them. */
+#workspaces button label {
+    color: @muted;
 }
 
-#workspaces button:not(.empty) {
+#workspaces button:not(.empty) label,
+#workspaces button:hover label,
+#workspaces button.visible label,
+#workspaces button.focused label {
     color: @fg;
+}
+
+#workspaces button:hover,
+#workspaces button.visible,
+#workspaces button.focused {
+    color: @fg;
+    box-shadow: inset 0 -3px @fg;
 }
 
 #workspaces button.urgent {
