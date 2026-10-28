@@ -10,6 +10,10 @@
 + lf/**
 + nvim/
 + nvim/**
++ qt5ct/
++ qt5ct/**
++ qt6ct/
++ qt6ct/**
 + sway/
 + sway/**
 + swaylock/

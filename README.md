@@ -22,11 +22,20 @@ cp .zshrc ~/.zshrc
 ```
 
 Restart Zsh with `exec zsh`, then run `dotfiles-update-local` and confirm the
-prompt. The command copies the tracked home files and selected XDG configuration
-into place.
+prompt. The command copies the tracked home files, selected XDG configuration,
+and `.themes/TokyoNight` into place. GTK theme selection is managed separately.
 
-Use `dotfiles-update-remote` to capture the current configuration and package
-inventories. It refuses to run while the repository has uncommitted changes.
+For the matching Qt 5/6 palette,
+install `qt5ct` and `qt6ct` (`sudo pacman -S qt5ct qt6ct`). Both use the single
+`.themes/TokyoNight/qtct.conf` palette through links in `.config/qt5ct/colors/`
+and `.config/qt6ct/colors/`. `QT_QPA_PLATFORMTHEME=qt5ct` activates either
+plugin; `.zshrc` exports it for terminal-launched apps, and Sway passes it to
+apps launched from Wofi. Other launchers must also inherit this variable.
+The package inventories are snapshots: update them after installing the packages.
+
+Use `dotfiles-update-remote` to capture the current configuration, the installed
+TokyoNight theme, and package inventories. It refuses to run while the repository
+has uncommitted changes.
 
 ## Backups
 

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=TokyoNight
+Comment=Tokyo Night (night variant) GTK theme
+
+[X-GNOME-Metatheme]
+GtkTheme=TokyoNight

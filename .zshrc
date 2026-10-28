@@ -67,6 +67,9 @@ function __replace_file() {
 export LANG="en_AU.UTF-8"
 export LC_ALL="en_AU.UTF-8"
 
+# qt5ct and qt6ct both recognize this platform theme name.
+export QT_QPA_PLATFORMTHEME=qt5ct
+
 export PROJECTS_DIR="${HOME}/projects"
 export MY_PROJECTS_DIR="${HOME}/projects/hjw"
 
@@ -639,6 +642,10 @@ function dotfiles-update-remote() (
     || { print -u2 -- "Missing source: $HOME/$file"; return 1; }
   done
   [[ -d "$XDG_CONFIG_HOME" ]] || return 1
+  [[ -d "$HOME/.themes/TokyoNight" && ! -L "$HOME/.themes" &&
+     ! -L "$HOME/.themes/TokyoNight" ]] \
+    || { print -u2 -- 'Missing or unsafe home TokyoNight theme!'; return 1; }
+  [[ ! -L "$DOTFILES/.themes" && ! -L "$DOTFILES/.themes/TokyoNight" ]] || return 1
   for file in .zshrc .wallpaper .config "${inventories[@]}"; do
     [[ ! -L "$DOTFILES/$file" ]] || return 1
   done
@@ -666,13 +673,16 @@ function dotfiles-update-remote() (
   rsync -avH --filter='P *.example' --exclude='*.example' \
     --include-from="$DOTFILES/.include" \
     "$XDG_CONFIG_HOME/" "$DOTFILES/.config/" --delete-before || return
+  command mkdir -p -- "$DOTFILES/.themes/TokyoNight" || return
+  rsync -avH --delete-before -- "$HOME/.themes/TokyoNight/" \
+    "$DOTFILES/.themes/TokyoNight/" || return
   for file in "${inventories[@]}"; do
     __replace_file "$stage/$file" "$DOTFILES/$file" || return
   done
 )
 
 function dotfiles-update-local() (
-  __require_commands cp git rsync || return
+  __require_commands cp git mkdir rsync || return
   __dotfiles_repository \
   || { print -u2 -- 'Invalid dotfiles repository or include file!'; return 1; }
   local confirmation file
@@ -682,6 +692,10 @@ function dotfiles-update-local() (
   done
   [[ "$XDG_CONFIG_HOME" == /* && "$XDG_CONFIG_HOME" != / && -w "$HOME" ]] \
     || return 1
+  [[ -d "$DOTFILES/.themes/TokyoNight" && ! -L "$DOTFILES/.themes" &&
+     ! -L "$DOTFILES/.themes/TokyoNight" && ! -L "$HOME/.themes" &&
+     ! -L "$HOME/.themes/TokyoNight" ]] \
+    || { print -u2 -- 'Missing or unsafe TokyoNight theme path!'; return 1; }
   read -r 'confirmation?Apply dotfiles to this machine? [y/N] ' || return 1
   [[ "$confirmation" == [yY] || "$confirmation" == [yY][eE][sS] ]] || return 1
 
@@ -690,6 +704,9 @@ function dotfiles-update-local() (
   done
   rsync -avH --include-from="$DOTFILES/.include" \
     "$DOTFILES/.config/" "$XDG_CONFIG_HOME/" || return
+  command mkdir -p -- "$HOME/.themes/TokyoNight" || return
+  rsync -avH -- "$DOTFILES/.themes/TokyoNight/" \
+    "$HOME/.themes/TokyoNight/" || return
   return 0
 )
 

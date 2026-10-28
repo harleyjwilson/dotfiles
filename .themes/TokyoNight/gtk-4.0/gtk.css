@@ -1,0 +1,90 @@
+/* Tokyo Night (night) GTK palette: folke/tokyonight.nvim, colors/night.lua */
+@define-color tn_bg #1a1b26;
+@define-color tn_surface #16161e;
+@define-color tn_hover #292e42;
+@define-color tn_selection #283457;
+@define-color tn_border #414868;
+@define-color tn_fg #c0caf5;
+@define-color tn_muted #a9b1d6;
+@define-color tn_disabled #565f89;
+@define-color tn_blue #7aa2f7;
+@define-color tn_cyan #7dcfff;
+@define-color tn_green #9ece6a;
+@define-color tn_yellow #e0af68;
+@define-color tn_red #f7768e;
+
+@define-color theme_bg_color @tn_bg;
+@define-color theme_fg_color @tn_fg;
+@define-color theme_base_color @tn_surface;
+@define-color theme_text_color @tn_fg;
+@define-color theme_selected_bg_color @tn_selection;
+@define-color theme_selected_fg_color @tn_fg;
+@define-color insensitive_bg_color @tn_surface;
+@define-color insensitive_fg_color @tn_disabled;
+@define-color borders @tn_border;
+@define-color unfocused_borders @tn_hover;
+@define-color warning_color @tn_yellow;
+@define-color error_color @tn_red;
+@define-color success_color @tn_green;
+@define-color link_color @tn_blue;
+@define-color theme_unfocused_bg_color @tn_surface;
+@define-color theme_unfocused_fg_color @tn_muted;
+@define-color theme_unfocused_base_color @tn_surface;
+@define-color theme_unfocused_text_color @tn_muted;
+@define-color theme_unfocused_selected_bg_color @tn_hover;
+@define-color theme_unfocused_selected_fg_color @tn_fg;
+
+* {
+  color: @tn_fg;
+}
+
+window, dialog, .background {
+  background-color: @tn_bg;
+  color: @tn_fg;
+}
+
+headerbar, .titlebar, toolbar, menubar, popover, menu, tooltip {
+  background-color: @tn_surface;
+  color: @tn_fg;
+}
+
+entry, textview, textview text, treeview, list, iconview {
+  background-color: @tn_surface;
+  color: @tn_fg;
+}
+
+button, combobox button {
+  background-color: @tn_hover;
+  color: @tn_fg;
+  border: 1px solid @tn_border;
+  border-radius: 4px;
+}
+
+button:hover, row:hover {
+  background-color: @tn_selection;
+}
+
+button:active, button:checked, row:selected, selection {
+  background-color: @tn_selection;
+  color: @tn_fg;
+}
+
+*:disabled {
+  color: @tn_disabled;
+}
+
+entry:focus, button:focus {
+  border-color: @tn_blue;
+}
+
+scale highlight, progressbar progress, switch:checked slider,
+check:checked, radio:checked {
+  background-color: @tn_blue;
+}
+
+separator {
+  background-color: @tn_border;
+}
+
+*:link { color: @tn_blue; }
+*:visited { color: @tn_cyan; }
