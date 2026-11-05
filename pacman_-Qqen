@@ -71,9 +71,11 @@ libvirt
 linux
 linux-firmware
 lnav
+lua-language-server
 ly
 mako
 marksman
+mdformat
 mkinitcpio
 mosh
 mpv
@@ -94,11 +96,14 @@ pipewire-alsa
 pipewire-jack
 pipewire-pulse
 pnpm
+podman
 polkit-gnome
 power-profiles-daemon
 procs
 pyright
 qemu-desktop
+qt5ct
+qt6ct
 restic
 ripgrep
 rpi-imager
@@ -106,6 +111,7 @@ rsync
 ruff
 rustlings
 sd
+shfmt
 signal-desktop
 slurp
 smartmontools
@@ -115,6 +121,7 @@ spotify-launcher
 sqlitebrowser
 starship
 steam
+stylua
 sudo
 svelte-language-server
 sway
@@ -130,6 +137,7 @@ thunar
 thunderbird
 torbrowser-launcher
 transmission-gtk
+tree-sitter-cli
 ttf-dejavu
 ttf-liberation
 typescript
