@@ -39,6 +39,9 @@ client.focused_tab_title $tn_blue       $tn_bg        $tn_fg
 default_border normal 1
 default_floating_border normal 1
 
+# Prefix Zed's folder title in Sway tabs and window borders.
+for_window [app_id="dev.zed.Zed"] title_format "Zed - %title"
+
 # Startup programs
 # Display Polkit password prompts for privileged graphical actions.
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
