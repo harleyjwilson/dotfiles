@@ -92,7 +92,6 @@
         }
     },
     "network": {
-        "max-length": 24,
         "format-wifi": " {essid} <span color=\"#a9b1d6\">{signalStrength}%</span>",
         "format-ethernet": " {ifname}",
         "tooltip": false,
