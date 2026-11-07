@@ -134,6 +134,7 @@ tealdeer
 terminus-font
 thefuck
 thunar
+thunar-archive-plugin
 thunderbird
 torbrowser-launcher
 transmission-gtk
@@ -162,6 +163,7 @@ wireplumber
 wl-clipboard
 wofi
 wpa_supplicant
+xarchiver
 xdg-desktop-portal-gtk
 xdg-desktop-portal-wlr
 xdg-utils
