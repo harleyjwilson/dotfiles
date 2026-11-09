@@ -147,6 +147,9 @@ Zulu;Europe/Amsterdam,Amsterdam;\
 Asia/Karachi,Lahore;\
 Australia/Perth,Perth;Australia/Melbourne,Melbourne;Australia/Sydney,Sydney;"
 
+# Puppeteer
+export PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║ ${PATH}                                                                    ║
