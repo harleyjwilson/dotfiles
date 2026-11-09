@@ -260,6 +260,10 @@ bindsym $mod+r mode "resize"
 #
 # Utilities:
 #
+    # Super+F7/F8/F9: previous track, play/pause, next track.
+    bindsym $mod+F7 exec playerctl previous
+    bindsym $mod+F8 exec playerctl play-pause
+    bindsym $mod+F9 exec playerctl next
     # Special keys to adjust volume via PulseAudio
     bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
     bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
