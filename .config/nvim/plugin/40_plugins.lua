@@ -144,7 +144,13 @@ later(function()
       lua = { 'stylua' },
       go = { 'gofmt' },
       python = { 'ruff_format' },
-      markdown = { 'mdformat' },
+      markdown = function(bufnr)
+        -- mdformat escapes zk wiki links; keep it away from Zettelkasten notes.
+        local notebook_dir = vim.fn.fnamemodify(vim.env.ZK_NOTEBOOK_DIR or '~/Zettelkasten', ':p'):gsub('/$', '')
+        local note_path = vim.api.nvim_buf_get_name(bufnr)
+        if vim.fs.relpath(notebook_dir, note_path) then return {} end
+        return { 'mdformat' }
+      end,
       javascript = { 'prettier' },
       javascriptreact = { 'prettier' },
       typescript = { 'prettier' },
@@ -179,6 +185,33 @@ end)
 -- 'mini.snippets' is designed to work with it as seamlessly as possible.
 -- See `:h MiniSnippets.gen_loader.from_lang()`.
 later(function() add({ 'https://github.com/rafamadriz/friendly-snippets' }) end)
+
+-- Markdown image previews ====================================================
+
+-- Render local Markdown image links inline using Ghostty's Kitty graphics protocol.
+-- Requires ImageMagick (`sudo pacman -S imagemagick`) for the CLI processor.
+now_if_args(function()
+  add({ 'https://github.com/3rd/image.nvim' })
+  require('image').setup({
+    backend = 'kitty',
+    processor = 'magick_cli',
+    integrations = {
+      markdown = { enabled = true, download_remote_images = false },
+    },
+  })
+end)
+
+-- zk notes ===================================================================
+
+-- Use the existing Zettelkasten notebook and mini.pick for zk-nvim's note lists.
+later(function()
+  vim.env.ZK_NOTEBOOK_DIR = vim.env.ZK_NOTEBOOK_DIR or vim.fn.expand('~/Zettelkasten')
+  add({ 'https://github.com/zk-org/zk-nvim' })
+  require('zk').setup({ picker = 'minipick' })
+  require('zk_picker_titles').configure_note_picker_titles()
+  -- zk's LSP needs a separate filter per tag for AND searches.
+  require('zk.commands').add('ZkTags', require('zk_tag_search').open_tag_search_picker)
+end)
 
 -- Honorable mentions =========================================================
 

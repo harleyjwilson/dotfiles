@@ -177,7 +177,8 @@ now_if_args(function()
   -- Don't show 'Text' suggestions (usually noisy) and show snippets last.
   local process_items_opts = { kind_priority = { Text = -1, Snippet = 99 } }
   local process_items = function(items, base)
-    return MiniCompletion.default_process_items(items, base, process_items_opts)
+    local candidates = MiniCompletion.default_process_items(items, base, process_items_opts)
+    return require('zk_link_completion').reuse_existing_wikilink_closers(candidates)
   end
   require('mini.completion').setup({
     lsp_completion = {
@@ -705,7 +706,31 @@ end)
 -- - `:h MiniPick.builtin` and `:h MiniExtra.pickers` - available pickers;
 --   Execute one either with Lua function, `:Pick <picker-name>` command, or
 --   one of `<Leader>f` mappings defined in 'plugin/20_keymaps.lua'
-later(function() require('mini.pick').setup() end)
+later(function()
+  local pick = require('mini.pick')
+  pick.setup({
+    source = {
+      -- Wrap Markdown file previews, but not picker results or other file types.
+      preview = function(buf_id, item)
+        pick.default_preview(buf_id, item)
+        local path = type(item) == 'table' and item.path or type(item) == 'string' and item:match('^[^\0]*') or ''
+        local wrap_markdown = type(path) == 'string'
+          and (path:lower():match('%.md$') ~= nil or path:lower():match('%.markdown$') ~= nil)
+        local win_id = pick.get_picker_state().windows.main
+        vim.wo[win_id].wrap = wrap_markdown
+        vim.wo[win_id].linebreak = wrap_markdown
+      end,
+    },
+  })
+
+  Config.new_autocmd('BufWinEnter', '*', function(ev)
+    if vim.bo[ev.buf].filetype ~= 'minipick' then return end
+    local state = pick.get_picker_state()
+    if not state or state.buffers.main ~= ev.buf then return end
+    vim.wo[state.windows.main].wrap = false
+    vim.wo[state.windows.main].linebreak = false
+  end, 'Keep MiniPick result rows unwrapped')
+end)
 
 -- Manage and expand snippets (templates for a frequently used text).
 -- Typical workflow is to type snippet's (configurable) prefix and expand it

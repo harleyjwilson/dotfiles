@@ -21,6 +21,14 @@ vim.cmd('setlocal spell wrap')
 -- Fold with tree-sitter
 vim.cmd('setlocal foldmethod=expr foldexpr=v:lua.vim.treesitter.foldexpr()')
 
+-- Keep LSP note/link completion, but don't show mini.completion's keyword
+-- fallback (words from open buffers) while writing Zettelkasten notes.
+local notebook_dir = vim.fn.fnamemodify(vim.env.ZK_NOTEBOOK_DIR or '~/Zettelkasten', ':p'):gsub('/$', '')
+local note_path = vim.api.nvim_buf_get_name(0)
+if note_path:sub(1, #notebook_dir + 1) == notebook_dir .. '/' then
+  vim.b.minicompletion_config = { fallback_action = function() end }
+end
+
 -- Disable built-in `gO` mapping in favor of 'mini.basics'
 vim.keymap.del('n', 'gO', { buffer = 0 })
 

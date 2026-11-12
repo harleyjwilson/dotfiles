@@ -60,6 +60,7 @@ Config.leader_group_clues = {
   { mode = 'n', keys = '<Leader>s', desc = '+Session' },
   { mode = 'n', keys = '<Leader>t', desc = '+Terminal' },
   { mode = 'n', keys = '<Leader>v', desc = '+Visits' },
+  { mode = 'n', keys = '<Leader>z', desc = '+Zettelkasten' },
 
   { mode = 'x', keys = '<Leader>g', desc = '+Git' },
   { mode = 'x', keys = '<Leader>l', desc = '+Language' },
@@ -227,6 +228,17 @@ nmap_leader('sw', '<Cmd>lua MiniSessions.write()<CR>',          'Write current')
 -- t is for 'Terminal'
 nmap_leader('tT', '<Cmd>horizontal term<CR>', 'Terminal (horizontal)')
 nmap_leader('tt', '<Cmd>vertical term<CR>',   'Terminal (vertical)')
+
+-- z is for 'Zettelkasten' (zk-nvim). Main notes live at the notebook root.
+nmap_leader('zn', '<Cmd>ZkNew { dir = ".", group = "main", title = vim.fn.input("Title: ") }<CR>', 'New main note')
+nmap_leader('zN', '<Cmd>ZkNew { dir = "Inbox", title = vim.fn.input("Title: ") }<CR>', 'New fleeting note')
+nmap_leader('zo', '<Cmd>ZkNotes<CR>',       'Open notes')
+nmap_leader('zf', '<Cmd>lua require("zk_note_search").open_note_search_picker()<CR>', 'Search notes')
+nmap_leader('zt', '<Cmd>ZkTags<CR>',        'Search notes by tag')
+nmap_leader('zb', '<Cmd>ZkBacklinks<CR>',   'Backlinks')
+nmap_leader('zc', '<Cmd>edit ~/Zettelkasten/.zk/config.toml<CR>', 'Open config')
+nmap_leader('zi', '<Cmd>ZkInsertLink<CR>', 'Insert link')
+nmap_leader('za', '<Cmd>lua require("zk_clipboard_image").paste_clipboard_image()<CR>', 'Paste clipboard image')
 
 -- v is for 'Visits'. Common usage:
 -- - `<Leader>vv` - add    "core" label to current file.
