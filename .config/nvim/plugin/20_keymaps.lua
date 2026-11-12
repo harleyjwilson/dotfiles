@@ -60,6 +60,7 @@ Config.leader_group_clues = {
   { mode = 'n', keys = '<Leader>s', desc = '+Session' },
   { mode = 'n', keys = '<Leader>t', desc = '+Terminal' },
   { mode = 'n', keys = '<Leader>v', desc = '+Visits' },
+  { mode = 'n', keys = '<Leader>w', desc = '+Website' },
   { mode = 'n', keys = '<Leader>z', desc = '+Zettelkasten' },
 
   { mode = 'x', keys = '<Leader>g', desc = '+Git' },
@@ -228,6 +229,13 @@ nmap_leader('sw', '<Cmd>lua MiniSessions.write()<CR>',          'Write current')
 -- t is for 'Terminal'
 nmap_leader('tT', '<Cmd>horizontal term<CR>', 'Terminal (horizontal)')
 nmap_leader('tt', '<Cmd>vertical term<CR>',   'Terminal (vertical)')
+
+-- w is for the blog website. Actions use ~/projects/hjw/blog regardless of cwd.
+nmap_leader('wo', '<Cmd>lua require("blog_workflow").open_blog()<CR>',     'Open blog')
+nmap_leader('wb', '<Cmd>lua require("blog_workflow").new_blog_post()<CR>', 'Create new blog post')
+nmap_leader('wn', '<Cmd>lua require("blog_workflow").new_now_post()<CR>',  'Create new now post')
+nmap_leader('wc', '<Cmd>lua require("blog_workflow").check_blog()<CR>',    'Check blog site')
+nmap_leader('wd', '<Cmd>lua require("blog_workflow").deploy_blog()<CR>',   'Deploy blog site')
 
 -- z is for 'Zettelkasten' (zk-nvim). Main notes live at the notebook root.
 nmap_leader('zn', '<Cmd>ZkNew { dir = ".", group = "main", title = vim.fn.input("Title: ") }<CR>', 'New main note')
