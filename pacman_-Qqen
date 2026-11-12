@@ -54,10 +54,12 @@ gst-plugin-pipewire
 gvfs
 helix
 htop
+imagemagick
 inotify-tools
 intel-media-driver
 intel-ucode
 jless
+jq
 jrnl
 just
 jwt-cli
@@ -170,6 +172,8 @@ xdg-utils
 xorg-xwayland
 yaml-language-server
 yt-dlp
+zathura
+zathura-pdf-poppler
 zed
 zk
 zoxide
