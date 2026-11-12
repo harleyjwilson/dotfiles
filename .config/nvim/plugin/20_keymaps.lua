@@ -237,9 +237,18 @@ nmap_leader('wn', '<Cmd>lua require("blog_workflow").new_now_post()<CR>',  'Crea
 nmap_leader('wc', '<Cmd>lua require("blog_workflow").check_blog()<CR>',    'Check blog site')
 nmap_leader('wd', '<Cmd>lua require("blog_workflow").deploy_blog()<CR>',   'Deploy blog site')
 
--- z is for 'Zettelkasten' (zk-nvim). Main notes live at the notebook root.
-nmap_leader('zn', '<Cmd>ZkNew { dir = ".", group = "main", title = vim.fn.input("Title: ") }<CR>', 'New main note')
-nmap_leader('zN', '<Cmd>ZkNew { dir = "Inbox", title = vim.fn.input("Title: ") }<CR>', 'New fleeting note')
+-- z is for 'Zettelkasten' (zk-nvim). Main and structure notes live at the notebook root.
+local create_zk_note = function(dir, group)
+  return function()
+    local title = vim.fn.input('Title: ')
+    if vim.trim(title) == '' then return end
+    require('zk').new({ dir = dir, group = group, title = title })
+  end
+end
+
+nmap_leader('zn', create_zk_note('.', 'main'),      'New main note')
+nmap_leader('zN', create_zk_note('Inbox'),          'New fleeting note')
+nmap_leader('zs', create_zk_note('.', 'structure'), 'New structure note')
 nmap_leader('zo', '<Cmd>ZkNotes<CR>',       'Open notes')
 nmap_leader('zf', '<Cmd>lua require("zk_note_search").open_note_search_picker()<CR>', 'Search notes')
 nmap_leader('zt', '<Cmd>ZkTags<CR>',        'Search notes by tag')
