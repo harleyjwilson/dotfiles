@@ -65,6 +65,7 @@ Config.leader_group_clues = {
 
   { mode = 'x', keys = '<Leader>g', desc = '+Git' },
   { mode = 'x', keys = '<Leader>l', desc = '+Language' },
+  { mode = 'x', keys = '<Leader>o', desc = '+Other' },
 }
 
 -- Helpers for a more concise `<Leader>` mappings.
@@ -210,6 +211,9 @@ nmap_leader('mt', '<Cmd>lua MiniMap.toggle()<CR>',       'Toggle')
 
 -- o is for 'Other'. Common usage:
 -- - `<Leader>oz` - toggle between "zoomed" and regular view of current buffer
+-- - Select lines, then `<Leader>oq` / `<Leader>oQ` to add/remove a quote level.
+xmap_leader('oq', ':s/^/> /<CR><Cmd>nohlsearch<CR>',  'Increase quote level')
+xmap_leader('oQ', ':s/^> //<CR><Cmd>nohlsearch<CR>', 'Decrease quote level')
 nmap_leader('or', '<Cmd>lua MiniMisc.resize_window()<CR>', 'Resize to default width')
 nmap_leader('ot', '<Cmd>lua MiniTrailspace.trim()<CR>',    'Trim trailspace')
 nmap_leader('oz', '<Cmd>lua MiniMisc.zoom()<CR>',          'Zoom toggle')
