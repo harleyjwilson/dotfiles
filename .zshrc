@@ -411,7 +411,7 @@ function __go_tool_paths() {
     info=$(go version -m "$bin") || return
     for line in "${(@f)info}"; do
       fields=("${(@z)line}")
-      if [[ "$fields[1]" == path && "$fields[2]" == github.com/* ]]; then
+      if [[ "$fields[1]" == path ]]; then
         packages+=("$fields[2]")
       fi
     done
@@ -422,7 +422,7 @@ function __go_tool_paths() {
 
 function update-tools() {
   __require_commands cargo cargo-install-update gh git go pnpm tldr uv || return
-  local go_packages package
+  local go_packages package install_output declared_path
   go_packages=$(__go_tool_paths) || return
 
   printf "Updating Rust tools ...\n"
@@ -432,7 +432,16 @@ function update-tools() {
   unset GOPROXY
   for package in "${(@f)go_packages}"; do
     [[ -n "$package" ]] || continue
-    go install "$package@latest" || return
+    if install_output=$(go install "$package@latest" 2>&1); then
+      [[ -z "$install_output" ]] || print -r -- "$install_output"
+    elif [[ "$install_output" =~ 'module declares its path as: ([^[:space:]]+)' ]]; then
+      declared_path="$match[1]"
+      printf 'Go module moved: %s -> %s\n' "$package" "$declared_path"
+      go install "$declared_path@latest" || return
+    else
+      print -u2 -r -- "$install_output"
+      return 1
+    fi
   done
 
   printf '\nUpdating uv tools ...\n'
