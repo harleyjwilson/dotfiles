@@ -391,7 +391,6 @@ function ssh {
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 
-
 function __require_commands() {
   local program result=0
   for program in "$@"; do
@@ -480,6 +479,12 @@ function update-packages() {
   fi
 
   printf '\nPackages update complete\n'
+
+  if [[ ! -d "/usr/lib/modules/$(uname -r)" ]]; then
+    command notify-send -u critical -a 'Kernel update' \
+      'Reboot needed' \
+      'The running kernel’s modules are no longer installed. USB drives may not work until you reboot.'
+  fi
 }
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
